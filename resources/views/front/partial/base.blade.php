@@ -18,21 +18,43 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
         <link rel="icon" href="/favicon.ico" type="image/x-icon" />
-        <link rel="stylesheet" href="{{ asset('css/normalize.css') }}">
-        <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-        <link href="https://cdn.bootcss.com/Swiper/4.0.6/css/swiper.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="http://static2.fh21.com.cn/chl/css/base.inc.css">
+        <link rel="stylesheet" href="http://static2.fh21.com.cn/chl/css/main.css">
         <link href="https://cdn.bootcss.com/animate.css/3.5.2/animate.min.css" rel="stylesheet">
   
-        <link rel="stylesheet" href="{{ asset('css/main.min.css') }}">
+      
         <script src="{{ asset('js/modernizr-2.6.2.min.js') }}"></script>
             
 
         <style type="text/css">
-            .breadcrumb {
+        .breadcrumb {
                  padding: 0px; 
                  margin-bottom: 0px; 
                 background: none !important; 
-            }
+        }
+       .main-relative {
+            position: relative;
+        }
+        .nav-position {
+            width: 300px;
+            background: #fff;
+        }
+        body .nav-fixed{
+            position: fixed;
+            top: 0;
+            z-index: 1;
+        }
+        body .nav-absolute{
+            position: absolute;
+            top: auto;
+            bottom: 0;
+        }
+        .ad-m{margin: 10px 0;}
+        .ls-main .all-img{
+            height: 100%;
+            width: 100%;
+            max-width: initial;
+        }
         </style>
 
         @yield('css')
@@ -55,40 +77,37 @@
 
         <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="{{ asset('vendor/jquery-1.12.4.min.js') }}"><\/script>')</script>
-        <script src="{{ asset('js/plugins.js') }}"></script>
-        <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-        <script type="text/javascript" src="{{ asset('vendor/scrollreveal.min.js') }}"></script>
-        <script src="https://cdn.bootcss.com/Swiper/3.4.2/js/swiper.jquery.min.js"></script>
-        <script src="{{ asset('js/vendor/swiper.animate1.0.2.min.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('vendor/layui/layui.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('vendor/infinite-scroll.pkgd.min.js') }}"></script>
-        <script src="{{ asset('js/main.min.js') }}"></script>
-        <script type="text/javascript" charset="utf-8">
-            layui.use('flow', function(){
-              var flow = layui.flow;
-
-              //按屏加载图片
-              flow.lazyimg({
-                elem: 'img.lazy'
-              });
-              
-            });
-            // JavaScript
-            window.sr = ScrollReveal({ reset: true });
-
-            sr.reveal('.reveal', { duration: 2000 }, 50);
-            sr.reveal('.reveal2', { duration: 2000 }, 50);
-            sr.reveal('.reveal3', { duration: 2000 }, 50);
-            sr.reveal('.reveal4', { duration: 2000 }, 50);
-            sr.reveal('.reveal5', { duration: 2000 }, 50);
-
-            $('.scroll-container').infiniteScroll({
-                // options
-                path: "a[rel='next']",
-                append: '.scroll-post',
-                history: false,
+        <script src="http://static2.fh21.com.cn/chl/js/jquery.SuperSlide.2.1.1.js" type="text/javascript" charset="utf-8"></script>
+        <script type="text/javascript">
+            $(function(){
+                
+                jQuery(".slideBox").slide({mainCell:".bd ul",effect:"leftLoop",autoPlay:true});
+                
+                $('.hrt-head .hrt-head-list').on('mouseover',function(){
+                    $(this).addClass('hrt-head-list-hover').siblings().removeClass('hrt-head-list-hover');
+                    $('.hrt-main .hrt-main-list').eq($(this).index()).addClass('hrt-main-list-show').siblings().removeClass('hrt-main-list-show');
+                });
+                
+                $('.ma-nav .ma-nav-list').on('mouseover',function(){
+                    $(this).addClass('ma-nav-list-hover').siblings().removeClass('ma-nav-list-hover');
+                    $('.ls-main .ls-mod').eq($(this).index()).addClass('ls-mod-act').siblings().removeClass('ls-mod-act');
+                    $('.ls-main-addmore .ls-mod').eq($(this).index()).addClass('ls-mod-act').siblings().removeClass('ls-mod-act');
+                });
             });
         </script>
+
+
+
+        <script type="text/javascript">
+            $(function () {
+                $('.cm-sidetitle-right > .a-hover').on('mouseover', function () {
+                    $(this).addClass('a-hover-act').siblings().removeClass('a-hover-act');
+                    $('.eyf-main > .eyfs-list').eq($(this).index()).addClass('eyfs-list-show').siblings().removeClass('eyfs-list-show');
+                });
+            });
+        </script>
+
+    
         @yield('js')
         
         <!-- JS统计代码 -->

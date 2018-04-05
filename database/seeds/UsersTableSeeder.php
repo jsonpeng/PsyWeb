@@ -15,9 +15,9 @@ class UsersTableSeeder extends Seeder
         DB::table('users')->delete();
 
         $user = User::create([
-            'name' => '管理员',
-            'email' => 'admin@foxmail.com',
-            'password'=>Hash::make('zcjyadmin'),
+            'name' => '小小白',
+            'email' => 'xiaoxiaobai@foxmail.com',
+            'password'=>Hash::make('xiaoxiaobai'),
         ]);
     }
 }

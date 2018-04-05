@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>芸来软件</title>
+    <title>心理健康网站后台管理系统</title>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css">
@@ -41,7 +41,7 @@
 
             <!-- Logo -->
             <a href="#" class="logo">
-                <b>芸来网站管理系统</b>
+                <b>小小白的网站管理系统</b>
             </a>
 
             <!-- Header Navbar -->
@@ -98,7 +98,7 @@
 
         <!-- Main Footer -->
         <footer class="main-footer" style="max-height: 100px;text-align: center">
-            <strong>Copyright 2016 <a href="http://www.yunlike.cn" target="_blank">芸来软件</a>.</strong> All rights reserved.
+            <strong>Copyright 2016 <a href="javascript:;" target="_blank">小小白的心理健康网站</a>.</strong> All rights reserved.
         </footer>
 
     </div>
