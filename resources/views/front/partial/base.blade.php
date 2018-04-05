@@ -72,6 +72,7 @@
         <![endif]-->
 
         <!-- Add your site or application content here -->
+        @include('front.partial.header')
         @yield('content')
         @include('front.partial.footer')
 

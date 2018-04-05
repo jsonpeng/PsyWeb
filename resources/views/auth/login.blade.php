@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>芸来软件</title>
+    <title>小小白的后台管理系统</title>
 
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
@@ -60,7 +60,7 @@
 <div style="padding-top: 7%;">
     <div class="login-box">
         <div class="login-logo">
-            <a href="{{ url('/home') }}">后台管理系统(芸来)</a>
+            <a href="{{ url('/home') }}">后台管理系统(小小白)</a>
         </div>
 
         <!-- /.login-logo -->

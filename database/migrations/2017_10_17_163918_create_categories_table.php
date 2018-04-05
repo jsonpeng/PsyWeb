@@ -17,8 +17,8 @@ class CreateCategoriesTable extends Migration
             $table->increments('id');
             $table->string('name')->default('')->comment('分类名称');
             $table->string('slug')->default('')->comment('分类别名');
-            $table->integer('sort')->default(0)->comment('排序');
-            $table->integer('parent_id')->default(0)->comment('父分类');
+            $table->integer('sort')->nullable()->default(0)->comment('排序');
+            $table->integer('parent_id')->nullable()->default(0)->comment('父分类');
             $table->string('image')->nullable()->default('')->comment('图像');
             $table->string('seo_title')->nullable()->default('')->comment('seo标题');
             $table->string('seo_keyword')->nullable()->default('')->comment('SEO关键词');

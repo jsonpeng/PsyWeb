@@ -23,8 +23,8 @@ class CreatePostsTable extends Migration
             $table->string('type')->nullable()->default('post')->comment('类型');
             $table->longtext('more')->nullable()->comment('更多');
             $table->longtext('content')->nullable()->comment('正文');
-            $table->integer('view')->default(1)->comment('浏览量');
-            $table->integer('sort')->default(0)->comment('排序');
+            $table->integer('view')->nullable()->default(1)->comment('浏览量');
+            $table->integer('sort')->nullable()->default(0)->comment('排序');
             $table->string('seo_title')->nullable()->default('')->comment('SEO_标题');
             $table->string('seo_des')->nullable()->default('')->comment('SEO_描述');
             $table->string('seo_keyword')->nullable()->default('')->comment('SEO_关键词');
