@@ -84,7 +84,7 @@
 
 
 <li class="{{ Request::is('messages*') ? 'active' : '' }}">
-    <a href="{!! route('messages.index') !!}"><i class="fa fa-edit"></i><span>客户留言</span></a>
+    <a href="{!! route('messages.index') !!}"><i class="fa fa-edit"></i><span>留言板</span></a>
 </li>
 
 <!-- <li class="{{ Request::is('helper*') ? 'active' : '' }}">

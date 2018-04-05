@@ -8,7 +8,6 @@
 @include('front.cat.seo')
 
 @section('content')
-<fh-ad-plus fh-ad-pid="108"></fh-ad-plus>
 <div class="wrap-b pt-30 pb-50">
             <div class="wrap clearfix main">
                 <div class="left fl clearfix">
@@ -25,45 +24,41 @@
                     <div class="left-main fr">
                         
                         <!--.文章列表-->
-                        <div class="ls-list mb-30"> 
-
-                            <div id="_elm" data-id="6721" data-page="1" data-channel="9">
-                               
+                    <div class="ls-list mb-30">               
+                        <div id="_elm" data-id="6721" data-page="1" data-channel="9">
+     
                             <div class="news-wrapper">
 
                                 <div class="ma-modone clearfix nbt pt-0"><a href="/post/1" target="_blank" class="fl ma-modone-left"><img src="https://file.fh21static.com/fhfile1/M00/63/B4/ooYBAFp6onKAHkYwAAEERjSf26c719.png" class="all-img"></a><div class="ma-modone-right fl"><a href="/post/1" target="_blank" class="ma-modone-right-title">学会尊重别人的不同</a><div class="ma-modone-right-content">现在很多人容易有易怒体质，在网路上常会跟别人吵架、骂人，或当正义魔人去找别人麻烦，甚至搞不清楚状况和是非对错，就去怒骂他人。见到太多不必要的纷争，有时想想，得理饶人真的有这么难吗？<a href="/post/1" target="_blank" class="a-hover">[详细]</a></div><div class="ma-modone-right-time">2018-02-07</div></div></div>
 
-                                  <div class="ma-modone clearfix nbt pt-0"><a href="/post/1" target="_blank" class="fl ma-modone-left"><img src="https://file.fh21static.com/fhfile1/M00/63/B4/ooYBAFp6onKAHkYwAAEERjSf26c719.png" class="all-img"></a><div class="ma-modone-right fl"><a href="/post/1" target="_blank" class="ma-modone-right-title">学会尊重别人的不同</a><div class="ma-modone-right-content">现在很多人容易有易怒体质，在网路上常会跟别人吵架、骂人，或当正义魔人去找别人麻烦，甚至搞不清楚状况和是非对错，就去怒骂他人。见到太多不必要的纷争，有时想想，得理饶人真的有这么难吗？<a href="/post/1" target="_blank" class="a-hover">[详细]</a></div><div class="ma-modone-right-time">2018-02-07</div></div></div>
+                                <div class="ma-modone clearfix nbt pt-0"><a href="/post/1" target="_blank" class="fl ma-modone-left"><img src="https://file.fh21static.com/fhfile1/M00/63/B4/ooYBAFp6onKAHkYwAAEERjSf26c719.png" class="all-img"></a><div class="ma-modone-right fl"><a href="/post/1" target="_blank" class="ma-modone-right-title">学会尊重别人的不同</a><div class="ma-modone-right-content">现在很多人容易有易怒体质，在网路上常会跟别人吵架、骂人，或当正义魔人去找别人麻烦，甚至搞不清楚状况和是非对错，就去怒骂他人。见到太多不必要的纷争，有时想想，得理饶人真的有这么难吗？<a href="/post/1" target="_blank" class="a-hover">[详细]</a></div><div class="ma-modone-right-time">2018-02-07</div></div></div>
 
 
-                                    <div class="ma-modone clearfix nbt pt-0"><a href="/post/1" target="_blank" class="fl ma-modone-left"><img src="https://file.fh21static.com/fhfile1/M00/63/B4/ooYBAFp6onKAHkYwAAEERjSf26c719.png" class="all-img"></a><div class="ma-modone-right fl"><a href="/post/1" target="_blank" class="ma-modone-right-title">学会尊重别人的不同</a><div class="ma-modone-right-content">现在很多人容易有易怒体质，在网路上常会跟别人吵架、骂人，或当正义魔人去找别人麻烦，甚至搞不清楚状况和是非对错，就去怒骂他人。见到太多不必要的纷争，有时想想，得理饶人真的有这么难吗？<a href="/post/1" target="_blank" class="a-hover">[详细]</a></div><div class="ma-modone-right-time">2018-02-07</div></div></div>
-
-                                      <div class="ma-modone clearfix nbt pt-0"><a href="/post/1" target="_blank" class="fl ma-modone-left"><img src="https://file.fh21static.com/fhfile1/M00/63/B4/ooYBAFp6onKAHkYwAAEERjSf26c719.png" class="all-img"></a><div class="ma-modone-right fl"><a href="/post/1" target="_blank" class="ma-modone-right-title">学会尊重别人的不同</a><div class="ma-modone-right-content">现在很多人容易有易怒体质，在网路上常会跟别人吵架、骂人，或当正义魔人去找别人麻烦，甚至搞不清楚状况和是非对错，就去怒骂他人。见到太多不必要的纷争，有时想想，得理饶人真的有这么难吗？<a href="/post/1" target="_blank" class="a-hover">[详细]</a></div><div class="ma-modone-right-time">2018-02-07</div></div></div>
+                                <div class="ma-modone clearfix nbt pt-0"><a href="/post/1" target="_blank" class="fl ma-modone-left"><img src="https://file.fh21static.com/fhfile1/M00/63/B4/ooYBAFp6onKAHkYwAAEERjSf26c719.png" class="all-img"></a><div class="ma-modone-right fl"><a href="/post/1" target="_blank" class="ma-modone-right-title">学会尊重别人的不同</a><div class="ma-modone-right-content">现在很多人容易有易怒体质，在网路上常会跟别人吵架、骂人，或当正义魔人去找别人麻烦，甚至搞不清楚状况和是非对错，就去怒骂他人。见到太多不必要的纷争，有时想想，得理饶人真的有这么难吗？<a href="/post/1" target="_blank" class="a-hover">[详细]</a></div><div class="ma-modone-right-time">2018-02-07</div></div></div>
 
 
-                                        <div class="ma-modone clearfix nbt pt-0"><a href="/post/1" target="_blank" class="fl ma-modone-left"><img src="https://file.fh21static.com/fhfile1/M00/63/B4/ooYBAFp6onKAHkYwAAEERjSf26c719.png" class="all-img"></a><div class="ma-modone-right fl"><a href="/post/1" target="_blank" class="ma-modone-right-title">学会尊重别人的不同</a><div class="ma-modone-right-content">现在很多人容易有易怒体质，在网路上常会跟别人吵架、骂人，或当正义魔人去找别人麻烦，甚至搞不清楚状况和是非对错，就去怒骂他人。见到太多不必要的纷争，有时想想，得理饶人真的有这么难吗？<a href="/post/1" target="_blank" class="a-hover">[详细]</a></div><div class="ma-modone-right-time">2018-02-07</div></div></div>
+                                <div class="ma-modone clearfix nbt pt-0"><a href="/post/1" target="_blank" class="fl ma-modone-left"><img src="https://file.fh21static.com/fhfile1/M00/63/B4/ooYBAFp6onKAHkYwAAEERjSf26c719.png" class="all-img"></a><div class="ma-modone-right fl"><a href="/post/1" target="_blank" class="ma-modone-right-title">学会尊重别人的不同</a><div class="ma-modone-right-content">现在很多人容易有易怒体质，在网路上常会跟别人吵架、骂人，或当正义魔人去找别人麻烦，甚至搞不清楚状况和是非对错，就去怒骂他人。见到太多不必要的纷争，有时想想，得理饶人真的有这么难吗？<a href="/post/1" target="_blank" class="a-hover">[详细]</a></div><div class="ma-modone-right-time">2018-02-07</div></div></div>
+
+                                <div class="ma-modone clearfix nbt pt-0"><a href="/post/1" target="_blank" class="fl ma-modone-left"><img src="https://file.fh21static.com/fhfile1/M00/63/B4/ooYBAFp6onKAHkYwAAEERjSf26c719.png" class="all-img"></a><div class="ma-modone-right fl"><a href="/post/1" target="_blank" class="ma-modone-right-title">学会尊重别人的不同</a><div class="ma-modone-right-content">现在很多人容易有易怒体质，在网路上常会跟别人吵架、骂人，或当正义魔人去找别人麻烦，甚至搞不清楚状况和是非对错，就去怒骂他人。见到太多不必要的纷争，有时想想，得理饶人真的有这么难吗？<a href="/post/1" target="_blank" class="a-hover">[详细]</a></div><div class="ma-modone-right-time">2018-02-07</div></div></div>
+
+                                <div class="ma-modone clearfix nbt pt-0"><a href="/post/1" target="_blank" class="fl ma-modone-left"><img src="https://file.fh21static.com/fhfile1/M00/63/B4/ooYBAFp6onKAHkYwAAEERjSf26c719.png" class="all-img"></a><div class="ma-modone-right fl"><a href="/post/1" target="_blank" class="ma-modone-right-title">学会尊重别人的不同</a><div class="ma-modone-right-content">现在很多人容易有易怒体质，在网路上常会跟别人吵架、骂人，或当正义魔人去找别人麻烦，甚至搞不清楚状况和是非对错，就去怒骂他人。见到太多不必要的纷争，有时想想，得理饶人真的有这么难吗？<a href="/post/1" target="_blank" class="a-hover">[详细]</a></div><div class="ma-modone-right-time">2018-02-07</div></div></div>
+
+                                <div class="ma-modone clearfix nbt pt-0"><a href="/post/1" target="_blank" class="fl ma-modone-left"><img src="https://file.fh21static.com/fhfile1/M00/63/B4/ooYBAFp6onKAHkYwAAEERjSf26c719.png" class="all-img"></a><div class="ma-modone-right fl"><a href="/post/1" target="_blank" class="ma-modone-right-title">学会尊重别人的不同</a><div class="ma-modone-right-content">现在很多人容易有易怒体质，在网路上常会跟别人吵架、骂人，或当正义魔人去找别人麻烦，甚至搞不清楚状况和是非对错，就去怒骂他人。见到太多不必要的纷争，有时想想，得理饶人真的有这么难吗？<a href="/post/1" target="_blank" class="a-hover">[详细]</a></div><div class="ma-modone-right-time">2018-02-07</div></div></div>
 
 
-                                          <div class="ma-modone clearfix nbt pt-0"><a href="/post/1" target="_blank" class="fl ma-modone-left"><img src="https://file.fh21static.com/fhfile1/M00/63/B4/ooYBAFp6onKAHkYwAAEERjSf26c719.png" class="all-img"></a><div class="ma-modone-right fl"><a href="/post/1" target="_blank" class="ma-modone-right-title">学会尊重别人的不同</a><div class="ma-modone-right-content">现在很多人容易有易怒体质，在网路上常会跟别人吵架、骂人，或当正义魔人去找别人麻烦，甚至搞不清楚状况和是非对错，就去怒骂他人。见到太多不必要的纷争，有时想想，得理饶人真的有这么难吗？<a href="/post/1" target="_blank" class="a-hover">[详细]</a></div><div class="ma-modone-right-time">2018-02-07</div></div></div>
+                                <div class="ma-modone clearfix nbt pt-0"><a href="/post/1" target="_blank" class="fl ma-modone-left"><img src="https://file.fh21static.com/fhfile1/M00/63/B4/ooYBAFp6onKAHkYwAAEERjSf26c719.png" class="all-img"></a><div class="ma-modone-right fl"><a href="/post/1" target="_blank" class="ma-modone-right-title">学会尊重别人的不同</a><div class="ma-modone-right-content">现在很多人容易有易怒体质，在网路上常会跟别人吵架、骂人，或当正义魔人去找别人麻烦，甚至搞不清楚状况和是非对错，就去怒骂他人。见到太多不必要的纷争，有时想想，得理饶人真的有这么难吗？<a href="/post/1" target="_blank" class="a-hover">[详细]</a></div><div class="ma-modone-right-time">2018-02-07</div></div></div>
 
 
-                                            <div class="ma-modone clearfix nbt pt-0"><a href="/post/1" target="_blank" class="fl ma-modone-left"><img src="https://file.fh21static.com/fhfile1/M00/63/B4/ooYBAFp6onKAHkYwAAEERjSf26c719.png" class="all-img"></a><div class="ma-modone-right fl"><a href="/post/1" target="_blank" class="ma-modone-right-title">学会尊重别人的不同</a><div class="ma-modone-right-content">现在很多人容易有易怒体质，在网路上常会跟别人吵架、骂人，或当正义魔人去找别人麻烦，甚至搞不清楚状况和是非对错，就去怒骂他人。见到太多不必要的纷争，有时想想，得理饶人真的有这么难吗？<a href="/post/1" target="_blank" class="a-hover">[详细]</a></div><div class="ma-modone-right-time">2018-02-07</div></div></div>
+                                <div class="ma-modone clearfix nbt pt-0"><a href="/post/1" target="_blank" class="fl ma-modone-left"><img src="https://file.fh21static.com/fhfile1/M00/63/B4/ooYBAFp6onKAHkYwAAEERjSf26c719.png" class="all-img"></a><div class="ma-modone-right fl"><a href="/post/1" target="_blank" class="ma-modone-right-title">学会尊重别人的不同</a><div class="ma-modone-right-content">现在很多人容易有易怒体质，在网路上常会跟别人吵架、骂人，或当正义魔人去找别人麻烦，甚至搞不清楚状况和是非对错，就去怒骂他人。见到太多不必要的纷争，有时想想，得理饶人真的有这么难吗？<a href="/post/1" target="_blank" class="a-hover">[详细]</a></div><div class="ma-modone-right-time">2018-02-07</div></div></div>
 
-                                              <div class="ma-modone clearfix nbt pt-0"><a href="/post/1" target="_blank" class="fl ma-modone-left"><img src="https://file.fh21static.com/fhfile1/M00/63/B4/ooYBAFp6onKAHkYwAAEERjSf26c719.png" class="all-img"></a><div class="ma-modone-right fl"><a href="/post/1" target="_blank" class="ma-modone-right-title">学会尊重别人的不同</a><div class="ma-modone-right-content">现在很多人容易有易怒体质，在网路上常会跟别人吵架、骂人，或当正义魔人去找别人麻烦，甚至搞不清楚状况和是非对错，就去怒骂他人。见到太多不必要的纷争，有时想想，得理饶人真的有这么难吗？<a href="/post/1" target="_blank" class="a-hover">[详细]</a></div><div class="ma-modone-right-time">2018-02-07</div></div></div>
 
-                                                <div class="ma-modone clearfix nbt pt-0"><a href="/post/1" target="_blank" class="fl ma-modone-left"><img src="https://file.fh21static.com/fhfile1/M00/63/B4/ooYBAFp6onKAHkYwAAEERjSf26c719.png" class="all-img"></a><div class="ma-modone-right fl"><a href="/post/1" target="_blank" class="ma-modone-right-title">学会尊重别人的不同</a><div class="ma-modone-right-content">现在很多人容易有易怒体质，在网路上常会跟别人吵架、骂人，或当正义魔人去找别人麻烦，甚至搞不清楚状况和是非对错，就去怒骂他人。见到太多不必要的纷争，有时想想，得理饶人真的有这么难吗？<a href="/post/1" target="_blank" class="a-hover">[详细]</a></div><div class="ma-modone-right-time">2018-02-07</div></div></div>
+                                <div class="ma-modone clearfix nbt pt-0"><a href="/post/1" target="_blank" class="fl ma-modone-left"><img src="https://file.fh21static.com/fhfile1/M00/63/B4/ooYBAFp6onKAHkYwAAEERjSf26c719.png" class="all-img"></a><div class="ma-modone-right fl"><a href="/post/1" target="_blank" class="ma-modone-right-title">学会尊重别人的不同</a><div class="ma-modone-right-content">现在很多人容易有易怒体质，在网路上常会跟别人吵架、骂人，或当正义魔人去找别人麻烦，甚至搞不清楚状况和是非对错，就去怒骂他人。见到太多不必要的纷争，有时想想，得理饶人真的有这么难吗？<a href="/post/1" target="_blank" class="a-hover">[详细]</a></div><div class="ma-modone-right-time">2018-02-07</div></div></div>
 
-                                                  <div class="ma-modone clearfix nbt pt-0"><a href="/post/1" target="_blank" class="fl ma-modone-left"><img src="https://file.fh21static.com/fhfile1/M00/63/B4/ooYBAFp6onKAHkYwAAEERjSf26c719.png" class="all-img"></a><div class="ma-modone-right fl"><a href="/post/1" target="_blank" class="ma-modone-right-title">学会尊重别人的不同</a><div class="ma-modone-right-content">现在很多人容易有易怒体质，在网路上常会跟别人吵架、骂人，或当正义魔人去找别人麻烦，甚至搞不清楚状况和是非对错，就去怒骂他人。见到太多不必要的纷争，有时想想，得理饶人真的有这么难吗？<a href="/post/1" target="_blank" class="a-hover">[详细]</a></div><div class="ma-modone-right-time">2018-02-07</div></div></div>
-
+                                
 
                             </div>
-                            </div>
-
-                         </div>
-
-
-
-                         </div>
+                        </div>
+                    </div>
                         <!--/.文章列表-->
                         
                         <!--.翻页-->
