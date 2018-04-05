@@ -1,0 +1,458 @@
+/* cssreset*/
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre, 
+form,fieldset,input,textarea,p,blockquote,th,td { 
+    padding: 0; 
+    margin: 0; 
+} 
+table { 
+    border-collapse: collapse; 
+    border-spacing: 0; 
+} 
+fieldset,img { 
+    border: 0; 
+} 
+address,caption,cite,code,dfn,em,strong,th,var { 
+    font-weight: normal; 
+    font-style: normal; 
+} 
+ol,ul { 
+    list-style: none; 
+} 
+caption,th { 
+    text-align: left; 
+} 
+h1,h2,h3,h4,h5,h6 { 
+    font-weight: normal; 
+    font-size: 100%; 
+} 
+q:before,q:after { 
+    content:”; 
+} 
+abbr,acronym { 
+    border: 0; 
+}
+
+// div{border:1px solid #000;}
+html, body {
+     position: relative;
+     height: 100%;
+   }
+   body {
+     // background: #eee;
+     font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+     font-size: 14px;
+     color:#000;
+     margin: 0;
+     padding: 0;
+   }
+   .swiper-container {
+     width: 100%;
+     height: 100%;
+     margin: 0 auto;
+   }
+   .swiper-slide {
+     text-align: center;
+     font-size: 18px;
+     background: #fff;
+
+     /* Center slide text vertically */
+     display: -webkit-box;
+     display: -ms-flexbox;
+     display: -webkit-flex;
+     display: flex;
+     -webkit-box-pack: center;
+     -ms-flex-pack: center;
+     -webkit-justify-content: center;
+     justify-content: center;
+     -webkit-box-align: center;
+     -ms-flex-align: center;
+     -webkit-align-items: center;
+     align-items: center;
+   }
+
+/* ****************************************首页*************************************/
+.container-fuild{height: 100%;}
+.s-nav-list{display: none;}
+.left-bar{width:20%;max-width: 380px;float: left;height: 100%;position: relative;
+    .logo{padding: 50px 0;border-bottom: 1px solid #ddd;}
+    .nav-list{font-size: 20px;padding:25px 0;
+       li{line-height: 65px;
+          a{color:#333;text-decoration: none;}
+          a:visited{text-decoration: none;}
+          a:hover{text-decoration: none;}
+          .active{color:#f7d50d;font-weight: bold;text-decoration: none;}
+       }
+    }
+    .foot-info{position:absolute;bottom:0;left:0;width: 100%;padding-bottom: 50px;
+      .tel{font-size:22px;font-weight: bold;color:#161749;}
+        .shar-link{margin-top: 25px;
+            .img{display: inline-block;margin: 0 8px;}
+        }
+    }
+}
+.right-bar{overflow: hidden;height: 100%;
+    .page1{background: url('../img/e1.jpg')no-repeat center  center;background-size:cover;
+        .txt{color:#fff;
+           .t-1{font-size: 48px;}
+           .t-2{font-size:70px;margin-bottom: 25px;letter-spacing: .4em;}
+           .t-3{font-size: 28px;letter-spacing: 1em;}
+        }
+    }
+    .page2{background: url('../img/e2.jpg')no-repeat center  center;background-size:cover;
+        .container{width: 85%;}
+        .swiper-slide{pointer-events: auto;}
+        .card{padding: 20px;font-size: 12px;text-align: left;border: 1px solid #ababab;background: rgba(255,255,255,.8);width: 100%;
+            .pic{margin-bottom: 30px;
+               .img{float: left;}
+               .detail{float: right;line-height: 50px;font-size: 16px;display: none;
+                  a{padding: 5px 10px;border: 1px solid #999;color:#666;}
+                  a:hover{text-decoration: none;}
+               }
+            }
+            .title{font-size: 20px;font-weight: bold;margin-bottom: 30px;}
+            .date{color:#666;margin-bottom: 30px;line-height: 2em;}
+            .intr{color:#666;line-height: 2em;}
+        }
+        .active{border: 1px solid #f6db3b;
+            .pic{
+               .detail{
+                  a{border:1px solid yellow; }
+               }
+            }
+        }
+        .swiper-button-next{width: 38px;height: 70px;background: url('../img/d1.png')no-repeat center right;background-size: cover;right:25px;}
+        .swiper-button-prev{width: 38px;height: 70px;background: url('../img/d1.png')no-repeat center left;background-size: cover;left: 25px;}
+    }
+    .page3{background: url('../img/e3.jpg')no-repeat center  center;background-size:cover;
+        .container{width: 85%;}
+        .swiper-slide{background: rgba(255,255,255,.8);border-radius:500px;}
+        .card{padding: 10px 15px 25px 15px;font-size: 12px;text-align:center;
+            .pic{margin-bottom: 20px;border-radius: 50%;
+            }
+            .title{font-size: 20px;font-weight: bold;}
+            .intr{color:#666;line-height: 2em;margin-bottom: 30px;}
+            .honor{margin-bottom: 30px;line-height: 2em;}
+        }
+        .swiper-button-next{width: 38px;height: 70px;background: url('../img/d1.png')no-repeat center right;background-size: cover;right:25px;}
+        .swiper-button-prev{width: 38px;height: 70px;background: url('../img/d1.png')no-repeat center left;background-size: cover;left: 25px;}
+    }
+    .page4{background: url('../img/e4.jpg')no-repeat center  center;background-size:cover;
+        .container{width: 85%;}
+        .swiper-slide{background:rgba(255,255,255,.8);overflow: hidden;}
+        .card{text-align: left;
+            .pic{float: left;width: 40%;background: #fff;overflow: hidden;
+                  img{height:auto;width: 100%;}
+            }
+            .info{overflow: hidden;padding: 3%;
+                .g-head{font-size: 16px;color:#333;font-weight: bold;line-height: 1.7em;margin-bottom:10%;
+                    p{overflow: hidden;white-space: nowrap;text-overflow:ellipsis;}
+                }
+                .g-txt{font-size: 12px;color:#666;line-height: 1.7em;margin-bottom:15%;height: 3.4em;overflow: hidden;}
+                .g-btn{
+                    a{display: inline-block;padding: 5px 10px;background: #f7d40c;color:#fff;font-size: 14px;border-radius: 3px;}
+                }
+            }
+        }
+
+        .swiper-button-next{width: 38px;height: 70px;background: url('../img/d1.png')no-repeat center right;background-size: cover;right:25px;}
+        .swiper-button-prev{width: 38px;height: 70px;background: url('../img/d1.png')no-repeat center left;background-size: cover;left: 25px;}
+    }
+    .page5{background: url('../img/e6.jpg')no-repeat center  center;background-size:cover;position: relative;
+          .container{width: 85%;}
+          .about-me{background: rgba(255,255,255,.8);padding: 60px  50px 85px 50px;margin-bottom: 60px;
+            .g-title{font-size: 48px;color:#333;margin-bottom: 55px;}
+            .content{font-size: 16px;line-height: 2em;}
+          }
+          .pic{display: inline-block;padding: 10px;background:#fff;border-radius: 50%;margin-bottom:10px;}
+          .txt{
+              p{padding: 5px  0;border-radius: 20px;font-size: 16px;color:#000;line-height: 2em;background: #fff;}
+          }
+          .copyRight{position: absolute;bottom: 0;left:0;width: 100%;color:#8b8b8b;font-size: 14px;background: #000;line-height: 80px;}
+    }
+}
+
+// 二级页面公共样式
+.contact-way{margin-bottom: 100px;
+   .pic{display: inline-block;padding: 10px;background:#fff;border-radius: 50%;margin-bottom:10px;}
+   .txt{
+       p{padding: 5px  0;border-radius: 20px;font-size: 16px;color:#000;line-height: 2em;background: #fff;margin-bottom: 20px;}
+   }
+}
+.copyRight{text-align: center;width: 100%;color:#8b8b8b;font-size: 14px;background: #000;line-height: 80px;}
+
+/* ****************************************舞蹈课程*************************************/
+.course{
+    .left-bar{width:14.5%;max-width: 280px;float: left;height: 100%;position:fixed;
+      .logo{padding: 50px 0;border-bottom: 1px solid #ddd;}
+      .nav-list{font-size: 20px;padding:25px 0;
+       li{line-height: 65px;
+          a{color:#333;text-decoration: none;}
+          a:visited{text-decoration: none;}
+          a:hover{text-decoration: none;}
+          .active{color:#f7d50d;font-weight: bold;text-decoration: none;}
+       }
+      }
+      .foot-info{position:absolute;bottom:0;left:0;width: 100%;padding-bottom: 50px;
+        .tel{font-size:22px;font-weight: bold;color:#161749;}
+          .shar-link{margin-top: 25px;
+              .img{display: inline-block;margin: 0 8px;}
+          }
+      }
+    }
+    .right-bar{float: right;width: 85.5%;background-color:#f5f5f5;padding-top: 150px;position: relative;
+       .g-title{margin-bottom: 40px;position: relative;
+          p{display: inline-block;font-size: 28px;font-weight: bold;color:#333;padding-right:20px;position: relative;z-index: 100;background: #f5f5f5;}
+          hr{border-top: 1px solid #f7d50d;position: absolute;top:50%;width: 100%;margin: 0;}
+       }
+       .intr{
+          .media{
+              .media-heading{font-size: 28px;font-weight: bold;color:#333;margin-bottom: 40px;}
+              .txt{
+                p{text-indent: 2em;font-size: 15px;color:#333;line-height: 1.7em;}
+              }
+          }
+       }
+       .video{margin-bottom: 70px;
+          .g-list{padding-left: 40px;
+              .thumbnail{
+                 .caption{
+                    h3{font-size: 15px;font-weight: bold;color:#333;line-height: 2em;}
+                    p{font-size: 15px;line-height: 2em;}
+                 }
+              }
+          }
+       }
+       .schedule{margin-bottom: 40px;
+          .g-list{
+              .card{padding:30px 0;padding-left: 40px;border-bottom: 1px dotted #ddd;
+                  .l-info{float: left;margin-right: 20px;
+                      .ball{width:60px;height: 60px;border: 1px solid #333;border-radius: 50%;text-align: center;line-height: 60px;font-size: 16px;font-weight: bold;}
+                  }
+                  .r-info{overflow: hidden;
+                      p{font-size: 15px;color:#333;line-height: 1.7em;}
+                  }
+              }
+          }
+       }
+
+    }
+}
+/* ****************************************舞蹈老师*************************************/
+.teacher{
+    .left-bar{width:14.5%;max-width: 280px;float: left;height: 100%;position:fixed;
+      .logo{padding: 50px 0;border-bottom: 1px solid #ddd;}
+      .nav-list{font-size: 20px;padding:25px 0;
+       li{line-height: 65px;
+          a{color:#333;text-decoration: none;}
+          a:visited{text-decoration: none;}
+          a:hover{text-decoration: none;}
+          .active{color:#f7d50d;font-weight: bold;text-decoration: none;}
+       }
+      }
+      .foot-info{position:absolute;bottom:0;left:0;width: 100%;padding-bottom: 50px;
+        .tel{font-size:22px;font-weight: bold;color:#161749;}
+          .shar-link{margin-top: 25px;
+              .img{display: inline-block;margin: 0 8px;}
+          }
+      }
+    }
+    .right-bar{float: right;width: 85.5%;background-color:#f5f5f5;padding-top: 150px;position: relative;
+       .g-title{margin-bottom: 40px;position: relative;
+          p{display: inline-block;font-size: 28px;font-weight: bold;color:#333;padding-right:20px;position: relative;z-index: 100;background: #f5f5f5;}
+          hr{border-top: 1px solid #f7d50d;position: absolute;top:50%;width: 100%;margin: 0;}
+       }
+       .intr{margin-bottom: 40px;
+          .media{
+              .media-heading{font-size: 28px;font-weight: bold;color:#333;margin-bottom: 40px;
+                  span{font-size: 15px;color:#333;margin-left: 20px;font-weight: normal;}
+              }
+              .txt{margin-bottom: 20px;
+                p{font-size: 15px;color:#333;line-height: 1.7em;}
+              }
+          }
+       }
+       .person-info{margin-bottom: 30px;
+          .img{
+            img{display: block;margin-left:auto;margin-right: auto;}
+          }
+       }
+       .video{margin-bottom: 70px;
+          .g-list{padding-left: 40px;
+              .thumbnail{
+                 .caption{
+                    h3{font-size: 15px;font-weight: bold;color:#333;line-height: 2em;}
+                    p{font-size: 15px;line-height: 2em;}
+                 }
+              }
+          }
+       }
+    }
+}
+/* ****************************************舞蹈资讯*************************************/
+.news-detail{
+        .left-bar{width:14.5%;max-width: 280px;float: left;height: 100%;position:fixed;
+          .logo{padding: 50px 0;border-bottom: 1px solid #ddd;}
+          .nav-list{font-size: 20px;padding:25px 0;
+           li{line-height: 65px;
+              a{color:#333;text-decoration: none;}
+              a:visited{text-decoration: none;}
+              a:hover{text-decoration: none;}
+              .active{color:#f7d50d;font-weight: bold;text-decoration: none;}
+           }
+          }
+          .foot-info{position:absolute;bottom:0;left:0;width: 100%;padding-bottom: 50px;
+            .tel{font-size:22px;font-weight: bold;color:#161749;}
+              .shar-link{margin-top: 25px;
+                  .img{display: inline-block;margin: 0 8px;}
+              }
+          }
+        }
+        .right-bar{float: right;width: 85.5%;background-color:#f5f5f5;padding-top: 150px;position: relative;
+           .g-title{margin-bottom: 40px;position: relative;
+              p{display: inline-block;font-size: 28px;font-weight: bold;color:#333;padding-right:20px;position: relative;z-index: 100;background: #f5f5f5;}
+              hr{border-top: 1px solid #f7d50d;position: absolute;top:50%;width: 100%;margin: 0;}
+           }
+           .card{margin-bottom: 50px;
+                 .g-head{
+                    .g-title{font-size: 28px;font-weight: bold;margin-bottom: 20px;}
+                    .g-info{font-size: 15px;color:#999;margin-bottom: 30px;}
+                 }
+                 .g-body{padding-bottom: 50px;border-bottom: 1px dotted #ddd;
+                    p{font-size: 15px;color:#333;line-height: 1.7em;}
+                    .img{margin: 20px 0;
+                          img{max-width: 100%;}
+                    }
+                 }
+                 .g-foot{padding-top:50px;color:#999;
+                    a{color:#999;line-height: 2em;}
+                 }
+              }
+        }
+}
+
+ // 媒体查询
+ @media screen and (max-width:1500px) {
+    .swiper-container-vertical .swiper-pagination-bullets{right: 0;text-align: center;}
+    .swiper-container-vertical .swiper-pagination-bullets .swiper-pagination-bullet-active{margin-left: 0;}
+    .swiper-container-vertical .swiper-pagination-bullets .swiper-pagination-bullet-active:before{width:0;border: 0;}
+ }
+@media screen and (max-width:1300px) {
+    // .swiper-container-vertical>.swiper-pagination-bullets{display: none;}
+    .right-bar .page5 .about-me{padding:0;margin-bottom:20px;}
+    .right-bar .page5 .txt p{font-size: 14px;}
+}
+@media screen and (max-width:1200px) {
+    .page4{
+        .g-body{
+            .g-txt{line-height: 1.7em;height: 15em;overflow: hidden;}
+        }
+    }
+    .page5{
+        .g-head{
+            .g-title{width: 100%;padding: 0;border: 0;
+                h1{font-size: 24px;}
+                hr{width: 10%;margin: 2px 0 2px 0;}
+            }
+
+            .g-banner{width: 100%;
+                .swiper-container  .card{padding-left: 0;}
+              } 
+        }
+    }
+}
+@media screen and (min-width:990px) {
+
+}
+@media screen and (max-width:990px) {
+    .left-bar .foot-info .shar-link .img{margin: 0 5px;}
+        .page4{
+            .g-body{
+                .g-txt{
+                    line-height: 1.7em;
+                    height: 3.4em;
+                    overflow: hidden;
+                }
+            }
+        }
+        .right-bar .page5 .about-me{padding:0;margin-bottom:20px;
+            .g-title{margin-bottom:10px;}
+        }
+        .right-bar .page5 .copyRight{line-height: 50px;}
+        .course,.teacher{
+            .media{
+                .media-body{display: block;width: 100%;}
+                .media-right{display: block;width: 100%;
+                    .media-object{display: block;margin-left: auto;margin-right: auto;padding: 20px 0;max-width: 100%;}
+                }
+            }
+        }
+}
+@media screen and (max-width: 768px) {
+    .right-bar .page5 .pic{display: none;}
+    .right-bar .page5 .txt p{margin-bottom: 10px;}
+    .right-bar .page5 .copyRight{line-height: 40px;}
+    .left-bar .foot-info .tel{font-size: 20px;}
+}
+
+@media screen and (max-width: 640px) {
+    .left-bar{display: none;}
+    .right-bar{width:100%;
+          .page1{
+              .txt{
+                 .t-1{font-size: 24px;}
+                 .t-2{font-size: 35px;letter-spacing: 0;}
+                 .t-3{font-size: 18px;letter-spacing: 0;}
+              }
+          }
+    }
+    .page2{
+      .swiper-button-prev,.swiper-button-next{display: none;}
+    }
+    .page3{
+      .swiper-button-prev,.swiper-button-next{display: none;}
+      .card{
+        .honor{display: none;}
+      }
+    }
+    .page4{
+      .swiper-button-prev,.swiper-button-next{display: none;}
+    }
+    .right-bar .page5 .txt{display: none;}
+    .right-bar .page5 .about-me{height:400px;overflow-y:auto;
+        .g-title{font-size: 38px;}
+    }
+    .right-bar .page5 .copyRight{line-height: 20px;}
+    .course .right-bar{width: 100%;padding-top:50px;}
+    .course .right-bar .video .g-list{padding: 0;}
+    .teacher .right-bar{width: 100%;padding-top:50px;}
+    .teacher .right-bar .video .g-list{padding: 0;}
+    .news-detail .right-bar{width: 100%;padding-top:50px;}
+    .copyRight{line-height: 30px;}
+    body{position: relative;
+        .s-nav-list{display: block;position:fixed;top:0;left:0;z-index: 10000;background: #fff;
+            .list-btn{width:50px;height: 50px;background:url('../img/logo.png')no-repeat center center;background-size:contain;}
+            ul{display: none;background: #171849;
+              li{background: #171849;border-top: 1px solid #fff;
+                a{display:inline-block;width: 50px;height: 50px;text-align: center;padding:5px;color:#fff;}
+                .active{color:#f7d50d;}
+              }
+              li:nth-child(1){
+                a{padding-top: 1em;}
+              }
+            }
+        }
+    }
+    .course{
+        .schedule{
+            .l-info{width: 100%;}
+            .r-info{width: 100%;}
+        }
+    }
+}
+@media screen and (max-width:400px) {
+    .right-bar{
+       .page2{
+          .intr{display: none;}
+       }
+    }
+}
