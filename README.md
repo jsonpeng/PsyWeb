@@ -29,50 +29,59 @@
     composer install  
   
 ## 2.2 配置`.env`格式  
+        
+        APP_NAME=BAOXIN
+        APP_ENV=local
+        APP_KEY=base64:ljUKyuVyoiCGgvbElJlE7eSWbxRFMuES/SfnlqsWQDM=
+        APP_DEBUG=true
+        APP_LOG_LEVEL=debug
+        APP_URL=http://baoxin
 
-    APP_NAME=BAOXIN
-    APP_ENV=local
-    APP_KEY=base64:ljUKyuVyoiCGgvbElJlE7eSWbxRFMuES/SfnlqsWQDM=
-    APP_DEBUG=true
-    APP_LOG_LEVEL=debug
-    APP_URL=http://baoxin
-    BROADCAST_DRIVER=log
-    CACHE_DRIVER=file
-    SESSION_DRIVER=file
-    QUEUE_DRIVER=sync
-    REDIS_HOST=127.0.0.1
-    REDIS_PASSWORD=null
-    REDIS_PORT=6379
-    MAIL_DRIVER=smtp
-    MAIL_HOST=smtp.qq.com
-    MAIL_PORT=587
-    MAIL_USERNAME=yunlike@foxmail.com
-    MAIL_PASSWORD=zcjy0724
-    MAIL_ENCRYPTION=null
-    DB_CONNECTION=mysql
-    DB_HOST=127.0.0.1
-    DB_PORT=3306
-    DB_DATABASE=psyweb
-    DB_USERNAME=root
-    DB_PASSWORD=
-    PUSHER_APP_ID=
-    PUSHER_APP_KEY=
-    PUSHER_APP_SECRET=
+        DB_CONNECTION=mysql
+        #数据库地址
+        DB_HOST=127.0.0.1 
+        DB_PORT=3306
+        #数据库名称
+        DB_DATABASE=psyweb
+        #数据库用户名
+        DB_USERNAME=root
+        #数据库密码(默认是空)
+        DB_PASSWORD=
+
+        BROADCAST_DRIVER=log
+        CACHE_DRIVER=file
+        SESSION_DRIVER=file
+        QUEUE_DRIVER=sync
+
+        REDIS_HOST=127.0.0.1
+        REDIS_PASSWORD=null
+        REDIS_PORT=6379
+
+        MAIL_DRIVER=smtp
+        MAIL_HOST=smtp.qq.com
+        MAIL_PORT=587
+        MAIL_USERNAME=yunlike@foxmail.com
+        MAIL_PASSWORD=zcjy0724
+        MAIL_ENCRYPTION=null
+
+        PUSHER_APP_ID=
+        PUSHER_APP_KEY=
+        PUSHER_APP_SECRET=
   
 ## 2.3 生成数据表结构  
 
 
-    php artisan migrate  
+        php artisan migrate  
     
 ## 2.4 预插入数据 
 
 
-    php artisan db:seed
+        php artisan db:seed
    
 ## 2.5 初始化key
   
   
-    php artisan key:generate
+        php artisan key:generate
  
   
 
