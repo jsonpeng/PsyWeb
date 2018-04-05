@@ -36,41 +36,41 @@
     APP_DEBUG=true
     APP_LOG_LEVEL=debug
     APP_URL=http://baoxin
-    DB_CONNECTION=mysql
-    DB_HOST=127.0.0.1
-    DB_PORT=3306
-    DB_DATABASE=psyweb
-    DB_USERNAME=root
-    DB_PASSWORD=
     BROADCAST_DRIVER=log
     CACHE_DRIVER=file
     SESSION_DRIVER=file
     QUEUE_DRIVER=sync
-
     REDIS_HOST=127.0.0.1
     REDIS_PASSWORD=null
     REDIS_PORT=6379
-
     MAIL_DRIVER=smtp
     MAIL_HOST=smtp.qq.com
     MAIL_PORT=587
     MAIL_USERNAME=yunlike@foxmail.com
     MAIL_PASSWORD=zcjy0724
     MAIL_ENCRYPTION=null
-
+    DB_CONNECTION=mysql
+    DB_HOST=127.0.0.1
+    DB_PORT=3306
+    DB_DATABASE=psyweb
+    DB_USERNAME=root
+    DB_PASSWORD=
     PUSHER_APP_ID=
     PUSHER_APP_KEY=
     PUSHER_APP_SECRET=
   
 ## 2.3 生成数据表结构  
 
+
     php artisan migrate  
     
 ## 2.4 预插入数据 
 
+
     php artisan db:seed
    
 ## 2.5 初始化key
+  
   
     php artisan key:generate
  
