@@ -24,11 +24,11 @@
 
 # 2.安装步骤
 
-##2.1 安装依赖包  
+## 2.1 安装依赖包  
 
     composer install  
   
-##2.2 配置`.env`格式  
+## 2.2 配置`.env`格式  
 
     APP_NAME=BAOXIN
     APP_ENV=local
@@ -68,15 +68,15 @@
     PUSHER_APP_KEY=
     PUSHER_APP_SECRET=
   
-##2.3 生成数据表结构  
+## 2.3 生成数据表结构  
 
     php artisan migrate  
     
-##2.4 预插入数据 
+## 2.4 预插入数据 
 
     php artisan db:seed
    
-##2.5 初始化key
+## 2.5 初始化key
   
     php artisan key:generate
  
