@@ -122,11 +122,6 @@ class DatabaseSeeder extends Seeder
              'slug' => 'main',
             ]);
 
-        //默认文章添加
-        $posts=Post::create([
-            'name' => '小小白',
-            'slug' => 'xiao-xiao-bai'
-            ]);
 
 
         //默认的sql 包括banner和menu
