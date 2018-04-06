@@ -6,6 +6,34 @@
             <a href="/" class="fl"><span class="fl logo-word" style="width:auto;">小小白</span></a>
         </div>
         <div class="nav fl clearfix">
+            @foreach($menus as $menu)
+                    <!--如果还有子分类 -->
+                    @if($menu->children->count())
+                         <div class="fl nav-list " >
+                            <a href="#" class="clearfix nav-list-head">
+                                <span class="nav-list-head-word">{!! $menu->name !!}</span>
+                                <i class="icon icon-header-down"></i>               
+                            </a>
+                            <div class="nav-list-show">
+                            @foreach ($menu->children as $child)
+                                 @if(!empty($child->children))
+                                    <a href="{!! $child->link !!}" class="nav-list-show-list a-hover">{!! $child->name !!}</a>
+                                 @else
+                                 @endif
+                            @endforeach
+                            </div>
+                        </div>
+                    @else
+                     <!--如果没有子分类 -->
+                           <div class="fl nav-list">
+                            <a href="{!! $menu->link !!}" class="clearfix nav-list-head">
+                                <span class="nav-list-head-word">{!! $menu->name !!}</span>
+                            </a>
+                        </div>
+                    @endif
+
+            @endforeach
+            <!--
             <div class="fl nav-list">
                 <a href="/" class="clearfix nav-list-head">
                     <span class="nav-list-head-word">首页</span>
@@ -85,7 +113,10 @@
                                            </div> 
                                 </div>
             </div>
-                    </div>
+                -->
+
+
+        </div>
     
         <!-- 公共头部右侧导航开始 -->
 <div class="rightnav fr">
