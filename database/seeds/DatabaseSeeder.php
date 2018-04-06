@@ -104,8 +104,7 @@ class DatabaseSeeder extends Seeder
         #心灵鸡汤
         $ChickenSoup=Category::create([
             'name' => '心灵鸡汤',
-            'slug' => 'ChickenSoup',
-            'parent_id'=>$Psychology->id
+            'slug' => 'ChickenSoup'
         ]);
 
         //菜单添加

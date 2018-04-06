@@ -92,7 +92,7 @@ class MenuController extends AppBaseController
         $menu = $this->menuRepository->findWithoutFail($id);
         $cats = $this->categoryRepository->all();
         $pages = $this->pageRepository->all();
-
+      
         if (empty($menu)) {
             Flash::error('菜单不存在');
 

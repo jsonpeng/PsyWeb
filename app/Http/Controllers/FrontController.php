@@ -53,8 +53,8 @@ class FrontController extends Controller
     public function index(Request $request)
     {
         $index_content=$this->pageRepository->getCachePageBySlug('index');
-
-
+        $menus=$this->menuRepository->getCacheMenu('main');
+        return $menus;
     	return view('front.index')
             //->with('banners', $banners)
             ->with('index_content', $index_content);
