@@ -95,20 +95,42 @@ class PostRepository extends BaseRepository
         });
     }
 
+
     //最新资讯
     public function NewsestPosts($take =10){
 
-        return Post::orderBy('created_at','desc')->take($take)->get();
+        return Post::orderBy('created_at','desc')->where('status', 1)->take($take)->get();
 
     }
     
     //点击排行
     public function ClickSortPosts($take =10){
 
-         return Post::orderBy('view','desc')->take($take)->get();
+         return Post::orderBy('view','desc')->where('status', 1)->take($take)->get();
 
     }
 
-    //热门推荐
+    //随机读文章列表 推荐热点 热门推荐使用
+    public function GetRandPosts($take =10){
+        return Post::orderBy(\DB::raw('RAND()'))->where('status', 1)->take($take)->get();
+    }
+
+    /*
+     *相关热点
+     */
+    public function HotPostsByPostId($id,$take=4)
+    {
+        return Cache::remember('HotPostsByPostId_'.$id, Config::get('web.shrottimecache'), function() use ($id,$take) {
+            $post = $this->getCachePost($id);
+            $cat = $this->getCachePostFirstCat($id);
+            if (is_null($cat)) {
+                return Post::where('id', '<>', $id)->where('status', 1)->orderBy(\DB::raw('RAND()'))->take($take)->get();
+            } else {
+                
+                return  $cat->posts()->where('status', 1)->orderBy(\DB::raw('RAND()'))->take($take)->get();
+              
+            }
+        });
+    }
     
 }

@@ -93,7 +93,7 @@ class FrontController extends Controller
             return redirect('/');
         }
     	$setting = $this->settingRepository->getCachedSetting();
-        $posts = $category->posts()->paginate($setting->post_page);
+        $posts = $category->posts()->where('status', 1)->paginate($setting->post_page);
 
     	//是否为该分类自定义了模板
     	if (view()->exists('front.cat.'.$category->slug)) {
@@ -115,6 +115,13 @@ class FrontController extends Controller
 
         $prePost = $this->postRepository->PrevPost($id);
         $nextPost = $this->postRepository->NextPost($id);
+
+        //相关热点
+        $HotPostsList=$this->postRepository->HotPostsByPostId($id,4);
+        
+        //推荐阅读
+        $TuiJianRead=$this->postRepository->GetRandPosts(15);
+
     	//是否为该分类自定义了模板
     	//一个文章会属于几个分类
     	$cats = $post->cats;
@@ -122,12 +129,12 @@ class FrontController extends Controller
     	foreach ($cats as $key => $cat) {
             $category=$cat;
     		if (view()->exists('front.post.'.$cat->slug)) {
-	    		return view('front.post.'.$cat->slug)->with('post', $post)->with('prePost', $prePost)->with('nextPost', $nextPost);
+	    		return view('front.post.'.$cat->slug)->with('TuiJianRead',$TuiJianRead)->with('HotPostsList',$HotPostsList)->with('post', $post)->with('prePost', $prePost)->with('nextPost', $nextPost);
 	    	}
     	}
       
 
-    	return view('front.post.index')->with('category',$category)->with('post', $post)->with('prePost', $prePost)->with('nextPost', $nextPost);
+    	return view('front.post.index')->with('TuiJianRead',$TuiJianRead)->with('HotPostsList',$HotPostsList)->with('category',$category)->with('post', $post)->with('prePost', $prePost)->with('nextPost', $nextPost);
     }
 
     //单页面

@@ -63,7 +63,7 @@ class CategoryRepository extends BaseRepository
             try {
                 $cat = $this->getCacheCategoryBySlug($slug);
                 if ($cat) {
-                    return $cat->posts()->take($number)->get();
+                    return $cat->posts()->where('status', 1)->take($number)->get();
                 }else{
                     return collect([]);
                 }
@@ -78,7 +78,7 @@ class CategoryRepository extends BaseRepository
             try {
                 $cat = $this->getCacheCategoryBySlug($slug);
                 if ($cat) {
-                    return $cat->posts()->orderBy('created_at','desc')->first();
+                    return $cat->posts()->orderBy('created_at','desc')->where('status', 1)->first();
                 }else{
                     return collect([]);
                 }
@@ -156,5 +156,13 @@ class CategoryRepository extends BaseRepository
         return $categories;
      
     }
+
+    /*
+        猜你喜欢分类
+     */
+    public function GetRandCats($take =3){
+        return Category::orderBy(\DB::raw('RAND()'))->take($take)->get();
+    }
+    
 
 }

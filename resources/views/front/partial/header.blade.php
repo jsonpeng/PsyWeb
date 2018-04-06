@@ -119,7 +119,7 @@
 
         </div>
     
-        <!-- 公共头部右侧导航开始 -->
+        <!-- 公共头部右侧导航开始
 <div class="rightnav fr">
     <div class="clearfix rightnav-title clearfix">
         <i class="icon icon-nav fl"></i>
@@ -203,11 +203,11 @@
             </ul>
         </div>
     </div>
-</div>
+</div> -->
 <!-- 公共头部右侧导航结束 -->
- 
+  <!--未登录
         <div class="fr head-login" id="state-login">
-        <!--未登录-->
+       
         <div class="head-tologin">
             <div class="head-tologin-head clearfix">
                 <i class="icon icon-login-user fl"></i>
@@ -249,7 +249,7 @@
 <script type="text/html" id="tpl-login-status">
 
     <%if !userInfo%>
-        <!--未登录-->
+      
         <div class="head-tologin">
             <div class="head-tologin-head clearfix">
                 <i class="icon icon-login-user fl"></i>
@@ -288,7 +288,7 @@
         
         
     <%else%>            
-        <!--已登录-->
+      
         <div class="head-logined">
             <div class="head-logined-head clearfix">
                 <a href="http://passport.fh21.com.cn" class="fl head-logined-head-left">
@@ -344,7 +344,7 @@
 
 
 
-</script>       
+</script>   -->    
 
     </div>
 </div>
