@@ -6,7 +6,6 @@
             <a href="/" class="fl"><span class="fl logo-word" style="width:auto;">小小白</span></a>
         </div>
         <div class="nav fl clearfix">
-      
             @foreach($menus as $menu)
                     <!--如果还有子分类 -->
                     @if($menu->children->count())
@@ -34,7 +33,8 @@
                     @endif
 
             @endforeach
-            <!--
+
+                <!--
             <div class="fl nav-list">
                 <a href="/" class="clearfix nav-list-head">
                     <span class="nav-list-head-word">首页</span>

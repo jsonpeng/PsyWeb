@@ -11,9 +11,9 @@ use App\Repositories\MenuRepository;
 use App\Repositories\MessageRepository;
 use App\Repositories\LinkRepository;
 use App\Repositories\BannerRepository;
-
+use App\Repositories\CoorperatorRepository;
 use Illuminate\Support\Facades\Log;
-
+use App\Models\Banner;
 use Mail;
 use App\Models\Post;
 
@@ -54,7 +54,7 @@ class FrontController extends Controller
     {
         $index_content=$this->pageRepository->getCachePageBySlug('index');
         $menus=$this->menuRepository->getCacheMenu('main');
-        return $menus;
+        //return $menus;
     	return view('front.index')
             //->with('banners', $banners)
             ->with('index_content', $index_content);

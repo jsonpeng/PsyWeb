@@ -5,7 +5,7 @@ use App\Models\Category;
 use App\Models\Post;
 use App\Models\Menu;
 use App\Models\Banner;
-
+use App\Models\Page;
 class DatabaseSeeder extends Seeder
 {
     /**
