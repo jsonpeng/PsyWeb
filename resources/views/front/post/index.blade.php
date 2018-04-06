@@ -164,17 +164,16 @@
     </div>
     <!--/.PC问答右侧关注广告位-->                <!--/.图片广告-->
 
-                <!--右测矩形方框图-->
-                <iframe frameborder="0" scrolling="no" src="http://boardx.huanqiu.com/smu0/j.html#aae95d03d81714dpu3145753r67608798091496270000t1522918300946(%E5%AD%A6%E4%BC%9A%E5%B0%8A%E9%87%8D%E5%88%AB%E4%BA%BA%E7%9A%84%E4%B8%8D%E5%90%8C)" style="width: 300px; height: 250px; margin: 0px; padding: 0px; border: 0px;"></iframe>
+             
 
               @include('front.partial.right')
     
-</div>
+            </div>
 
                 <!--/.猜你喜欢-文章-->
             </div>
 
-                        </div>
+        </div>
     </div>
-    </div>
+</div>
 @endsection

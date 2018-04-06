@@ -100,7 +100,7 @@
                            @foreach($CaiYouLike as $items)
                                <?php $c2++;?>
                             <div class="eyfs-list clr {!! $c2==1?'eyfs-list-show':'' !!} ">
-                             <?php $posts=$items->posts()->orderBy('created_at','desc')->where('status', 1)->take(4)->get();?>
+                             <?php $posts=app('cat')->getCachePostOfCatIncludeChildren($items,4);?>
 
                                 @foreach($posts as $post)
                                     <div class="eyf-mod fll">
@@ -109,7 +109,7 @@
                                             </a>
                                             <a href="/post/{!! $post->id !!}" class="eyf-mod-title a-hover">{!! $post->name !!}</a>
                                         </div>
-                                     </div>
+                                     
                                 @endforeach
                             
                              @endforeach
