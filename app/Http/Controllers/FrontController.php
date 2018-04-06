@@ -52,12 +52,29 @@ class FrontController extends Controller
     // 首页
     public function index(Request $request)
     {
-        $index_content=$this->pageRepository->getCachePageBySlug('index');
-        $menus=$this->menuRepository->getCacheMenu('main');
-        //return $menus;
-    	return view('front.index')
-            //->with('banners', $banners)
-            ->with('index_content', $index_content);
+
+        //右侧文章列表 取每个分类的最新上传的第一篇文章
+        
+        #大学成长
+        $UniversityGrowth=$this->categoryRepository->getPostFirstByCatSlug('UniversityGrowth');
+
+        #校园社交
+        $CampusAssocia=$this->categoryRepository->getPostFirstByCatSlug('CampusAssocia');
+
+        #每日心理学
+        $Psychology=$this->categoryRepository->getPostFirstByCatSlug('Psychology');
+
+        #心灵鸡汤
+        $ChickenSoup=$this->categoryRepository->getPostFirstByCatSlug('ChickenSoup');
+
+        #获取所有父分类列表
+        
+        $RootCat=$this->categoryRepository->getRootCat();
+
+
+
+    	return view('front.index',compact('UniversityGrowth','CampusAssocia','Psychology','ChickenSoup','RootCat'));
+       
     }
 
     //分类页面
@@ -100,12 +117,16 @@ class FrontController extends Controller
     	//是否为该分类自定义了模板
     	//一个文章会属于几个分类
     	$cats = $post->cats;
+        $category=null;
     	foreach ($cats as $key => $cat) {
+            $category=$cat;
     		if (view()->exists('front.post.'.$cat->slug)) {
 	    		return view('front.post.'.$cat->slug)->with('post', $post)->with('prePost', $prePost)->with('nextPost', $nextPost);
 	    	}
     	}
-    	return view('front.post.index')->with('post', $post)->with('prePost', $prePost)->with('nextPost', $nextPost);
+      
+
+    	return view('front.post.index')->with('category',$category)->with('post', $post)->with('prePost', $prePost)->with('nextPost', $nextPost);
     }
 
     //单页面

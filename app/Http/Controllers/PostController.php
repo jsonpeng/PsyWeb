@@ -191,6 +191,7 @@ class PostController extends AppBaseController
 
         $attach='';
         $all=$this->customPostTypeRepository->getAll();
+        $attach_items=[];
         if (array_key_exists('post_type', $input)) {
 
             $attach=$this->customPostTypeRepository->getNameBySlug($input['post_type']);

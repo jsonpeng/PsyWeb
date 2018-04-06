@@ -19,9 +19,7 @@
     <span class="fl">您的位置：</span>
     <a href="/" target="_blank" class="fl bread-a">首页</a>
                 <span class="fl bread-arrow">&gt;</span>
-    <a href="/" class="fl bread-a">心理频道</a>
-                <span class="fl bread-arrow">&gt;</span>
-    <a href="/" class="fl bread-a">心理探秘</a>
+    <a href="/cat/{!! $category->id !!}" class="fl bread-a">{!! $category->name !!}</a>
                 <span class="fl bread-arrow">&gt;</span>
     <span class="fl">正文</span>
 </div>
@@ -30,9 +28,9 @@
                 <!--.文章-->
                 <div class="arti mb-20">
     <div class="arti-head">
-        <h1 style="font-size:30px;">学会尊重别人的不同</h1>
+        <h1 style="font-size:30px;">{!! $post->name !!}</h1>
         <div class="arti-head-info clearfix">
-            <span class="fl arti-hi-left">发布时间： 2018-02-07     来源：飞华健康网    编辑：20540 </span>
+            <span class="fl arti-hi-left">发布时间：{!! $post->created_at !!}  阅读：{!! $post->view !!} </span>
             <div class="arti-share-box clearfix fl">
                 <i class="icon icon-share-qzone icon-share-common" data-share="qzone"></i>
                 <i class="icon icon-share-wb icon-share-common" data-share="weibo"></i>
@@ -52,41 +50,20 @@
                     </div>
                 </div>
             </div>
-            <div class="arti-head-sizewrap fr clearfix">
-                <span class="fl arti-hs-list">小</span>
-                <span class="fl arti-hs-list arti-hs-list-act">中</span>
-                <span class="fl arti-hs-list">大</span>
-            </div>
-            <div class="arti-hi-phone fr clearfix">
-                <div class="arti-hip-left fl">
-                    <i class="icon icon-phone"></i>
-                    <div class="arti-hipl-show">
-                        <div class="arti-hipl-box clearfix">
-                            <span class="fl arti-hipl-left" id="qrcode" title="http://psy.fh21.com.cn/xltm/5298870.html">
-                                
-                            <canvas width="88" height="88" style="display: none;"></canvas><img alt="Scan me!" style="display: block;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABYCAYAAABxlTA0AAAFlklEQVR4Xu2d7XbbMAxDnfd/6PTkq1FkCryQ7K1buZ+LLdkQSIKQkl62bbtuC/+u1/3tl8tlN2J/XXRN9Biv+9rr1Vjk+mie1/jt2PQZFXw3JArgbdtOBzhiolyZJ0vpfT0bMqZETHw9jxsN5BkVwOT+Fqv2Xb8ZPDsIva8AfuZSlXci1s3mYDftqxwcsSeLkH5+9R50rCjqdgwugN/Qu3m5ABZh808xWMkgV4q5xSe6/jWn+9mPZXAB/O4DDs3B/YpToU4KJVUrZHFV0coKOalRUqaRAW4vQUK3AN62H6GDZ1lHmN+O7bbRKmeTJuxOxFer7IagO7lqNArgAIECeMzhMAe7nVXkC6gi14cnLSYqrEkdiOpF1BW6kozidaibVgDvYb9c3eQrlo4oEMoU1zFzvAXFvgPhuE9TAHdoF8Aw+bkSbuQ1w+mGl+0YHIW5+7DKLCfFsX3as/0DAmBWkKUm7nNwAbyH63SAqQPWs9NdLJX/VsZyokBJuNv7uTkapYgC+O2O2QD3u8pHGM8qz5LPVvwDklMjlr7uU5+1TQuVertGowDWbCUO4UfOLgZ/Hgs5nMEvFeGaNySk3FAk7MjSh9KzR7yjKuThpmcBnGdtpWAy1SG3jEjDQBmlvALiihGfYwQVuZd6JK4ULYC7Azcrh0xChdTvaKyEg2KpbCfFaUynSWhllKuGzrAD7s9TAD9kWQEsziFTr4Dk+shocjvZjzGIiqAFwDHJXcZExVRJRSr5SOtL5WaYgwvg/Pz5EsDqhLvaqCTsIewYhaSKBidSovyaaddcGXNXTW56FsBjqCl5CmBw8FwVuYzt0zItTOidnlXVPTNVohQ08hmODPlsLNXdhl7ErA4ugMdfVWsXSW7bu+5TL41o20l0phorm0fVEtIpUr9FumnRSxbAjKXKAPpmMHGcIkl1xEbl2ZJPeSSkIckiRPosfaNBKyZhtzKOVMS02pXMk41VAD8RUBWc6k6lPkhhzghGGB96EZLmwE6MOiaXWaqYHFHkiPTL5CMp5B/PSk5Xuh6xu1h/SkX8FYCdrxBk4eFuMY0ah6iYulJJLTKNLGra9+N96OAC+AEPLcik6OJGg4SUkm5U+mWRQfN7CxSVj6R4LtmVqzm4ANa/7oJOuM+GTzG4+QqBG6ZUWTiFzA3rKB+SRV3R2zZOpJOjAp1YeaqC/5cAO3ZlJn2UCO8LZrbpSSQfKVAjhdC/Cx3LLvwF8AOyAjgIHwqKmzezSLV086xMU3mZvHimTPoClnkEJAUdAZz7XNMyrQB+nKfIFh59CSYqOLTij4pJ+mDdD99RaZVFhvINCMOV7IzmLoADK5YAnamg75Sljk65xYGIfCVz2hdzIkQdD6D+hNLn0WdU8+/25Nz9J3p9D1i2eAXwc1kL4MTsUY0GkVtt+JDtlJVwG0mxlYJJOjqa+kJvpAD+hJgWLypTp1UEneAo1qkiRNOUemaiHKIinMnCAnhRptkAuysZ5eDV3H0bs5dBlKWkKaJNyxHSDbXKFPQoyZN7iXlfAA9+z/LXA3zkXyEghnvUyamwnmX3LONpV0g9iVN+mE5N/msBni1MVDeqVlmNscrutmCSxc1wcKL07oM4J3uoYsikS2vARAC0nxfAB/ypnV/F4JW+u1cMmWNGfACiQjK9StKT+6x2kVP+ptsWR7mOAJXlPzKGyrMkBztzZOktzMErDCYFYGX80cuTnB/l9QzM0B0TrXWY6si5CMrgAjj4029nAEy3UzIGRaql/b/ZeWbzbTR3pqzQV2ldBs++uAKcdHQZALO1IXouonxOy8EF8DtVnNJokGqdeQXKruzHp90kYWKWPojk+0gbZ3RyBfAb4kPNHsWsjBlZwVOMzxhMoiGbf/Ru2XsVwBTZ53W9Ni6Ak+0nE9/dH8nKAP4C7sQhDcpLbvMAAAAASUVORK5CYII="></span>
-                            <div class="fr arti-hipl-right">
-                                <h4 class="arti-hipl-right-tip">用手机扫描二维码
-在手机上继续观看</h4>
-                                <h5 class="arti-hipl-right-title">
-                                </h5>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <span class="fl">手机查看</span>
-            </div>
-                
-            
+           
         </div>
     </div>
     <div class="arti-content">
-    <p>现在很多人容易有易怒体质，在网路上常会跟别人吵架、骂人，或当正义魔人去找别人麻烦，甚至搞不清楚状况和是非对错，就去怒骂他人。见到太多不必要的纷争，有时想想，得理饶人真的有这么难吗？</p><p>许多人喜欢争输赢、争对错，或用怒骂、大声来显示自己是正义、占上风，凡事要拼到两败俱伤，但最后，你得到了什么结果？你快乐吗？</p><p>尤其是对你身边的人、你爱的人，你要吵赢、要斗赢他，但，最后是不是也伤了感情、伤了对方自尊，后果更难收拾？最后真的赢了吗？</p><p><br></p><p><img src="https://file.fh21static.com/fhfile1/M00/63/B3/o4YBAFp6onKATd8jAADcd9HrWKM164.jpg" title="1517824028942171.jpg" alt="5a34e07c0d7ae.jpg"></p><p><strong>指责别人就是正义吗？</strong><br>
-    </p></div>
+        {!! $post->content !!}
+    </div>
     
 
         <div class="wrap-list-paging mt-20">
-       <p><a class="prev" href="/xltm/5298814.html">上一篇</a><span class="current">1</span><a href="5298870_2.html">2</a><a href="5298870_3.html">3</a><a href="5298870_4.html">4</a><a href="5298870_5.html">5</a> ...&nbsp;&nbsp;<a href="5298870_7.html">7</a><a href="5298870_2.html">下一页</a></p>
+       <p> @if(!empty($prePost))<a class="prev" href="/post/{!! $prePost->id !!}">上一篇:{!! $prePost->name !!}</a>@endif
+
+           @if(!empty($nextPost))<a href="/post/{!! $nextPost->id !!}">下一篇: {!! $nextPost->name !!}</a>@endif
+
+        </p>
     </div>
     
     
@@ -119,25 +96,25 @@
         <h2 class="cm-title-word fl">相关热点</h2>
     </div>
     <div class="gum-main clearfix">
-                <a href="/xltm/459655.html" class="gum-list fl" target="_blank">
+                <a href="/" class="gum-list fl" target="_blank">
             <div class="gum-list-imgbox">
                 <img src="https://file.fh21static.com/fhfile1/M00/52/7F/oYYBAFknpHiAB2vEAAAhAI3gED499.jpeg" class="all-img">
             </div>
             <h4 class="gum-list-title">抑郁于你来说只是一条黑狗</h4>
         </a>
-                <a href="/xltm/456989.html" class="gum-list fl" target="_blank">
+                <a href="/" class="gum-list fl" target="_blank">
             <div class="gum-list-imgbox">
                 <img src="https://file.fh21static.com/fhfile1/M00/52/83/ooYBAFknpIyAY1BbAAAmWsEpOSY08.jpeg" class="all-img">
             </div>
             <h4 class="gum-list-title">只要努力就能换来好结果吗</h4>
         </a>
-                <a href="/xltm/453351.html" class="gum-list fl" target="_blank">
+                <a href="/" class="gum-list fl" target="_blank">
             <div class="gum-list-imgbox">
                 <img src="https://file.fh21static.com/fhfile1/M00/52/83/ooYBAFknpS-AMsDBAAAzXYAMZTA22.jpeg" class="all-img">
             </div>
             <h4 class="gum-list-title">昙花一直在开着 你知道吗？</h4>
         </a>
-                <a href="/xltm/135196.html" class="gum-list fl" target="_blank">
+                <a href="/" class="gum-list fl" target="_blank">
             <div class="gum-list-imgbox">
                 <img src="https://file.fh21static.com/fhfile1/M00/52/84/o4YBAFknpGuAWLvJAAAoTp7wdO433.jpeg" class="all-img">
             </div>

@@ -72,6 +72,21 @@ class CategoryRepository extends BaseRepository
             }
         });
     }
+
+    //通过别名获取分类中最新的一篇文章
+    public function getPostFirstByCatSlug($slug){
+            try {
+                $cat = $this->getCacheCategoryBySlug($slug);
+                if ($cat) {
+                    return $cat->posts()->orderBy('created_at','desc')->first();
+                }else{
+                    return collect([]);
+                }
+            } catch (Exception $e) {
+                return;
+            }
+       
+    }
 	
 	    //通过父分类的别名获取子分类的列表
     public function getCacheCatListByParentCatSlug($slug){
@@ -131,4 +146,15 @@ class CategoryRepository extends BaseRepository
         }
         return $catArray;
     }
+
+    /*
+    获取所有父分类
+     */
+    public function getRootCat($id = 0){
+    
+        $categories = Category::where('parent_id', 0)->where('id','>',1)->get();
+        return $categories;
+     
+    }
+
 }
