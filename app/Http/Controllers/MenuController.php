@@ -12,7 +12,7 @@ use Illuminate\Http\Request;
 use Flash;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
-use 
+
 use Overtrue\Pinyin\Pinyin;
 
 class MenuController extends AppBaseController

@@ -15,7 +15,7 @@
                         
                         <!--.侧边导航-->
                         <div class="sidenav">
-    <h3 class="sidenav-head">心理探秘</h3>
+    <h3 class="sidenav-head">{!! $category->name !!}</h3>
     </div>
 
                         <!--/.侧边导航-->

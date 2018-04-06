@@ -10,7 +10,7 @@
                     <!--如果还有子分类 -->
                     @if($menu->children->count())
                          <div class="fl nav-list " >
-                            <a href="#" class="clearfix nav-list-head">
+                            <a href="{!! $menu->link !!}" class="clearfix nav-list-head">
                                 <span class="nav-list-head-word">{!! $menu->name !!}</span>
                                 <i class="icon icon-header-down"></i>               
                             </a>
