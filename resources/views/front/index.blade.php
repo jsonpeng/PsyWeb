@@ -36,59 +36,24 @@
             </ul>
         </div>
         <div class="bd">
-            <div class="tempWrap" style="overflow:hidden; position:relative; width:870px"><ul style="width: 5220px; position: relative; overflow: hidden; padding: 0px; margin: 0px; left: -2610px;"><li class="clone" style="float: left; width: 870px;">
-                    <a href="http://psy.fh21.com.cn/czxl/473236.html" target="_blank" class="sl-list">
-                        <img src="https://file.fh21static.com/fhfile1/M00/54/B1/ooYBAFlAqmyAGWPjAAIJSdz7O4404.jpeg" class="all-img">
+            <div class="tempWrap" style="overflow:hidden; position:relative; width:870px"><ul style="width: 5220px; position: relative; overflow: hidden; padding: 0px; margin: 0px; left: -2610px;">
+
+
+            @foreach($banners as $banner)
+                <li class="clone" style="float: left; width: 870px;">
+                    <a href="{!! $banner->link !!}" target="_blank" class="sl-list">
+                        <img src="{!! $banner->image !!}" class="all-img">
                         <div class="sl-list-bottom clearfix">
-                            <p class="sl-list-bottom-text fl">如何培养孩子的高情商呢？</p>
+                            <p class="sl-list-bottom-text fl"></p>
                         </div>
                     </a>
                 </li>
+             @endforeach
              
-                <li style="float: left; width: 870px;">
-                    <a href="http://psy.fh21.com.cn/zhc/gw/462186.html" target="_blank" class="sl-list">
-                        <img src="https://file.fh21static.com/fhfile1/M00/52/62/oYYBAFkimLCAC_FIAALUNETMLVk24.jpeg" class="all-img">
-                        <div class="sl-list-bottom clearfix">
-                            <p class="sl-list-bottom-text fl">为什么你上班会越忙越穷？</p>
-                        </div>
-                    </a>
-                </li>
              
-                <li style="float: left; width: 870px;">
-                    <a href="http://psy.fh21.com.cn/rjgx/sjly/146359.html" target="_blank" class="sl-list">
-                        <img src="https://file.fh21static.com/fhfile1/M00/52/66/ooYBAFkimIqAFThoAAMSIL1Zd5A27.jpeg" class="all-img">
-                        <div class="sl-list-bottom clearfix">
-                            <p class="sl-list-bottom-text fl">职场饮酒礼仪四不要</p>
-                        </div>
-                    </a>
-                </li>
+       
              
-                <li style="float: left; width: 870px;">
-                    <a href="http://psy.fh21.com.cn/rjgx/473304.html" target="_blank" class="sl-list">
-                        <img src="https://file.fh21static.com/fhfile1/M00/52/62/oYYBAFkimi-AZkmWAAJ_JvgPeiA84.jpeg" class="all-img">
-                        <div class="sl-list-bottom clearfix">
-                            <p class="sl-list-bottom-text fl">生活中取悦他人真的好吗？</p>
-                        </div>
-                    </a>
-                </li>
-             
-                <li style="float: left; width: 870px;">
-                    <a href="http://psy.fh21.com.cn/czxl/473236.html" target="_blank" class="sl-list">
-                        <img src="https://file.fh21static.com/fhfile1/M00/54/B1/ooYBAFlAqmyAGWPjAAIJSdz7O4404.jpeg" class="all-img">
-                        <div class="sl-list-bottom clearfix">
-                            <p class="sl-list-bottom-text fl">如何培养孩子的高情商呢？</p>
-                        </div>
-                    </a>
-                </li>
-                
-            <li class="clone" style="float: left; width: 870px;">
-                    <a href="http://psy.fh21.com.cn/zhc/gw/462186.html" target="_blank" class="sl-list">
-                        <img src="https://file.fh21static.com/fhfile1/M00/52/62/oYYBAFkimLCAC_FIAALUNETMLVk24.jpeg" class="all-img">
-                        <div class="sl-list-bottom clearfix">
-                            <p class="sl-list-bottom-text fl">为什么你上班会越忙越穷？</p>
-                        </div>
-                    </a>
-                </li></ul></div>
+          </ul></div>
         </div>
     </div>  
 </div>
