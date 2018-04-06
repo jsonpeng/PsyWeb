@@ -67,13 +67,14 @@ class FrontController extends Controller
         #心灵鸡汤
         $ChickenSoup=$this->categoryRepository->getPostFirstByCatSlug('ChickenSoup');
 
-        #获取所有父分类列表
-        
+        #所有分类列表
         $RootCat=$this->categoryRepository->getRootCat();
 
+        #最新资讯
+        $NewsestPosts=$this->postRepository->NewsestPosts();
 
 
-    	return view('front.index',compact('UniversityGrowth','CampusAssocia','Psychology','ChickenSoup','RootCat'));
+    	return view('front.index',compact('UniversityGrowth','CampusAssocia','Psychology','ChickenSoup','RootCat','NewsestPosts'));
        
     }
 

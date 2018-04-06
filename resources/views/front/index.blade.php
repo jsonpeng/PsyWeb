@@ -91,25 +91,50 @@
                     <!--.文章列表-->
                     <div class="ls-main">
 
-                    
+                        <!--最新资讯-->
                         <div class="ls-mod ls-mod-act"> 
-
-                            <div class="ma-modone clearfix">
-                                <a href="/qg/5298812.html" class="fl ma-modone-left">
-                                    <img src="https://file.fh21static.com/fhfile1/M00/63/B3/o4YBAFp6lhOAWSO0AAD8fYjL600018.png" class="all-img">
-                                </a>
-                                <div class="ma-modone-right fl">
-                                    <a href="/qg/5298812.html" class="ma-modone-right-title">自从婚后 观看爱情的角度变的更务实了</a>
-                                    <div class="ma-modone-right-content">
-                                        许多人问我爱情的问题，他们总是说爱的很辛苦、很痛苦，但是又觉得无法放手、非爱不可，我常在想，这样自虐式的爱到底快乐在哪里？...<a href="/qg/5298812.html" class="a-hover">[详细]</a>
-                                    </div>
-                                    <div class="ma-modone-right-time">
-                                        2018-02-07 14:01  
+                           @foreach($NewsestPosts as $post)
+                                <div class="ma-modone clearfix">
+                                    <a href="/post/{!! $post->id !!}" class="fl ma-modone-left">
+                                        <img src="{!! $post->image !!}" class="all-img">
+                                    </a>
+                                    <div class="ma-modone-right fl">
+                                        <a href="/post/{!! $post->id !!}" class="ma-modone-right-title">{!! $post->name !!}</a>
+                                        <div class="ma-modone-right-content">
+                                            {!! $post->brief !!}...<a href="/post/{!! $post->id !!}" class="a-hover">[详细]</a>
+                                        </div>
+                                        <div class="ma-modone-right-time">
+                                            {!! $post->created_at !!}
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                                    
+                             @endforeach  
                         </div> 
+
+                        <!--各个分类的文章列表-->
+                        @foreach($RootCat as $cat)
+                        <?php $posts=$cat->posts()->orderBy('created_at','desc')->take(10)->get();?>
+                        <div class="ls-mod"> 
+                            @foreach($posts as $post)
+                                <div class="ma-modone clearfix">
+                                    <a href="/post/{!! $post->id !!}" class="fl ma-modone-left">
+                                        <img src="{!! $post->image !!}" class="all-img">
+                                    </a>
+                                    <div class="ma-modone-right fl">
+                                        <a href="/post/{!! $post->id !!}" class="ma-modone-right-title">{!! $post->name !!}</a>
+                                        <div class="ma-modone-right-content">
+                                            {!! $post->brief !!}...<a href="/post/{!! $post->id !!}" class="a-hover">[详细]</a>
+                                        </div>
+                                        <div class="ma-modone-right-time">
+                                            {!! $post->created_at !!}
+                                        </div>
+                                    </div>
+                                </div>
+                             @endforeach       
+                        </div> 
+                        @endforeach
+
+                    
 
                 </div>
 

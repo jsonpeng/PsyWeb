@@ -94,4 +94,21 @@ class PostRepository extends BaseRepository
             }
         });
     }
+
+    //最新资讯
+    public function NewsestPosts($take =10){
+
+        return Post::orderBy('created_at','desc')->take($take)->get();
+
+    }
+    
+    //点击排行
+    public function ClickSortPosts($take =10){
+
+         return Post::orderBy('view','desc')->take($take)->get();
+
+    }
+
+    //热门推荐
+    
 }
