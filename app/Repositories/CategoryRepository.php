@@ -8,6 +8,7 @@ use InfyOm\Generator\Common\BaseRepository;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Config;
 
+use DB;
 /**
  * Class CategoryRepository
  * @package App\Repositories
@@ -163,6 +164,110 @@ class CategoryRepository extends BaseRepository
     public function GetRandCats($take =3){
         return Category::orderBy(\DB::raw('RAND()'))->take($take)->get();
     }
-    
+
+    //获取包含自身及子分类的分类信息（自身以及子分类）
+    public function getChildCatsOfCatWithParent($cat)
+    {
+        if (empty($cat)) {
+            return collect([]);
+        }
+        $collection = collect([$cat]);
+        $childCats = Category::where('parent_id', $cat->id)->get();
+        if ($childCats->count()) {
+            foreach ($childCats as $childCat) {
+                $childCollection = $this->getChildCatsOfCatWithParent($childCat);
+                $collection = $collection->concat($childCollection);
+            }
+        }
+        return $collection;
+    }
+
+
+    /**
+     * 获取某分类下的文章，包含子分类
+     * @param  [type]  $parentidORslug [description]
+     * @param  boolean $withPosts      [description]
+     * @return [type]                  [description]
+     */
+    public function getCachePostOfCatIncludeChildren($category,$take=null){
+
+        return Cache::remember('get_cache_post_of_cat_include_children'.$category->id, Config::get('web.shrottimecache'), function() use ($category,$take) {
+                 try {
+
+                    $childCats = $this->getChildCatsOfCatWithParent($category);
+                    $cat_id_array = array();
+                    foreach ($childCats as $cat) {
+                        array_push($cat_id_array, $cat->id);
+                    }
+                    if(empty($take)){
+                    $db =DB::table('posts')
+                        ->join('category_post', 'posts.id', '=', 'category_post.post_id')
+                        ->join('categories', 'categories.id', '=', 'category_post.category_id')
+                        ->select('posts.*')
+                        ->whereIn('categories.id', $cat_id_array)
+                        ->where('posts.deleted_at', null)
+                        ->where('status', 1)
+                        ->orderBy('created_at','desc')
+                        ->get();
+                    }else{
+                      $db =DB::table('posts')
+                        ->join('category_post', 'posts.id', '=', 'category_post.post_id')
+                        ->join('categories', 'categories.id', '=', 'category_post.category_id')
+                        ->select('posts.*')
+                        ->whereIn('categories.id', $cat_id_array)
+                        ->where('posts.deleted_at', null)
+                        ->where('status', 1)
+                        ->orderBy('created_at','desc')
+                        ->take($take)
+                        ->get();
+                    }
+                    return $db;
+                    
+                } catch (Exception $e) {
+                    return collect([]);
+                }
+
+        });
+    }
+
+     /**
+     * 获取某分类下的最新的文章，包含子分类
+     * @param  [type]  $parentidORslug [description]
+     * @param  boolean $withPosts      [description]
+     * @return [type]                  [description]
+     */
+    public function getCachePostFirstOfCatIncludeChildren($category_slug){
+
+        return Cache::remember('get_cache_post_of_cat_include_children_slug'.$category_slug, Config::get('web.shrottimecache'), function() use ($category_slug) {
+
+            $category=Category::where('slug',$category_slug)->first();
+
+            try {
+                $childCats = $this->getChildCatsOfCatWithParent($category);
+                $cat_id_array = array();
+                foreach ($childCats as $cat) {
+                    array_push($cat_id_array, $cat->id);
+                }
+           
+                return DB::table('posts')
+                    ->join('category_post', 'posts.id', '=', 'category_post.post_id')
+                    ->join('categories', 'categories.id', '=', 'category_post.category_id')
+                    ->select('posts.*')
+                    ->whereIn('categories.id', $cat_id_array)
+                    ->where('posts.deleted_at', null)
+                    ->where('status', 1)
+                    ->orderBy('created_at','desc')
+                    ->first();
+                
+                
+            } catch (Exception $e) {
+                return collect([]);
+            }
+
+
+        });
+
+    }
 
 }
+

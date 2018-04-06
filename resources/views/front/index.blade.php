@@ -110,7 +110,7 @@
 
                     <!--各个分类的文章列表-->
                     @foreach($RootCat as $cat)
-                    <?php $posts=$cat->posts()->orderBy('created_at','desc')->where('status', 1)->take(10)->get();?>
+                    <?php $posts=app('cat')->getCachePostOfCatIncludeChildren($cat,10); ?>
                         <div class="ls-mod"> 
                             @foreach($posts as $post)
                                 <div class="ma-modone clearfix">
@@ -176,7 +176,7 @@
                             <input type="hidden" name="s" value="6719305306906253443">          
                             <input type="hidden" name="nsid" value="0"> 
                             <button class="fl search-btn" type="submit">
-                                <i class="icon icon-search"></i>
+                                搜索
                             </button>
                         </form>
                     <!--/.搜索-->

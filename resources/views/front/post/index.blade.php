@@ -63,9 +63,17 @@
     
 
                     <div class="wrap-list-paging mt-20">
-                       <p> @if(!empty($prePost))<a class="prev" href="/post/{!! $prePost->id !!}">上一篇:{!! $prePost->name !!}</a>@endif
+                       <p> @if(!empty($prePost))
+                               <a class="prev" href="/post/{!! $prePost->id !!}">上一篇:{!! $prePost->name !!}</a>
+                           @else
+                               <a class="prev" href="javascript:;">上一篇:没有了</a>
+                           @endif
 
-                           @if(!empty($nextPost))<a href="/post/{!! $nextPost->id !!}">下一篇: {!! $nextPost->name !!}</a>@endif
+                           @if(!empty($nextPost))
+                               <a href="/post/{!! $nextPost->id !!}">下一篇: {!! $nextPost->name !!}</a>
+                           @else
+                               <a href="javascript:;">下一篇:没有了</a>
+                           @endif
 
                         </p>
                     </div>
@@ -140,13 +148,13 @@
 
                 <!--.搜索-->
                 <form class="search clearfix" target="_blank" action="http://zhannei.fh21.com.cn/cse/search">
-    <input type="text" name="q" class="fl search-inp" placeholder="请输入关键字">
-    <input type="hidden" name="s" value="6719305306906253443">          
-    <input type="hidden" name="nsid" value="0"> 
-    <button class="fl search-btn" type="submit">
-        <i class="icon icon-search"></i>
-    </button>
-</form>
+                    <input type="text" name="q" class="fl search-inp" placeholder="请输入关键字">
+                    <input type="hidden" name="s" value="6719305306906253443">          
+                    <input type="hidden" name="nsid" value="0"> 
+                    <button class="fl search-btn" type="submit">
+                       搜索
+                    </button>
+                </form>
                 <!--/.搜索-->
 
 

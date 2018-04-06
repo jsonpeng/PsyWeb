@@ -32,6 +32,7 @@ class AppServiceProvider extends ServiceProvider
                 '*', 'App\Http\ViewComposers\BaseComposer'
             );
         }
-        
+
+         $this->app->singleton('cat', 'App\Repositories\CategoryRepository');
     }
 }

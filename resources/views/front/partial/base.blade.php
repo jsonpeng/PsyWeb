@@ -18,8 +18,8 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
         <link rel="icon" href="/favicon.ico" type="image/x-icon" />
-        <link rel="stylesheet" href="http://static2.fh21.com.cn/chl/css/base.inc.css">
-        <link rel="stylesheet" href="http://static2.fh21.com.cn/chl/css/main.css">
+        <link rel="stylesheet" href="{{ asset('css/front.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/main.css') }}">
         <link href="https://cdn.bootcss.com/animate.css/3.5.2/animate.min.css" rel="stylesheet">
   
       
@@ -55,6 +55,13 @@
             width: 100%;
             max-width: initial;
         }
+        .search .search-btn{
+            font-size:15px;
+        }
+        /*
+        文章列表悬停样式
+         */
+        .ma-modone .ma-modone-right-title:hover { color: #ff5f5f; }
         </style>
 
         @yield('css')

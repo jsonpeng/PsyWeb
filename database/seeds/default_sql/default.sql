@@ -142,28 +142,17 @@ SET FOREIGN_KEY_CHECKS=0;
 -- Table structure for banner_items
 -- ----------------------------
 
-
+INSERT INTO `category_post` (`id`, `category_id`, `post_id`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 4, 2, NULL, NULL, NULL),
+(2, 4, 3, NULL, NULL, NULL),
+(3, 3, 4, NULL, NULL, NULL),
+(4, 6, 6, NULL, NULL, NULL),
+(5, 4, 7, NULL, NULL, NULL),
+(6, 10, 8, NULL, NULL, NULL),
+(7, 7, 9, NULL, NULL, NULL),
+(8, 10, 10, NULL, NULL, NULL),
+(9, 8, 11, NULL, NULL, NULL);
 --
 -- Indexes for dumped tables
 --
 
---
--- Indexes for table `category_post`
---
-ALTER TABLE `category_post`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `category_post_category_id_foreign` (`category_id`),
-  ADD KEY `category_post_post_id_foreign` (`post_id`);
-
---
--- 在导出的表使用AUTO_INCREMENT
---
-
---
--- 使用表AUTO_INCREMENT `category_post`
---
-ALTER TABLE `category_post`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

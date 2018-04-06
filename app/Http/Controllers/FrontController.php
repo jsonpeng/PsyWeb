@@ -56,16 +56,16 @@ class FrontController extends Controller
         //右侧文章列表 取每个分类的最新上传的第一篇文章
         
         #大学成长
-        $UniversityGrowth=$this->categoryRepository->getPostFirstByCatSlug('UniversityGrowth');
+        $UniversityGrowth=$this->categoryRepository->getCachePostFirstOfCatIncludeChildren('UniversityGrowth');
 
         #校园社交
-        $CampusAssocia=$this->categoryRepository->getPostFirstByCatSlug('CampusAssocia');
+        $CampusAssocia=$this->categoryRepository->getCachePostFirstOfCatIncludeChildren('CampusAssocia');
 
         #每日心理学
-        $Psychology=$this->categoryRepository->getPostFirstByCatSlug('Psychology');
+        $Psychology=$this->categoryRepository->getCachePostFirstOfCatIncludeChildren('Psychology');
 
         #心灵鸡汤
-        $ChickenSoup=$this->categoryRepository->getPostFirstByCatSlug('ChickenSoup');
+        $ChickenSoup=$this->categoryRepository->getCachePostFirstOfCatIncludeChildren('ChickenSoup');
 
         #所有分类列表
         $RootCat=$this->categoryRepository->getRootCat();
@@ -73,6 +73,7 @@ class FrontController extends Controller
         #最新资讯
         $NewsestPosts=$this->postRepository->NewsestPosts();
 
+      
 
     	return view('front.index',compact('UniversityGrowth','CampusAssocia','Psychology','ChickenSoup','RootCat','NewsestPosts'));
        
@@ -93,8 +94,9 @@ class FrontController extends Controller
             return redirect('/');
         }
     	$setting = $this->settingRepository->getCachedSetting();
-        $posts = $category->posts()->where('status', 1)->paginate($setting->post_page);
-
+        //$posts = $category->posts()->where('status', 1)->paginate($setting->post_page);
+        $posts=$this->categoryRepository->getCachePostOfCatIncludeChildren($category);
+        //dd($posts);
     	//是否为该分类自定义了模板
     	if (view()->exists('front.cat.'.$category->slug)) {
     		return view('front.cat.'.$category->slug)->with('category', $category)->with('posts', $posts);
