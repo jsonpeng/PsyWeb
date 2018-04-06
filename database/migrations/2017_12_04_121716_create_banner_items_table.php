@@ -17,6 +17,7 @@ class CreateBannerItemsTable extends Migration
             $table->increments('id');
             $table->string('image')->comment('图片');
             $table->string('link')->nullable()->comment('跳转链接');
+            $table->string('word')->nullable()->comment('描述');
             $table->integer('sort')->nullable()->comment('排序');
 
             $table->integer('banner_id')->unsigned();

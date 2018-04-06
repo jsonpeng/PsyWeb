@@ -6,6 +6,8 @@ use App\Models\Post;
 use App\Models\Menu;
 use App\Models\Banner;
 use App\Models\Page;
+use Illuminate\Filesystem\Filesystem;
+
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -125,5 +127,11 @@ class DatabaseSeeder extends Seeder
             'name' => '小小白',
             'slug' => 'xiao-xiao-bai'
             ]);
+
+
+        //默认的sql 包括banner和menu
+        $fileSystem = new Filesystem();
+        $database = $fileSystem->get(base_path('database/seeds/default_sql') . '/' . 'default.sql');
+        DB::connection()->getPdo()->exec($database);
     }
 }

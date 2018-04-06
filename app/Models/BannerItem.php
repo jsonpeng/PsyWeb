@@ -28,6 +28,7 @@ class BannerItem extends Model
         'image',
         'link',
         'sort',
+        'word',
         'banner_id'
     ];
 

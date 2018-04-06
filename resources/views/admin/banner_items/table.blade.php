@@ -4,6 +4,7 @@
             <th>图片</th>
             <th>链接</th>
             <th>排序</th>
+            <th>描述</th>
             <th colspan="3">操作</th>
         </tr>
     </thead>
@@ -13,6 +14,7 @@
             <td><img src="{!! $bannerItem->image !!}" style="height: 50px;"> </td>
             <td>{!! $bannerItem->link !!}</td>
             <td>{!! $bannerItem->sort !!}</td>
+            <td>{!! $bannerItem->word !!}</td>
             <td>
                 {!! Form::open(['route' => ['bannerItems.destroy',$banner_id,  $bannerItem->id], 'method' => 'delete']) !!}
                 <div class='btn-group'>

@@ -44,7 +44,7 @@
                     <a href="{!! $banner->link !!}" target="_blank" class="sl-list">
                         <img src="{!! $banner->image !!}" class="all-img">
                         <div class="sl-list-bottom clearfix">
-                            <p class="sl-list-bottom-text fl"></p>
+                            <p class="sl-list-bottom-text fl">{!! $banner->word !!}</p>
                         </div>
                     </a>
                 </li>
