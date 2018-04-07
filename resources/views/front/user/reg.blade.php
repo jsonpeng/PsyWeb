@@ -24,7 +24,7 @@
 
     <style type="text/css">
         .login-page, .register-page{
-            background-image: url({{ asset('images/login_bg.jpg') }});
+            background-image: url({{ asset('images/loginPsy_bg.jpg') }});
             background-size: cover;
             background-repeat: no-repeat;
         }
@@ -33,24 +33,26 @@
         }
 
         .login-logo{
-            background-image: url({{ asset('images/login_bg3.png') }});
+            /*background-image: url({{ asset('images/login_bg3.png') }});*/
             background-size: cover;
             background-repeat: no-repeat;
-            color: #fff;
-            height: 110px;
+            color: #7b2525;
+            height: 135px;
             line-height: 110px;
         }
         .login-logo a{
-            color: #fff;
+
+            color: #7b2525;
+            font-family: "华文行楷";
+            font-size: 40px;
         }
         .login-box-body{
             position: relative;
         }
-        .login-bg-img{
-
+        .login-bg-img{   
             position: absolute;
-            bottom: -120px;
-            left: -158px;
+            top: 172px;
+            left: 600px;
             z-index: -1;
         }
     </style>
@@ -60,7 +62,9 @@
 <div style="padding-top: 7%;">
     <div class="login-box">
         <div class="login-logo">
-            <a href="{{ url('/home') }}">注册</a>
+            <a href="{{ url('/home') }}">大学生心理健康网站</a>
+            <br>
+            <img class="login-bg-img" src="{{ asset('images/loginCat_bg2.png') }}"></img>
         </div>
 
         <!-- /.login-logo -->
@@ -125,7 +129,7 @@
         $('input').iCheck({
             checkboxClass: 'icheckbox_square-blue',
             radioClass: 'iradio_square-blue',
-            increaseArea: '20%' // optional
+            increaseArea: '50%' // optional
         });
     });
 </script>
