@@ -164,6 +164,15 @@ class FrontController extends Controller
     	}
     }
 
+    public function login(Request $request){
+        return view('front.user.login');
+    }
+
+    public function reg(Request $request){
+        return view('front.user.reg');
+    }
+
+
     public function submitInfo(Request $request){
         $name=$request->get('name');
         $tel=$request->get('tel');

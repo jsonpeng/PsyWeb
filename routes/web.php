@@ -23,6 +23,11 @@ Route::get('/', 'FrontController@index')->name('index');
 Route::get('cat/{id}', 'FrontController@cat')->name('category');
 Route::get('post/{id}', 'FrontController@post')->name('post');
 Route::get('page/{id}', 'FrontController@page')->name('page');
+
+//用户登录
+Route::get('/login/psychology', 'FrontController@login')->name('login');
+//用户注册
+Route::get('/reg/psychology', 'FrontController@reg')->name('reg');
 //api接口
 Route::post('/submit_data', 'FrontController@submitInfo');
 
