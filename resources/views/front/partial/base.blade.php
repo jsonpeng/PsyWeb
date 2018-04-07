@@ -22,7 +22,15 @@
         <link rel="stylesheet" href="{{ asset('css/main.css') }}">
         <link href="https://cdn.bootcss.com/animate.css/3.5.2/animate.min.css" rel="stylesheet">
   
-      
+        <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+        <style type="text/css">
+         a{color:black;}
+         a:hover{text-decoration:none;}
+         .h4, .h5, .h6, h4, h5, h6 {
+             margin-top: 0px; 
+             margin-bottom: 0px;
+        }
+        </style>
         <script src="{{ asset('js/modernizr-2.6.2.min.js') }}"></script>
             
 

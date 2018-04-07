@@ -73,9 +73,20 @@ class FrontController extends Controller
         #最新资讯
         $NewsestPosts=$this->postRepository->NewsestPosts();
 
-      
+        $input=$request->all();
 
-    	return view('front.index',compact('UniversityGrowth','CampusAssocia','Psychology','ChickenSoup','RootCat','NewsestPosts'));
+        #搜索结果
+        $serach_word=null;
+
+        if(array_key_exists('word',$input)){
+            if(!empty($input['word'])){
+                $serach_word=$this->postRepository->SerachPostList($input['word']);
+
+                //dd($input['word']);
+            }
+        }
+
+    	return view('front.index',compact('input','serach_word','UniversityGrowth','CampusAssocia','Psychology','ChickenSoup','RootCat','NewsestPosts'));
        
     }
 
@@ -88,7 +99,7 @@ class FrontController extends Controller
         } else {
             $category = $this->categoryRepository->getCacheCategoryBySlug($id);
         }
-    	
+    
     	//分类信息不存在
         if (empty($category)) {
             return redirect('/');
@@ -96,7 +107,11 @@ class FrontController extends Controller
     	$setting = $this->settingRepository->getCachedSetting();
         //$posts = $category->posts()->where('status', 1)->paginate($setting->post_page);
         $posts=$this->categoryRepository->getCachePostOfCatIncludeChildren($category);
-        //dd($posts);
+        /*
+        if($category->slug=='PsychologyGuide' || $category->slug=='PsychologyTest'){
+           return redirect(route('login'));
+        }*/
+
     	//是否为该分类自定义了模板
     	if (view()->exists('front.cat.'.$category->slug)) {
     		return view('front.cat.'.$category->slug)->with('category', $category)->with('posts', $posts);

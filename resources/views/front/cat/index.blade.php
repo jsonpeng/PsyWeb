@@ -1,8 +1,53 @@
 @extends('front.partial.base')
 
 @section('css')
-	<style type="text/css">
-	</style>
+<style>
+ul.activity-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+ul.activity-list li {
+    display: inline-block;
+    width: 100%;
+    margin-bottom: 30px;
+    /*padding-bottom: 20px;*/
+    border-bottom: 1px solid #eff0f4;
+}
+
+ul.activity-list .avatar img {
+    float: left;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+}
+ul.activity-list .activity-desk {
+    margin-left: 70px;
+}
+
+ul.activity-list .activity-desk h5 {
+    color: #2a323f;
+}
+
+ul.activity-list .activity-desk h5 a {
+    font-weight: 500;
+}
+
+.activity-desk .album a {
+    float: left;
+    margin-right: 10px;
+    width: 170px;
+    height: 110px;
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+
+.activity-desk .album a img {
+    width: 100%;
+}
+</style>
+
 @endsection
 
 @include('front.cat.seo')
@@ -42,6 +87,59 @@
                                        <p><span class="current">1</span><a href="list_6721_2.html">2</a><a href="list_6721_3.html">3</a><a href="list_6721_4.html">4</a> ...&nbsp;&nbsp;<a href="list_6721_93.html">93</a><a href="list_6721_2.html">下一页</a><a href="list_6721_93.html">末页</a></p>
                                     </div>-->
                                 <!--/.翻页-->
+                                @if($category->slug=='PsychologyGuide')
+                                <!--心事吐槽-->
+                                   <div class="row">
+                                      <div class="col-md-12">
+                                        <div class="panel">
+                                          <header class="panel-heading" style="color: #666;font-size: 24px;"> 心事吐槽  </header>
+                                          <div class="panel-body" style="display: block;" id="team-table" data-status="show">
+                                            <ul class="activity-list">
+
+                                              
+                                              <li>
+                                                <div class="avatar"> <a href="javascript:;"><img src="/uploads/touuxiang.jpg"></a> </div>
+                                                <div class="activity-desk">
+                                                  <h5><a href="javascript:;">用户昵称:</a> <span>评论内容</span></h5>
+                                                  <p class="text-muted">发布时间</p>
+                                                </div>
+                                              </li>
+                                                
+                                             <li>
+                                                <div class="avatar"> <a href="javascript:;"><img src="/uploads/touuxiang.jpg"></a> </div>
+                                                <div class="activity-desk">
+                                                  <h5><a href="javascript:;">用户昵称:</a> <span>评论内容</span></h5>
+                                                  <p class="text-muted">发布时间</p>
+                                                </div>
+                                              </li>
+
+                                              <li>
+                                                <div class="avatar"> <a href="javascript:;"><img src="/uploads/touuxiang.jpg"></a> </div>
+                                                <div class="activity-desk">
+                                                  <h5><a href="javascript:;">用户昵称:</a> <span>评论内容</span></h5>
+                                                  <p class="text-muted">发布时间</p>
+                                                </div>
+                                              </li>
+                                            
+                                              
+                                            </ul>
+                                            <form class="form-horizontal" id="knowledge-comment-form" action="" novalidate="novalidate">
+                                              <a name="commenta"></a>
+                                              <div class="form-group">
+                                                <div class="col-sm-12">
+                                                  <textarea name="comment" id="content" rows="6" class="form-control" placeholder="我要吐槽……"></textarea>
+                                                  <br>
+                                              
+                                                  <button type="button" id="gonggao_comment_add" data-id="" class="btn btn-primary pull-right">我要吐槽</button>
+                                                </div>
+                                              </div>
+                                            </form>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                <!--/心事吐槽-->
+                                @endif
                                 
                         </div>
                 </div>

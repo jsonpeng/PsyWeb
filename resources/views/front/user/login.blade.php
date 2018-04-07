@@ -65,13 +65,13 @@
         <div class="login-logo">
             <a href="{{ url('/home') }}">大学生心理健康网站</a>
             <br>
-            <img class="login-bg-img" src="{{ asset('images/loginCat_bg2.png') }}"></img>
+           
         </div>
 
         <!-- /.login-logo -->
         <div class="login-box-body">
             <!--p class="login-box-msg">Sign in to start your session</p-->
-
+             <img class="login-bg-img" src="{{ asset('images/loginCat_bg2.png') }}"></img>
             <form method="post" action="{{ url('/login') }}">
                 {!! csrf_field() !!}
 
@@ -96,12 +96,16 @@
 
                 </div>
                 <div class="row">
-                    <div class="col-xs-8">
+                    <div class="col-xs-4">
                         <div class="checkbox icheck">
                             <label>
                                 <input type="checkbox" name="remember"> 记住我
                             </label>
                         </div>
+                    </div>
+
+                    <div class="col-xs-4">
+                    <a href="{!! route('reg') !!}" class="btn btn-default btn-block btn-flat">注册</a>
                     </div>
                     <!-- /.col -->
                     <div class="col-xs-4">

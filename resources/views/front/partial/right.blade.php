@@ -108,12 +108,12 @@
                                                 <img src="{!! $post->image !!}">
                                             </a>
                                             <a href="/post/{!! $post->id !!}" class="eyf-mod-title a-hover">{!! $post->name !!}</a>
-                                        </div>
+                                    </div>
                                      
                                 @endforeach
-                            
+                                </div>
                              @endforeach
-                        </div>  
+                          
                         
                     </div>
                     <!--/.猜你喜欢-图片-->
