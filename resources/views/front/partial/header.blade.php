@@ -205,7 +205,7 @@
     </div>
 </div> -->
 <!-- 公共头部右侧导航结束 -->
-  <!--未登录
+  <!--未登录-->
         <div class="fr head-login" id="state-login">
        
         <div class="head-tologin">
@@ -253,23 +253,23 @@
         <div class="head-tologin">
             <div class="head-tologin-head clearfix">
                 <i class="icon icon-login-user fl"></i>
-                <span class="fl head-tologin-word">登录</span>
+                <span class="fl head-tologin-word">{!! empty($userInfo)?'登录':'退出登录' !!}</span>
             </div>
             <div class="head-tologin-show">
                 <div class="head-tls-tips">
                 </div>
                 <div class="head-tls-inpwrap clearfix">
-                    <input type="text"  class="head-tls-inp fl" id="in-user" placeholder="用户名／手机号" />
+                    <input type="text" name="email" class="head-tls-inp fl" id="in-user" placeholder="邮箱" />
                 </div>
                 <div class="head-tls-inpwrap clearfix">
-                    <input type="password"  class="head-tls-inp fl" id="in-pass" placeholder="请输入密码"/>
+                    <input type="password"  name= class="head-tls-inp fl" id="in-pass" placeholder="密码"/>
                 </div>
                 <div class="head-tls-choose clearfix">
                     <a href="http://passport.fh21.com.cn/public/retrievepassword" class="fl a-hover">忘记密码?</a>
                     <a href="http://passport.fh21.com.cn/user/reg" class="fr a-hover">注册</a>
                 </div>
-                <button class="head-tls-sub" type="button" id="btn-login">登录</button>
-                <div class="head-tls-others clearfix">
+                <button class="head-tls-sub" type="submit" id="btn-login">登录</button>
+       <!--          <div class="head-tls-others clearfix">
                     <a href="http://passport.fh21.com.cn/connect/tencent" class="fl clearfix head-tls-others-list">
                         <i class="icon icon-login-qq fl"></i>
                         <span class="fl">QQ登录</span>
@@ -278,7 +278,7 @@
                         <i class="icon icon-login-wb fl"></i>
                         <span class="fl">新浪微博登录</span>
                     </a>
-                </div>
+                </div> -->
                 
                 
                 
@@ -344,7 +344,7 @@
 
 
 
-</script>   -->    
+</script>     
 
     </div>
 </div>

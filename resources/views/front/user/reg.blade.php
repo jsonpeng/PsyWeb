@@ -32,8 +32,8 @@
             margin: 0 auto;
         }
 
-        .login-logo{
-            /*background-image: url({{ asset('images/login_bg3.png') }});*/
+       .login-logo{
+         /*   background-image: url({{ asset('images/login_bg3.png') }});*/
             background-size: cover;
             background-repeat: no-repeat;
             color: #7b2525;
@@ -43,16 +43,18 @@
         .login-logo a{
 
             color: #7b2525;
-            font-family: "华文行楷";
+            font-family: "华文楷体";
             font-size: 40px;
-        }
+
+        }   
         .login-box-body{
             position: relative;
+            max-width: 380px;
         }
-        .login-bg-img{   
+        .login-bg-img{
             position: absolute;
-            top: 172px;
-            left: 600px;
+            top: -88px;
+            left: 100px;
             z-index: -1;
         }
     </style>
@@ -64,14 +66,14 @@
         <div class="login-logo">
             <a href="{{ url('/home') }}">大学生心理健康网站</a>
             <br>
-            <img class="login-bg-img" src="{{ asset('images/loginCat_bg2.png') }}"></img>
+            
         </div>
 
         <!-- /.login-logo -->
         <div class="login-box-body">
             <!--p class="login-box-msg">Sign in to start your session</p-->
-
-            <form method="post" action="{{ url('/login') }}">
+            <img class="login-bg-img" src="{{ asset('images/loginCat_bg2.png') }}"></img>
+            <form method="post" action="{{ url('/auth/reg') }}">
                 {!! csrf_field() !!}
 
                 <div class="form-group has-feedback {{ $errors->has('email') ? ' has-error' : '' }}">
@@ -84,16 +86,21 @@
                     @endif
                 </div>
 
-                <div class="form-group has-feedback{{ $errors->has('password') ? ' has-error' : '' }}">
-                    <input type="password" class="form-control" placeholder="密码" name="password">
-                    <span class="glyphicon glyphicon-lock form-control-feedback"></span>
-                    @if ($errors->has('password'))
-                        <span class="help-block">
-                        <strong>{{ $errors->first('password') }}</strong>
-                    </span>
-                    @endif
+                  <div class="form-group has-feedback">
+                    <input type="text" class="form-control" name="name" value="" placeholder="昵称">
+                    <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+                  </div>
 
-                </div>
+                    <div class="form-group has-feedback{{ $errors->has('password') ? ' has-error' : '' }}">
+                        <input type="password" class="form-control" placeholder="密码" name="password">
+                        <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                        @if ($errors->has('password'))
+                            <span class="help-block">
+                            <strong>{{ $errors->first('password') }}</strong>
+                        </span>
+                        @endif
+
+                    </div>
                 <div class="row">
                     <div class="col-xs-8">
                         <div class="checkbox icheck">
@@ -110,7 +117,7 @@
                 </div>
             </form>
 
-            <img class="login-bg-img" src="{{ asset('images/login_bg2.png') }}"></img>
+
 
         </div>
         <!-- /.login-box-body -->

@@ -31,6 +31,13 @@ Route::get('/psychology/login', 'FrontController@login')->name('login');
 Route::get('psychology/reg', 'FrontController@reg')->name('reg');
 //api接口
 Route::post('/submit_data', 'FrontController@submitInfo');
+//这里的prefix是参数的前缀 登录和注册就用post方法吧
+Route::group(['prefix' => 'auth'], function () {
+	//登录接口
+	Route::post('/login','FrontController@loginApi');
+	//注册接口
+	Route::post('/reg','FrontController@regApi');
+});
 
 //后台管理系统
 Route::group(['middleware' => ['auth'], 'prefix' => 'zcjy'], function () {

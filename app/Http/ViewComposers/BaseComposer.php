@@ -11,6 +11,8 @@ use App\Repositories\BannerRepository;
 use App\Repositories\PostRepository;
 use App\Repositories\CategoryRepository;
 
+//这个包同样可以控制用户角色信息获取登录
+use Illuminate\Support\Facades\Auth;
 
 class BaseComposer
 {
@@ -67,6 +69,7 @@ class BaseComposer
         //焦点关注
         $view->with('AttentionPosts',$this->postRepository->ClickSortPosts(6));
 
-    
+        //用户信息
+        $view->with('userInfo',empty(Auth::user()?null:Auth::user()));
     }
 }

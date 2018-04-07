@@ -49,11 +49,12 @@
         }   
         .login-box-body{
             position: relative;
+            max-width: 380px;
         }
         .login-bg-img{
             position: absolute;
-            top: 172px;
-            left: 600px;
+            top: -88px;
+            left: 100px;
             z-index: -1;
         }
     </style>
@@ -72,7 +73,7 @@
         <div class="login-box-body">
             <!--p class="login-box-msg">Sign in to start your session</p-->
              <img class="login-bg-img" src="{{ asset('images/loginCat_bg2.png') }}"></img>
-            <form method="post" action="{{ url('/login') }}">
+            <form method="post" action="{{ url('auth/login') }}">
                 {!! csrf_field() !!}
 
                 <div class="form-group has-feedback {{ $errors->has('email') ? ' has-error' : '' }}">
