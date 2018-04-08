@@ -3,7 +3,7 @@
     <div class="wrap header clearfix">
         <div class="logo fl clearfix">
             <!--<a href="https://www.fh21.com.cn" class="fl"><img src="http://static2.fh21.com.cn/chl/images/logo-fh.png" class="fl"></a>-->
-            <a href="/" class="fl"><span class="fl logo-word" style="width:auto;">小小白</span></a>
+            <a href="/" class="fl"><span class="fl logo-word" style="width:auto;">大学生心理健康网</span></a>
         </div>
         <div class="nav fl clearfix">
             @foreach($menus as $menu)

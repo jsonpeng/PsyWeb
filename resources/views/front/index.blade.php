@@ -195,8 +195,8 @@
                     <!--.推荐文章-->
                         <div class="rea mb-20">
                             <a href="/post/1" class="rea-first">
-                                <img src="https://file.fh21static.com/fhfile1/M00/52/67/ooYBAFkisU2AC4ZfAAA579akFGY30.jpeg" class="all-img">
-                                <h4 class="rea-first-bottom">小小白</h4>
+                                <img src="{{ asset('images/rea_tu.png') }}"  class="all-img">
+                                <h4 class="rea-first-bottom">遇见未知的自己</h4>
                             </a>
                             <ul>
                                     @if(!empty($UniversityGrowth))
