@@ -96,30 +96,17 @@ ul.activity-list .activity-desk h5 a {
                                           <div class="panel-body" style="display: block;" id="team-table" data-status="show">
                                             <ul class="activity-list">
 
-                                              
-                                              <li>
-                                                <div class="avatar"> <a href="javascript:;"><img src="/uploads/touuxiang.jpg"></a> </div>
-                                                <div class="activity-desk">
-                                                  <h5><a href="javascript:;">用户昵称:</a> <span>评论内容</span></h5>
-                                                  <p class="text-muted">发布时间</p>
-                                                </div>
-                                              </li>
+                                              @foreach($message as $item)
+                                                <li>
+                                                  <div class="avatar"> <a href="javascript:;"><img src="/uploads/touuxiang.jpg"></a> </div>
+                                                  <div class="activity-desk">
+                                                    <h5><a href="javascript:;">{!! $item->name !!}:</a> <span>{!! $item->info !!}</span></h5>
+                                                    <p class="text-muted">发布时间:{!! $item->created_at !!}</p>
+                                                  </div>
+                                                </li>
+                                              @endforeach
                                                 
-                                             <li>
-                                                <div class="avatar"> <a href="javascript:;"><img src="/uploads/touuxiang.jpg"></a> </div>
-                                                <div class="activity-desk">
-                                                  <h5><a href="javascript:;">用户昵称:</a> <span>评论内容</span></h5>
-                                                  <p class="text-muted">发布时间</p>
-                                                </div>
-                                              </li>
-
-                                              <li>
-                                                <div class="avatar"> <a href="javascript:;"><img src="/uploads/touuxiang.jpg"></a> </div>
-                                                <div class="activity-desk">
-                                                  <h5><a href="javascript:;">用户昵称:</a> <span>评论内容</span></h5>
-                                                  <p class="text-muted">发布时间</p>
-                                                </div>
-                                              </li>
+                                     
                                             
                                               
                                             </ul>
@@ -130,7 +117,7 @@ ul.activity-list .activity-desk h5 a {
                                                   <textarea name="comment" id="content" rows="6" class="form-control" placeholder="我要吐槽……"></textarea>
                                                   <br>
                                               
-                                                  <button type="button" id="gonggao_comment_add" data-id="" class="btn btn-primary pull-right">我要吐槽</button>
+                                                  <button type="button" id="comment_add"  class="btn btn-primary pull-right">我要吐槽</button>
                                                 </div>
                                               </div>
                                             </form>
@@ -172,4 +159,42 @@ ul.activity-list .activity-desk h5 a {
                 </div>
             </div>
 </div>
+@endsection
+
+@section('js')
+<script src="{{ asset('layer_mobile/layer.js') }}"></script>
+<script type="text/javascript">
+  //吐槽评论点击接口
+  $('#comment_add').click(function(){
+    //获取评论内容
+    var contents=$('#content').val();
+        if(contents==''){
+          alert('请输入评论内容!');
+          return false;
+        }
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+            });
+        $.ajax({
+            url: '/auth/messageBoard',
+            type: 'POST',
+            data:{content:contents},
+            success: function(data) {
+              //data 服务器传过来的数据
+              if(data.code==0){
+
+                //alert('评论成功');
+                //无刷新插入数据
+                $('.activity-list').append('<li><div class="avatar"><a href="javascript:;"><img src="/uploads/touuxiang.jpg"></a></div><div class="activity-desk"><h5><a href="javascript:;">'+data.message.name+':</a><span>'+data.message.info+'</span></h5><p class="text-muted">发布时间:'+data.message.created_at+'</p></div></li>');
+                //清空输入框
+                $('#content').val('');
+
+              }
+            }
+          });
+  });
+
+</script>
 @endsection

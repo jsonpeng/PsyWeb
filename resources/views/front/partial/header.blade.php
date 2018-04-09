@@ -211,23 +211,31 @@
         <div class="head-tologin">
             <div class="head-tologin-head clearfix">
                 <i class="icon icon-login-user fl"></i>
+                @if($loginStatus)
+                <span style="color:white;font-size:16px;">{{ Auth::user()->name }}</span>&nbsp;&nbsp;<a href="{!! route('logout') !!}">退出登录</a>
+                @else
                 <span class="fl head-tologin-word">登录</span>
+                @endif
             </div>
-            <div class="head-tologin-show">
+
+            <form method="post" action="{{ url('auth/login') }}">
+                {!! csrf_field() !!}
+
+            <div class="head-tologin-show" @if($loginStatus) style="display:none;" @endif>
                 <div class="head-tls-tips">
                 </div>
                 <div class="head-tls-inpwrap clearfix">
-                    <input type="text" class="head-tls-inp fl" id="in-user" placeholder="用户名／手机号">
+                    <input type="text" class="head-tls-inp fl" id="email" name="email" value="" placeholder="请输入邮箱">
                 </div>
                 <div class="head-tls-inpwrap clearfix">
-                    <input type="password" class="head-tls-inp fl" id="in-pass" placeholder="请输入密码">
+                    <input type="password" class="head-tls-inp fl" id="password" name="password" value="" placeholder="请输入密码">
                 </div>
                 <div class="head-tls-choose clearfix">
-                    <a href="http://passport.fh21.com.cn/public/retrievepassword" class="fl a-hover">忘记密码?</a>
-                    <a href="http://passport.fh21.com.cn/user/reg" class="fr a-hover">注册</a>
+               <!--      <a href="http://passport.fh21.com.cn/public/retrievepassword" class="fl a-hover">忘记密码?</a> -->
+                    <a href="{!! route('reg') !!}" class="fr a-hover">注册</a>
                 </div>
-                <button class="head-tls-sub" type="button" id="btn-login">登录</button>
-                <div class="head-tls-others clearfix">
+                <button class="head-tls-sub" type="submit" disabled="disabled" id="btn-login" style="background:#ddd;">登录</button>
+        <!--         <div class="head-tls-others clearfix">
                     <a href="http://passport.fh21.com.cn/connect/tencent" class="fl clearfix head-tls-others-list">
                         <i class="icon icon-login-qq fl"></i>
                         <span class="fl">QQ登录</span>
@@ -236,12 +244,12 @@
                         <i class="icon icon-login-wb fl"></i>
                         <span class="fl">新浪微博登录</span>
                     </a>
-                </div>
+                </div> -->
                 
                 
                 
             </div>
-            
+            </form>
         </div>
         
         

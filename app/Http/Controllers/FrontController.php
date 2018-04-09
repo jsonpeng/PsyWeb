@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+
 use App\Repositories\SettingRepository;
 use App\Repositories\CategoryRepository;
 use App\Repositories\PostRepository;
@@ -12,12 +13,16 @@ use App\Repositories\MessageRepository;
 use App\Repositories\LinkRepository;
 use App\Repositories\BannerRepository;
 use App\Repositories\CoorperatorRepository;
+
 use Illuminate\Support\Facades\Log;
+
 use App\Models\Banner;
+use App\Models\Message;
 use Mail;
 use App\Models\Post;
 //这里要使用User类 这个类会映射你本地数据库的users表
 use App\User;
+
 //这个包同样可以控制用户角色信息获取登录
 use Illuminate\Support\Facades\Auth;
 
@@ -56,7 +61,8 @@ class FrontController extends Controller
     // 首页
     public function index(Request $request)
     {
-
+        #用session存当前的地址
+        $now_url=session()->put('now_url',$request->fullUrl()); //==>session['now_url']=$request->fullUrl();
         //右侧文章列表 取每个分类的最新上传的第一篇文章
         
         #大学成长
@@ -127,16 +133,23 @@ class FrontController extends Controller
         //$posts = $category->posts()->where('status', 1)->paginate($setting->post_page);
         $posts=$this->categoryRepository->getCachePostOfCatIncludeChildren($category);
         
+        $message=null;
         if($category->slug=='PsychologyGuide' || $category->slug=='PsychologyTest'){
-           return redirect(route('login'));
+            #把当前的请求地址 存取到session中去
+            session()->put('now_url_cat',$request->fullUrl()); 
+            $message=Message::orderBy('created_at')->get();
+            #如果没有验证登录的话就登录
+            if(!Auth::check()){
+               return redirect(route('login'));
+            }
         }
 
 
     	//是否为该分类自定义了模板
     	if (view()->exists('front.cat.'.$category->slug)) {
-    		return view('front.cat.'.$category->slug)->with('category', $category)->with('posts', $posts);
+    		return view('front.cat.'.$category->slug)->with('message', $message)->with('category', $category)->with('posts', $posts);
     	} else {
-    		return view('front.cat.index')->with('category', $category)->with('posts', $posts);
+    		return view('front.cat.index')->with('message', $message)->with('category', $category)->with('posts', $posts);
     	}
     }
 
@@ -220,9 +233,20 @@ class FrontController extends Controller
                 if($password==$input['password']){
                     #php用.拼接字符串
                     Auth::login($user);
+                    #把之前拦截的地址 直接跳转过去
+                    if(!empty(session('now_url_cat'))){
+                        return redirect(session('now_url_cat'));
+                    }
+
                     return redirect('/');
                 }else{
+                    //empty =>if(str=='' || str==null){ return true;}else{return false;}
+                    if(!empty(session('now_url'))){
+                       return redirect(session('now_url'));
+                    }
+
                     return redirect(route('login'));
+
                 }
 
             }
@@ -253,6 +277,37 @@ class FrontController extends Controller
 
      }
 
+     /*
+     *留言吐槽接口
+     *用户名称 username
+     *吐槽内容 content
+     */
+     public function messageBoard(Request $request){
+        #先获取用户名
+        $username=Auth::user()->name; //session['user']
+        #然后获取他的留言内容
+        $content=$request->get('content'); //=>$_POST['content']
+        #用户邮箱
+        $user_email=Auth::user()->email;
+        #向数据库发送存储数据的命令
+        $message=Message::create([
+            'name'=>$username,
+            'info'=>$content,
+            'email'=>$user_email
+        ]);
+        #返回前端对应的数据 用户名 头像
+        return ['code'=>0,'message'=>$message];
+     }
+
+    /*
+    *退出接口
+    */
+    public function logout(Request $request){
+        Auth::logout();
+        $request->session()->invalidate();
+        return redirect('/');
+    }
+
     public function login(Request $request){
         return view('front.user.login');
     }
@@ -260,6 +315,7 @@ class FrontController extends Controller
     public function reg(Request $request){
         return view('front.user.reg');
     }
+
 
 
     public function submitInfo(Request $request){

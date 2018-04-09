@@ -30,6 +30,9 @@
              margin-top: 0px; 
              margin-bottom: 0px;
         }
+         button[disabled]{
+            background:#ddd;
+        }
         </style>
         <script src="{{ asset('js/modernizr-2.6.2.min.js') }}"></script>
             

@@ -7,7 +7,7 @@
 @endsection
 
 @section('seo')
-	<title>{{$setting->site_name}}</title>
+	<title>{{$setting->site_name}}  @if($loginStatus)({!! Auth::user()->name !!}已登录)@endif</title>
     <meta name="keywords" content="{{$setting->key_words}}">
     <meta name="description" content="{{$setting->description}}">
 @endsection
@@ -52,7 +52,7 @@
                                 <ul style="width: 5220px; position: relative; overflow: hidden; padding: 0px; margin: 0px; left: -2610px;">
                                 @foreach($banners as $banner)
                                     <li class="clone" style="float: left; width: 870px;">
-                                        <a href="{!! $banner->link !!}" target="_blank" class="sl-list">
+                                        <a href="{!! empty($banner->link)?'javascript:;':$banner->link !!}" target="_blank" class="sl-list">
                                             <img src="{!! $banner->image !!}" class="all-img">
                                             <div class="sl-list-bottom clearfix">
                                                 <p class="sl-list-bottom-text fl">{!! $banner->word !!}</p>
@@ -310,6 +310,19 @@
 
 @section('js')
 <script type="text/javascript">
-
+    $(function(){
+        $('#email,#password').val('');
+    });
+    //绑定input监听事件
+    $('#email,#password').keyup(function(){
+        //长度大于6就移除下面的disabled
+        if($(this).val().length>6){
+            $('#btn-login').removeAttr('style');
+            $('#btn-login').removeAttr('disabled');
+        }else{
+            $('#btn-login').attr('style','background:#ddd;');
+            $('#btn-login').attr('disabled','disabled');
+        }
+    });
 </script>
 @endsection
