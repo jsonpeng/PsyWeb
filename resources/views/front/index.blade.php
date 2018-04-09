@@ -15,9 +15,9 @@
 @section('content')
 
 
-<!--.PC-疾病医美整形-通栏横幅1-->
+<!--.-通栏横幅1-->
 <fh-ad-plus fh-ad-pid="108"></fh-ad-plus>
-<!--/.PC-疾病医美整形-通栏横幅1-->
+<!--/.通栏横幅1-->
 
 @if(array_key_exists('word',$input))
 <h1 style="text-align:center;">搜索结果:{!! count($serach_word ) !!}个</h1>
@@ -226,16 +226,23 @@
                                                 <a href="/post/{!! $ChickenSoup->id !!}" class="a-hover fl">{!! $ChickenSoup->name !!}</a>
                                     </li>
                                     @endif
+
+                                    @if(!empty($Criminalnformation))
+                                    <li class="clearfix rea-list">
+                                            <span class="fl rea-list-title">[罪恶情报局]</span>
+                                                <a href="/post/{!! $Criminalnformation->id !!}" class="a-hover fl">{!! $Criminalnformation->name !!}</a>
+                                    </li>
+                                    @endif
                                
                             </ul>
                         </div>  
                      <!--/.推荐文章-->
                     
-                    <!--.PC问答右侧关注广告位-->
+                    <!--.P-->
                         <div style="margin-bottom: 20px">
                             <fh-ad-plus fh-ad-pid="27"></fh-ad-plus>
                         </div>
-                    <!--/.PC问答右侧关注广告位-->                 
+                    <!--/.P-->                 
                     
                    @include('front.partial.right')
 

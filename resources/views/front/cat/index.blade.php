@@ -77,6 +77,12 @@ ul.activity-list .activity-desk h5 a {
                                                 @foreach ($posts as $post)
                                                         <div class="ma-modone clearfix nbt pt-0"><a href="/post/{!! $post->id !!}" target="_blank" class="fl ma-modone-left"><img src="{!! $post->image !!}" class="all-img"></a><div class="ma-modone-right fl"><a href="/post/{!! $post->id !!}" target="_blank" class="ma-modone-right-title">{!! $post->name !!}</a><div class="ma-modone-right-content">{!! $post->brief !!}<a href="/post/{!! $post->id !!}" target="_blank" class="a-hover">[详细]</a></div><div class="ma-modone-right-time">{!! $post->created_at !!}</div></div></div>
                                                 @endforeach
+                <!--问题：在退出登陆后，点击《每日心理学》，出现的内容不应包括心理测                      评和心理指导的文章
+                                                 -->
+                                                @if(!Auth::check()) 
+                                              
+                                                @endif
+
                                             </div>
                                         </div>
                                     </div>

@@ -77,6 +77,9 @@ class FrontController extends Controller
         #心灵鸡汤
         $ChickenSoup=$this->categoryRepository->getCachePostFirstOfCatIncludeChildren('ChickenSoup');
 
+        #罪恶心理学--2018.4.9新增
+        $Criminalnformation=$this->categoryRepository->getCachePostFirstOfCatIncludeChildren('Criminalnformation');
+
         #所有分类列表
         $RootCat=$this->categoryRepository->getRootCat();
 
@@ -95,7 +98,7 @@ class FrontController extends Controller
                 //dd($input['word']);
             }
         }
-        #ZHEGEHAODUOL好多了
+        #
         #如果有uinfo我们 就取对应的用户信息
          if(array_key_exists('uinfo',$input)){
             if(!empty($input['uinfo'])){
@@ -134,6 +137,7 @@ class FrontController extends Controller
         $posts=$this->categoryRepository->getCachePostOfCatIncludeChildren($category);
         
         $message=null;
+
         if($category->slug=='PsychologyGuide' || $category->slug=='PsychologyTest'){
             #把当前的请求地址 存取到session中去
             session()->put('now_url_cat',$request->fullUrl()); 
@@ -144,7 +148,15 @@ class FrontController extends Controller
             }
         }
 
-
+        #如果我进入的是每日心理学
+        if($category->slug=='Psychology'){
+            #而且我还没登录的话就不显示文章列表
+            if(!Auth::check()){
+                #那就只显示当前分类的文章
+                $posts=$category->posts()->where('status',1)->orderBy('created_at','desc')->get();
+            }
+        }
+        //dd($posts);
     	//是否为该分类自定义了模板
     	if (view()->exists('front.cat.'.$category->slug)) {
     		return view('front.cat.'.$category->slug)->with('message', $message)->with('category', $category)->with('posts', $posts);

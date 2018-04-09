@@ -212,7 +212,7 @@
             <div class="head-tologin-head clearfix">
                 <i class="icon icon-login-user fl"></i>
                 @if($loginStatus)
-                <span style="color:white;font-size:16px;">{{ Auth::user()->name }}</span>&nbsp;&nbsp;<a href="{!! route('logout') !!}">退出登录</a>
+                <span style="color:white;font-size:16px;">{{ Auth::user()->name }}</span>&nbsp;&nbsp;<a href="{!! route('logout') !!}"   style="font-size:14px;" >退出登录</a>
                 @else
                 <span class="fl head-tologin-word">登录</span>
                 @endif

@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>心理健康网站后台管理系统</title>
+    <title>小小白的后台管理系统</title>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css">
@@ -11,8 +11,6 @@
     <link rel="stylesheet" href="https://cdn.bootcss.com/iCheck/1.0.2/skins/all.css">
     <link rel="stylesheet" href="{{ asset('vendor/adminLTE/css/AdminLTE.min.css') }}">
     <link rel="stylesheet" href="{{ asset('vendor/adminLTE/css/skins/skin-blue.min.css') }}">
-
-    
     <link rel="stylesheet" href="https://cdn.bootcss.com/ionicons/2.0.1/css/ionicons.min.css">
     <link href="https://cdn.bootcss.com/element-ui/1.4.3/theme-default/index.css" rel="stylesheet">
     
@@ -41,7 +39,7 @@
 
             <!-- Logo -->
             <a href="#" class="logo">
-                <b>小小白的网站管理系统</b>
+                <b>大学生心理健康网站管理系统</b>
             </a>
 
             <!-- Header Navbar -->
@@ -98,7 +96,7 @@
 
         <!-- Main Footer -->
         <footer class="main-footer" style="max-height: 100px;text-align: center">
-            <strong>Copyright 2018 <a href="javascript:;" target="_blank">小小白的心理健康网站</a>.</strong> All rights reserved.
+            <strong>Copyright 2018 <a href="javascript:;" target="_blank">大学生心理健康网站</a>.</strong> All rights reserved.
         </footer>
 
     </div>
