@@ -320,33 +320,22 @@ class FrontController extends Controller
         return redirect('/');
     }
 
+    //登录前端
     public function login(Request $request){
         return view('front.user.login');
     }
 
+
+    //注册
     public function reg(Request $request){
         return view('front.user.reg');
     }
 
+    //用户个人中心
+    public function usercenter(Request $request,$id){
+        $user=User::find($id);
 
-
-    public function submitInfo(Request $request){
-        $name=$request->get('name');
-        $tel=$request->get('tel');
-        $info=$request->get('info');
-        $this->messageRepository->create([
-            'name'=>$name,
-            'tel'=>$tel,
-            'info'=>$info
-        ]);
-
-
-        Mail::send('emails.index',['tel'=>$tel,'info'=>$info],function($message){
-            $to =$this->settingRepository->findWithoutFail(1)->email;
-            $message ->to($to)->subject('预约试听体验课成功');
-        });
-
-        return ['status'=>true,'msg'=>'提交成功'];
+        return view('front.user.index',compact('user'));
     }
 
 }

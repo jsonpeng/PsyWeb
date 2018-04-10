@@ -78,25 +78,25 @@
           <!--已登录-->
          <div class="head-logined">
                 <div class="head-logined-head clearfix">
-                    <a href="http://passport.fh21.com.cn" class="fl head-logined-head-left">
+                    <a href="/usercenter/{!! Auth::user()->id !!}" class="fl head-logined-head-left">
                         <img src="{{ empty(Auth::user()->head_image)?'/uploads/touuxiang.jpg':Auth::user()->head_image }}" class="all-img"/>
                     </a>
                     <i class="icon icon-login-arrow fl"></i>
                 </div>
                 <div class="head-logined-show">
                     <div class="head-les-head">
-                        <a href="http://passport.fh21.com.cn" class="head-les-head-img">
+                        <a href="/usercenter/{!! Auth::user()->id !!}" class="head-les-head-img">
                             <img src="{{ empty(Auth::user()->head_image)?'/uploads/touuxiang.jpg':Auth::user()->head_image }}" class="all-img"/>
                         </a>
                         <h4 class="head-les-head-name">
-                            <a href="http://passport.fh21.com.cn">{{ Auth::user()->name }}</a>
+                            <a href="/usercenter/{!! Auth::user()->id !!}">{{ Auth::user()->name }}</a>
                         </h4>
                         <h5  class="head-les-head-grade">
                            
                         </h5>
                     </div>
                 
-                    <a href="#" class="clearfix head-les-list">
+                    <a href="/usercenter/{!! Auth::user()->id !!}" class="clearfix head-les-list">
                         <i class="icon icon-login-mypro fl"></i>
                         <span class="fl head-les-list-tosolve">我的个人中心</span>
                     </a>
