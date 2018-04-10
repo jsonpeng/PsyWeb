@@ -12,7 +12,7 @@
         width: 100%;
         height: 300px;
         overflow: hidden;
-        z-index: 2;
+        z-index: 0;
         position:relative;
     }
     .usercenter-head-image-box{

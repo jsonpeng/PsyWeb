@@ -31,8 +31,11 @@ Route::get('/psychology/login', 'FrontController@login')->name('login');
 Route::get('psychology/reg', 'FrontController@reg')->name('reg');
 //api接口
 Route::post('/submit_data', 'FrontController@submitInfo');
-
+//个人中心
 Route::get('/usercenter/{id?}','FrontController@usercenter');
+
+//头像替换列表
+Route::get('/txlist','FrontController@txlist');
 
 //这里的prefix是参数的前缀 登录和注册就用post方法吧
 Route::group(['prefix' => 'auth'], function () {
