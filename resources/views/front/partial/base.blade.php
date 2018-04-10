@@ -33,6 +33,7 @@
          button[disabled]{
             background:#ddd;
         }
+        .rea .rea-first-bottom{width:300px;}
         </style>
         <script src="{{ asset('js/modernizr-2.6.2.min.js') }}"></script>
             

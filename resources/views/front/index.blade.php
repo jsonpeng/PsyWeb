@@ -22,11 +22,11 @@
 @if(array_key_exists('word',$input))
 <h1 style="text-align:center;">搜索结果:{!! count($serach_word ) !!}个</h1>
         @if(count($serach_word)>0)
-            <div>搜索到的相关文章列表:</div>
+            <div style="text-align:center;">搜索到的相关文章列表:</div>
             <ul>
                
                  @foreach($serach_word as $item)
-                    <li><a href="/post/{!! $item->id !!}" target="_blank">{!! $item->name !!}</a></li>
+                    <li style="text-align:center;"><a href="/post/{!! $item->id !!}" target="_blank">{!! $item->name !!}</a></li>
                  @endforeach
              
             </ul>
