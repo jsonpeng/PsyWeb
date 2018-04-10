@@ -141,12 +141,11 @@ ul.activity-list .activity-desk h5 a {
                 <div class="right fr">
                     
                     <!--.搜索-->
-                        <form class="search clearfix" target="_blank" action="http://zhannei.fh21.com.cn/cse/search">
-                            <input type="text" name="q" class="fl search-inp" placeholder="请输入关键字">
-                            <input type="hidden" name="s" value="6719305306906253443">          
-                            <input type="hidden" name="nsid" value="0"> 
+                       <form class="search clearfix"  action="/">
+                            <input type="text" name="word" class="fl search-inp" placeholder="请输入关键字">
+                  
                             <button class="fl search-btn" type="submit">
-                              搜索
+                                搜索
                             </button>
                         </form>
                     <!--/.搜索-->
