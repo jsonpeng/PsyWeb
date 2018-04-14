@@ -102,6 +102,11 @@
    .header-b-box {
     background-color:#d5e7ff;
     }
+    input[type=file] {
+    display: none;
+    }
+    
+
     </style>
 @endsection
 
@@ -118,7 +123,7 @@
 
                 <div class="usercenter-qianming">暂时没有留下什么签名...</div>
             </div>
-            <span class="usercenter-touxiang-change-text">更换头像</span>
+            <span class="usercenter-touxiang-change-text" id="user_image">更换头像</span>
 
         </div>
     </div>
@@ -126,17 +131,23 @@
     <div class="container">
 
         <div class="pl0pr0" style="min-height:500px;background:#fff;">
-                <ul class="content-tab"> 
+            <ul class="content-tab"> 
 
-                <li class="li-tab active"><a id="baidutab" href="#" class="tab-title songti tabbtn" hidefocus="" data-click="baidu"><span class="tab-title-tag">我的首页</span></a> </li>
+                <li class="li-tab active"><a id="baidutab" href="#" class="tab-title songti tabbtn" hidefocus="" data-click="baidu"><span class="tab-title-tag">我的首页</span></a> 
+                </li>
 
-                <li class="li-tab"><a id="tiebatab" href="#" class="tab-title songti tabbtn" hidefocus="" data-click="tieba"><span class="tab-title-tag">我的收藏</span></a> </li>
+                <li class="li-tab"><a id="tiebatab" href="#" class="tab-title songti tabbtn" hidefocus="" data-click="tieba"><span class="tab-title-tag">我的收藏</span></a> 
+                </li>
 
-                <li class="li-tab"><a id="zhidaotab" href="#" class="tab-title songti tabbtn" hidefocus="" data-click="zhidao"><span class="tab-title-tag">我的评论</span></a>        </li>
+                <li class="li-tab"><a id="zhidaotab" href="#" class="tab-title songti tabbtn" hidefocus="" data-click="zhidao"><span class="tab-title-tag">我的评论</span></a>   
+                 </li>
 
-                </ul> 
+            </ul> 
 
-                <div class="usercenter-content-box" >首页内容</div>
+                <div class="usercenter-content-box" >
+
+              
+               </div>
         </div>
     </div>
 
@@ -145,12 +156,36 @@
 
 
 @section('js')
+<script type="text/javascript" src="{!! asset('vendor/layui/layui.js') !!}"></script>
 <script type="text/javascript">
 $(function(){
+    //tab切换
     $('.li-tab').click(function(){
             $('.li-tab').removeClass('active');
             $(this).addClass('active');
             $('.usercenter-content-box').html($(this).find('a').text());
+    });
+    //头像上传
+    layui.use('upload', function(){
+      var upload = layui.upload;
+       
+      //执行实例
+      var uploadInst = upload.render({
+        elem: '#user_image' //绑定元素
+        ,url: '/auth/uploads' //上传接口
+        ,done: function(res){
+          //上传完毕回调
+          if(res.code==0){
+            $('#user_image').parent().find('img').attr('src',res.message.src
+                );
+          }
+        }
+        ,error: function(){
+          //请求异常回调
+          alert('上传异常');
+          return false;
+        }
+      });
     });
 });
 </script>

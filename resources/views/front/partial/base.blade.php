@@ -125,6 +125,22 @@
                     $('.eyf-main > .eyfs-list').eq($(this).index()).addClass('eyfs-list-show').siblings().removeClass('eyfs-list-show');
                 });
             });
+
+            $(function(){
+                $('#email,#password').val('');
+            });
+            //绑定input监听事件
+            $('#email,#password').keyup(function(){
+                //长度大于6就移除下面的disabled
+                if($(this).val().length>6){
+                    $('#btn-login').removeAttr('style');
+                    $('#btn-login').removeAttr('disabled');
+                }else{
+                    $('#btn-login').attr('style','background:#ddd;');
+                    $('#btn-login').attr('disabled','disabled');
+                }
+            });
+
         </script>
 
     

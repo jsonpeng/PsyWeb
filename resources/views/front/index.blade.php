@@ -22,11 +22,13 @@
 @if(array_key_exists('word',$input))
 <h1 style="text-align:center;">搜索结果:{!! count($serach_word ) !!}个</h1>
         @if(count($serach_word)>0)
-            <div style="text-align:center;">搜索到的相关文章列表:</div>
+           <!--  <div style="text-align:center;">搜索到的相关文章列表:</div> -->
             <ul>
-               
+                <?php $i=0;?>
                  @foreach($serach_word as $item)
-                    <li style="text-align:center;"><a href="/post/{!! $item->id !!}" target="_blank">{!! $item->name !!}</a></li>
+                 <?php $i++;?>
+                    <li style="margin-left:42%;display:inline-block;padding-bottom: 15px;border: 1px solid black;padding-top:15px;padding-left:10px;
+    width: 300px;"><a href="/post/{!! $item->id !!}" target="_blank">{!! $i !!} . {!! $item->name !!}</a></li>
                  @endforeach
              
             </ul>
@@ -88,7 +90,7 @@
         
                         <div class="ma-nav-more-show">
                             <div class="ma-nav-more-show-wrap clearfix">
-                                                    <!--<a href="/" class="ma-nms-a fl">星座趣闻</a>-->
+                                        <a href="http://127.0.0.2/post/20" class="ma-nms-a fl">心理电影、心理书籍推荐</a>
                                 
                             </div>
                         </div>
@@ -254,82 +256,9 @@
                 </div>
             </div>
         </div>
-        
-        <!--.热搜榜
-            <div class="footer-wrap">
-                    <div class="wrap">
-                        <div class="footer-top clr">
-                            <div class="footer-code">
-                                <ul class="clearfix">
-                                    <li>
-                                        <img src="http://static2.fh21.com.cn/chl/images/pic_wx_qrcode.jpg" alt="">
-                                        <p>微信公众号</p>
-                                    </li>
-                                    <li>
-                                        <img src="http://static2.fh21.com.cn/chl/images/pic_wap_qrcode.jpg" alt="">
-                                        <p>飞华WAP站</p>
-                                    </li>
-                                    <li>
-                                        <img src="http://static2.fh21.com.cn/chl/images/pic_wb_qrcode.jpg" alt="">
-                                        <p>飞华健康微博</p>
-                                    </li>
-
-                                </ul>
-                            </div>
-                            <div class="footer-subnav fl">
-                                <ul class="footer-subnav-fh">
-
-                                        <li><a href="https://www.fh21.com.cn/company/aboutUs.htm" target="_blank" class="footer-subnav-fh-link">飞华简介</a></li>
-                                        <li><a href="https://www.fh21.com.cn/ad/home/index.shtml" target="_blank" class="footer-subnav-fh-link">广告服务</a></li>
-                                        <li><a href="https://www.fh21.com.cn/company/job.htm" target="_blank" class="footer-subnav-fh-link">招贤纳士</a></li>
-                                        <li><a href="https://www.fh21.com.cn/company/contact.htm" target="_blank" class="footer-subnav-fh-link">联系飞华</a></li>
-                                        <li><a href="http://passport.fh21.com.cn/personal/feedback" target="_blank" class="footer-subnav-fh-link">意见反馈</a></li>
-                                        <li><a href="https://www.fh21.com.cn/company/law.htm" target="_blank" class="footer-subnav-fh-link">服务条款</a></li>
-                                        <li><a href="https://www.fh21.com.cn/company/sitemap.htm" target="_blank" class="footer-subnav-fh-link">网站地图</a></li>
-
-                                </ul>
-                                                <ul class="footer-subnav-friend clr">
-                                    <li><p class="friendship-link">友情链接</p></li>
-                                                            <li><a href="http://ys.fh21.com.cn/" class="footer-subnav-friend-link">养生</a></li>
-                                                            <li><a href="http://www.fh21.com.cn/pifu/bdf/by/" class="footer-subnav-friend-link">白癜风的发病原因</a></li>
-                                                            <li><a href="http://www.fh21.com.cn/pifu/bdf/cr/" class="footer-subnav-friend-link">白癜风传染吗</a></li>
-                                                            <li><a href="http://www.fh21.com.cn/pifu/bdf/zz/" class="footer-subnav-friend-link">白癜风的症状</a></li>
-                                                            <li><a href="http://www.fh21.com.cn/pifu/bdf/zl/" class="footer-subnav-friend-link">白癜风治疗</a></li>
-                                                            <li><a href="http://www.fh21.com.cn/pifu/bdf/fy/" class="footer-subnav-friend-link">白癜风治疗费用</a></li>
-                                                            <li><a href="http://www.chunshuitang.com/nvxing/" class="footer-subnav-friend-link">女性成人用品</a></li>
-                                                            <li><a href="http://www.taisui.org" class="footer-subnav-friend-link">太岁</a></li>
-                                                            <li><a href="http://js.39.net/" class="footer-subnav-friend-link">精神科</a></li>
-                                                            <li><a href="http://www.ys137.com/xinli/" class="footer-subnav-friend-link">心理健康</a></li>
-                                                            <li><a href="http://www.luv66.com/" class="footer-subnav-friend-link">心理咨询</a></li>
-                                                            <li><a href="http://www.169kang.com/" class="footer-subnav-friend-link">169健康网</a></li>
-                                                            <li><a href="http://face.qm120.com/" class="footer-subnav-friend-link">全民美容网</a></li>
-                                                            <li><a href="http://jb.999ask.com/" class="footer-subnav-friend-link">疾病百科</a></li>
-                                                    </ul>
-                                            </div>
-                        </div>      
-                    </div>
-            </div>-->
-        <!--/.热搜榜--> 
+    
 @endif
 
 @endsection
 
 
-@section('js')
-<script type="text/javascript">
-    $(function(){
-        $('#email,#password').val('');
-    });
-    //绑定input监听事件
-    $('#email,#password').keyup(function(){
-        //长度大于6就移除下面的disabled
-        if($(this).val().length>6){
-            $('#btn-login').removeAttr('style');
-            $('#btn-login').removeAttr('disabled');
-        }else{
-            $('#btn-login').attr('style','background:#ddd;');
-            $('#btn-login').attr('disabled','disabled');
-        }
-    });
-</script>
-@endsection

@@ -23,6 +23,11 @@ use App\Models\Post;
 //这里要使用User类 这个类会映射你本地数据库的users表
 use App\User;
 
+use Illuminate\Support\Facades\Input;
+use Redirect,Response;
+use Image;
+
+
 //这个包同样可以控制用户角色信息获取登录
 use Illuminate\Support\Facades\Auth;
 
@@ -77,7 +82,7 @@ class FrontController extends Controller
         #心灵鸡汤
         $ChickenSoup=$this->categoryRepository->getCachePostFirstOfCatIncludeChildren('ChickenSoup');
 
-        #罪恶心理学--2018.4.9新增
+        #罪恶情报局--2018.4.9新增
         $Criminalnformation=$this->categoryRepository->getCachePostFirstOfCatIncludeChildren('Criminalnformation');
 
         #所有分类列表
@@ -320,6 +325,48 @@ class FrontController extends Controller
         return redirect('/');
     }
 
+    /*
+    *上传图片接口
+    */
+    public function uploads(Request $request){
+        $file =  Input::file('file');
+
+        #用户信息
+        $user=Auth::user();
+
+        #图片文件夹
+        $destinationPath = "uploads/user/".$user->id."/";
+
+        if (!file_exists($destinationPath)){
+            mkdir ($destinationPath,0777,true);
+        }
+       
+        $extension = $file->getClientOriginalExtension();
+        $fileName = str_random(10).'.'.$extension;
+        $file->move($destinationPath, $fileName);
+
+        $image_path=public_path().'/'.$destinationPath.$fileName;
+        
+  
+        $host='http://'.$_SERVER["HTTP_HOST"];
+
+        #图片路径
+        $img_src=$host.'/'.$destinationPath.$fileName;
+
+        #更新用户头像
+        $user->update([
+            'head_image'=>$img_src
+        ]);
+
+        return [
+            'code' => '0',
+            'message' => [
+                'src'=>$img_src,
+                'current_time' => date('Y-m-d H:i:s')
+            ]
+        ];
+    }
+
     //登录前端
     public function login(Request $request){
         return view('front.user.login');
@@ -334,7 +381,9 @@ class FrontController extends Controller
     //用户个人中心
     public function usercenter(Request $request,$id){
         $user=User::find($id);
-
+        if(empty($user)){
+            return redirect('/');
+        }
         return view('front.user.index',compact('user'));
     }
 

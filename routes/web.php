@@ -18,35 +18,41 @@ Route::get('/', function () {
 
 Auth::routes();
 
-//前端路由
+//前端路由 视图
+//网站首页
 Route::get('/', 'FrontController@index')->name('index');
+//网站分类页面 包含子分类
 Route::get('cat/{id}', 'FrontController@cat')->name('category');
+//网站的文章详情
 Route::get('post/{id}', 'FrontController@post')->name('post');
-Route::get('page/{id}', 'FrontController@page')->name('page');
-
 //用户登录
 Route::get('/psychology/login', 'FrontController@login')->name('login'); 
-//route('login')
 //用户注册
 Route::get('psychology/reg', 'FrontController@reg')->name('reg');
-//api接口
-Route::post('/submit_data', 'FrontController@submitInfo');
 //个人中心
 Route::get('/usercenter/{id?}','FrontController@usercenter');
-
 //头像替换列表
 Route::get('/txlist','FrontController@txlist');
 
+
+//接口请求
 //这里的prefix是参数的前缀 登录和注册就用post方法吧
 Route::group(['prefix' => 'auth'], function () {
+
+	Route::get('/logout','FrontController@logout')->name('logout');
+
+	//留言接口 
+	Route::post('/messageBoard','FrontController@messageBoard');
 	//登录接口
 	Route::post('/login','FrontController@loginApi');
 	//注册接口
 	Route::post('/reg','FrontController@regApi');
-	Route::get('/logout','FrontController@logout')->name('logout');
-	//留言接口 
-	Route::post('/messageBoard','FrontController@messageBoard');
+	//用户上传图像接口
+	Route::post('/uploads','FrontController@uploads');
+	
 });
+
+
 
 //后台管理系统
 Route::group(['middleware' => ['auth'], 'prefix' => 'zcjy'], function () {
@@ -86,12 +92,6 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'zcjy'], function () {
 	Route::resource('banners', 'BannerController');
 
 	Route::resource('{banner_id}/bannerItems', 'BannerItemController');
-	/*
-	Route::get('/banner_item/{banner_id}', 'BannerItemController@BannerItem')->name('banner_items.index');
-	Route::get('/banner_item/{banner_id}/edit/{item_id}', 'BannerItemController@EditBannerItem')->name('banner_items.edit');
-	Route::get('/banner_item/{banner_id}/add', 'BannerItemController@AddBannerItem')->name('banner_items.add');
-	Route::get('/banner_item/{banner_id}/delete/{item_id}', 'BannerItemController@DeleteBannerItem')->name('banner_items.delete');
-	*/
 
 	//菜单
 	Route::resource('menus', 'MenuController');
