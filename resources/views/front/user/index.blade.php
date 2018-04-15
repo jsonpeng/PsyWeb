@@ -105,8 +105,25 @@
     input[type=file] {
     display: none;
     }
-    
-
+    .usercenter-content-box > a{
+        display: inline-block;
+        /*border: 1px solid black;*/
+        width:100%;
+        padding-left: 15px;
+        padding-top: 15px;
+        padding-bottom: 15px;
+        border-bottom: .6px solid #ddd;
+    }
+    .usercenter-content-box > a > img{
+        max-height: 100px;
+        width: 80px;
+    }
+    .usercenter-content-box > a:hover{
+        color: #ff5f5f;
+    }
+    .pb25{
+        padding-bottom: 25px;
+    }
     </style>
 @endsection
 
@@ -128,7 +145,7 @@
         </div>
     </div>
 
-    <div class="container">
+    <div class="container pb25">
 
         <div class="pl0pr0" style="min-height:500px;background:#fff;">
             <ul class="content-tab"> 
@@ -145,9 +162,24 @@
             </ul> 
 
                 <div class="usercenter-content-box" >
-
+                    首页
               
                </div>
+
+               <div class="usercenter-content-box" style="display: none;">
+                        @foreach($collections_list as $item)
+                        <a href="/post/{!! $item->id !!}" target="_blank">{!! $item->name !!}</a>
+                        @endforeach
+               </div>
+
+               <div class="usercenter-content-box pb25" style="display: none;">
+                        @foreach($my_pinglun as $item)
+                        <a style="position: relative;"><img src="{!! $user->head_image !!}">吐槽内容:{!! $item->info !!}&nbsp;&nbsp;<span style="color: #bbb;position: absolute;bottom: 24px;left: 92px;">{!! $item->created_at !!}</span></a>
+                        @endforeach
+              
+               </div>
+
+               
         </div>
     </div>
 
@@ -163,7 +195,8 @@ $(function(){
     $('.li-tab').click(function(){
             $('.li-tab').removeClass('active');
             $(this).addClass('active');
-            $('.usercenter-content-box').html($(this).find('a').text());
+            $('.usercenter-content-box').hide();
+            $('.usercenter-content-box').eq($(this).index()).show(500);
     });
     //头像上传
     layui.use('upload', function(){

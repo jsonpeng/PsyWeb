@@ -33,4 +33,10 @@ class MessageRepository extends BaseRepository
     {
         return Message::class;
     }
+
+    //通过用户对象找到对应的评论列表
+    public function getMessageListByUserObj($user){
+        return Message::where('name',$user->name)->get();
+
+    }
 }

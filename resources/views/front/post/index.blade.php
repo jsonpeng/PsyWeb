@@ -33,7 +33,7 @@
                     <div class="arti-head">
                         <h1 style="font-size:30px;">{!! $post->name !!}</h1>
                         <div class="arti-head-info clearfix">
-                            <span class="fl arti-hi-left">发布时间：{!! $post->created_at !!}  阅读：{!! $post->view !!} </span>
+                            <span class="fl arti-hi-left">发布时间：{!! $post->created_at !!}  阅读：{!! $post->view !!} 收藏：{!! $post->collect !!} </span>
                             <div class="arti-share-box clearfix fl">
                                 <i class="icon icon-share-qzone icon-share-common" data-share="qzone"></i>
                                 <i class="icon icon-share-wb icon-share-common" data-share="weibo"></i>

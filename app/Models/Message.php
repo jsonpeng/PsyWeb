@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Eloquent as Model;
+use App\User;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
@@ -53,5 +54,11 @@ class Message extends Model
         'info' => 'required'
     ];
 
+    public function getrealiseUserImgAttribute(){
+        $user=User::where('name',$this->name)->first();
+        if(!empty($user)){
+            return optional($user)->head_image;
+        }
+    }
     
 }

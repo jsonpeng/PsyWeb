@@ -7,7 +7,6 @@
 @endsection
 
 @section('seo')
-	<title>{{$setting->site_name}}  @if($loginStatus)({!! Auth::user()->name !!}已登录)@endif</title>
     <meta name="keywords" content="{{$setting->key_words}}">
     <meta name="description" content="{{$setting->description}}">
 @endsection

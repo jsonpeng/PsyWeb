@@ -137,6 +137,9 @@ class FrontController extends Controller
         if (empty($category)) {
             return redirect('/');
         }
+       
+     
+
     	$setting = $this->settingRepository->getCachedSetting();
         //$posts = $category->posts()->where('status', 1)->paginate($setting->post_page);
         $posts=$this->categoryRepository->getCachePostOfCatIncludeChildren($category);
@@ -178,6 +181,9 @@ class FrontController extends Controller
         if (empty($post)) {
             return redirect('/');
         }
+        #用session存当前的地址
+        session()->forget('now_url_cat');
+        session()->put('now_url_cat',$request->fullUrl());
         $post->update(['view' => $post->view + 1]);
 
         $prePost = $this->postRepository->PrevPost($id);
@@ -258,6 +264,7 @@ class FrontController extends Controller
                     return redirect('/');
                 }else{
                     //empty =>if(str=='' || str==null){ return true;}else{return false;}
+                   
                     if(!empty(session('now_url'))){
                        return redirect(session('now_url'));
                     }
@@ -378,13 +385,23 @@ class FrontController extends Controller
         return view('front.user.reg');
     }
 
+    //用户收藏操作
+    public function collectionPost(Request $request,$post_id,$status=true){
+        return app('user')->collectAction(Auth::user(),$post_id,$status);
+    }
+
     //用户个人中心
     public function usercenter(Request $request,$id){
         $user=User::find($id);
         if(empty($user)){
             return redirect('/');
         }
-        return view('front.user.index',compact('user'));
+        #收藏列表
+        $collections_list=$user->posts()->get();
+        //dd($collections_list);
+        #我的评论
+        $my_pinglun=$this->messageRepository->getMessageListByUserObj($user);
+        return view('front.user.index',compact('user','collections_list','my_pinglun'));
     }
 
 }

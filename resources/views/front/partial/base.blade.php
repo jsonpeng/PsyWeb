@@ -13,11 +13,12 @@
             <meta name="keywords" content="">
             <meta name="description" content="">
         -->
+        <title>{{$setting->site_name}}  @if($loginStatus)({!! Auth::user()->name !!}已登录)@endif</title>
         @yield('seo')
 
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-        <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+        <link rel="icon" href=" @if($loginStatus){!! empty(Auth::user())?'':Auth::user()->head_image !!}@endif" type="image/x-icon" />
         <link rel="stylesheet" href="{{ asset('css/front.css') }}">
         <link rel="stylesheet" href="{{ asset('css/main.css') }}">
         <link href="https://cdn.bootcss.com/animate.css/3.5.2/animate.min.css" rel="stylesheet">

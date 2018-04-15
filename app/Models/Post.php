@@ -45,7 +45,8 @@ class Post extends Model
         'image2',
         'sort',
         'type',
-        'more'
+        'more',
+        'collect'
     ];
 
     /**
@@ -101,5 +102,10 @@ class Post extends Model
     //文章的更多字段
     public function items(){
         return $this->hasMany('App\Models\PostItems');
+    }
+
+    //收藏该文章的用户
+    public function users(){
+        return $this->belongsToMany('App\User','posts_users','post_id','user_id');
     }
 }

@@ -34,5 +34,6 @@ class AppServiceProvider extends ServiceProvider
         }
 
          $this->app->singleton('cat', 'App\Repositories\CategoryRepository');
+         $this->app->singleton('user', 'App\Repositories\UserRepository');
     }
 }

@@ -35,6 +35,12 @@ Route::get('/usercenter/{id?}','FrontController@usercenter');
 Route::get('/txlist','FrontController@txlist');
 
 
+//ajax操作列表
+//  ajax/collection_post/{post_id}
+Route::group(['prefix'=>'ajax'],function(){
+	Route::get('collection_post/{post_id}/{status?}','FrontController@collectionPost');
+});
+
 //接口请求
 //这里的prefix是参数的前缀 登录和注册就用post方法吧
 Route::group(['prefix' => 'auth'], function () {
