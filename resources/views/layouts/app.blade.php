@@ -16,7 +16,33 @@
     
 
     <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
+    <style type="text/css">
+    .skin-blue .main-header .logo,.skin-blue .main-header .navbar , .btn-primary , .pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover, .pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover , .skin-blue .main-header .logo , .skin-blue .main-header .navbar .sidebar-toggle:hover{
+        background-color: #ff5f5f !important;
+        border-color: white;
+    }
 
+    .box.box-primary , .box.box-info , .nav-tabs-custom>.nav-tabs>li.active{
+        border-top-color: #ff5f5f;
+    }
+    .btn-primary:hover, .btn-primary:active, .btn-primary.hover {
+        background-color: black;
+    }
+    .skin-blue .sidebar-menu>li:hover>a, .skin-blue .sidebar-menu>li.active>a {
+        border-left-color: white !important;
+        background: white;
+        color: black;
+    }
+    .skin-blue .wrapper, .skin-blue .main-sidebar, .skin-blue .left-side {
+            background-color: #ff5f5f;
+    }
+    .skin-blue .sidebar a,.skin-blue .treeview-menu>li>a{
+        color: white;
+    }
+    .skin-blue .sidebar-menu>li>.treeview-menu{
+        background: #ff5f5f;
+    }
+    </style>
     @yield('css')
 </head>
 
@@ -56,7 +82,7 @@
                             <!-- Menu Toggle Button -->
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <!-- The user image in the navbar-->
-                                <img src="http://7xkyc6.com1.z0.glb.clouddn.com/logowithouttext200x200.jpg"
+                                <img src="/uploads/touuxiang.jpg"
                                      class="user-image" alt="User Image"/>
                                 <!-- hidden-xs hides the username on small devices so only the image appears. -->
                                 <span class="hidden-xs">{!! Auth::user()->name !!}</span>
