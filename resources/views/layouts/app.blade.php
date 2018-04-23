@@ -40,7 +40,8 @@
         color: white;
     }
     .skin-blue .sidebar-menu>li>.treeview-menu{
-        background: #ff5f5f;
+        background: #ff8080;
+        
     }
     </style>
     @yield('css')
