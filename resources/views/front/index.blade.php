@@ -221,10 +221,10 @@
                                     </li>
                                     @endif
 
-                                    @if(!empty($ChickenSoup))
+                                    @if(!empty($CareerDevelop))
                                     <li class="clearfix rea-list">
-                                            <span class="fl rea-list-title">[心灵鸡汤]</span>
-                                                <a href="/post/{!! $ChickenSoup->id !!}" class="a-hover fl">{!! $ChickenSoup->name !!}</a>
+                                            <span class="fl rea-list-title">[职业与发展]</span>
+                                                <a href="/post/{!! $CareerDevelop->id !!}" class="a-hover fl">{!! $CareerDevelop->name !!}</a>
                                     </li>
                                     @endif
 
