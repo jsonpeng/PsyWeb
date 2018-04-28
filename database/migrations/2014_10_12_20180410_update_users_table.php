@@ -13,7 +13,7 @@ class UpdateUsersTable extends Migration
      */
     public function up()
     {
-        Schema::table('users', function($table){
+        Schema::table('users', function(Blueprint $table){
             //用户头像
             $table->string('head_image')->nullable()->comment('用户头像');
             $table->string('bg_image')->nullable()->comment('个人中心背景图片');
