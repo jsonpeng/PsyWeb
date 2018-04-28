@@ -13,7 +13,7 @@ class UpdatePostsTable extends Migration
      */
     public function up()
     {
-            Schema::table('posts', function($table){
+            Schema::table('posts', function(Blueprint $table){
             //收藏数量
             $table->integer('collect')->nullable()->default(0)->comment('该文章的收藏数量');
          
