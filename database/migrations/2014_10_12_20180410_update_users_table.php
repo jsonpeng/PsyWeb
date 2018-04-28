@@ -15,8 +15,8 @@ class UpdateUsersTable extends Migration
     {
         Schema::table('users', function(Blueprint $table){
             //用户头像
-            $table->string('head_image')->nullable()->comment('用户头像');
-            $table->string('bg_image')->nullable()->comment('个人中心背景图片');
+            // $table->string('head_image')->nullable()->comment('用户头像');
+            // $table->string('bg_image')->nullable()->comment('个人中心背景图片');
         });
     }
 
