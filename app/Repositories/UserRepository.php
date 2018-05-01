@@ -38,7 +38,7 @@ class UserRepository extends BaseRepository
             #当前收藏量
             $now_collections=$post->collect;
             #收藏
-            if($action && $action != 'false'){
+            if(!empty($action) && $action != 'false'){
                 $user->posts()->attach($post_id);
                 #需要知道当前的数量  然后+1
                 $post->update(['collect'=>$now_collections+1]);
@@ -46,8 +46,8 @@ class UserRepository extends BaseRepository
             }#取消收藏
             else{
                 $user->posts()->detach($post_id);
-                $post->update(['collect'=>$now_collections-1]);
-                return ['code'=>0,'message'=>'收藏成功'];
+                $post->update(['collect'=> ($now_collections-1) < 0 ? 0 : $now_collections-1]);
+                return ['code'=>0,'message'=>'取消收藏成功'];
             }
 
         }else{

@@ -33,7 +33,7 @@
                     <div class="arti-head">
                         <h1 style="font-size:30px;">{!! $post->name !!}</h1>
                         <div class="arti-head-info clearfix">
-                            <span class="fl arti-hi-left">发布时间：{!! $post->created_at !!}  阅读：{!! $post->view !!} 收藏：{!! $post->collect !!} </span>
+                            <span class="fl arti-hi-left">发布时间：{!! $post->created_at !!}  阅读：{!! $post->view !!} @if(!empty(Auth::user())) 收藏: @if(get_collect_status(Auth::user(),$post->id))<img src="/img/attention1.png" class="collect" data-status="0" data-id="{{ $post->id }}" style="max-width: 20px;height: 20px;">@else <img src="/img/attention.png" class="collect"  data-status="1" data-id="{{ $post->id }}" style="max-width: 20px;height: 20px;"> @endif @endif 收藏量：<a id="collect_num"> {!! $post->collect !!} </a> </span>
                             <div class="arti-share-box clearfix fl">
                                 <i class="icon icon-share-qzone icon-share-common" data-share="qzone"></i>
                                 <i class="icon icon-share-wb icon-share-common" data-share="weibo"></i>
@@ -177,4 +177,37 @@
         </div>
     </div>
 </div>
+@endsection
+
+
+@section('js')
+<script type="text/javascript">
+    $('.collect').click(function(){
+            var status=$(this).data('status');
+            var post_id=$(this).data('id');
+            var that=this;
+            var imgstat=parseInt(status)==0 ? '' : parseInt(status);
+            var updatestat=parseInt(status)==0 ? 1 : 0;
+            var img_src="/img/attention" + imgstat + ".png";
+            var collect_num=parseInt($('#collect_num').text());
+            collect_num = parseInt(status) == 0 ? collect_num - 1 :collect_num + 1; 
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $.ajax({
+                url:'/ajax/collection_post/'+post_id+'/'+status,
+                type:'GET',
+                success:function(res){
+                    if(res.code==0){
+                        $(that).attr('src',img_src);
+                        $(that).data('status',updatestat);
+                        $('#collect_num').text(collect_num);
+                        alert(res.message);
+                    }
+                }
+           });
+    });
+</script>
 @endsection

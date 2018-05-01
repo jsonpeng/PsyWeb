@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
     <style type="text/css">
     .skin-blue .main-header .logo,.skin-blue .main-header .navbar , .btn-primary , .pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover, .pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover , .skin-blue .main-header .logo , .skin-blue .main-header .navbar .sidebar-toggle:hover{
-        background-color: #ff5f5f !important;
+        background-color: #bf2727 !important;
         border-color: white;
     }
 
@@ -34,13 +34,13 @@
         color: black;
     }
     .skin-blue .wrapper, .skin-blue .main-sidebar, .skin-blue .left-side {
-            background-color: #ff5f5f;
+            background-color: #961818;
     }
     .skin-blue .sidebar a,.skin-blue .treeview-menu>li>a{
         color: white;
     }
     .skin-blue .sidebar-menu>li>.treeview-menu{
-        background: #ff8080;
+        background: #c53030;
         
     }
     </style>

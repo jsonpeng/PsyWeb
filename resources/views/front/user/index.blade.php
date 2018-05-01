@@ -115,7 +115,7 @@
         border-bottom: .6px solid #ddd;
     }
     .usercenter-content-box > a > img{
-        max-height: 100px;
+        max-height: 80px;
         width: 80px;
     }
     .usercenter-content-box > a:hover{
@@ -174,7 +174,7 @@
 
                <div class="usercenter-content-box pb25" style="display: none;">
                         @foreach($my_pinglun as $item)
-                        <a style="position: relative;"><img src="{!! $user->head_image !!}">吐槽内容:{!! $item->info !!}&nbsp;&nbsp;<span style="color: #bbb;position: absolute;bottom: 24px;left: 92px;">{!! $item->created_at !!}</span></a>
+                        <a style="position: relative;"><span style="color: #bbb;">{!! $item->time !!}:</span>吐槽内容:{!! $item->info !!}
                         @endforeach
               
                </div>
@@ -208,8 +208,13 @@ $(function(){
         ,done: function(res){
           //上传完毕回调
           if(res.code==0){
+            //替换当前头像
             $('#user_image').parent().find('img').attr('src',res.message.src
                 );
+            //替换网页的图标
+            $('link[rel=icon]').attr('href',res.message.src);
+            $('.all-img').attr('src',res.message.src);
+
           }
         }
         ,error: function(){
