@@ -396,6 +396,9 @@ class FrontController extends Controller
         if(empty($user)){
             return redirect('/');
         }
+        // if($user->id != Auth::user()->id){
+        //     return view('front.user.redirect');
+        // }
         #收藏列表
         $collections_list=$user->posts()->get();
         //dd($collections_list);

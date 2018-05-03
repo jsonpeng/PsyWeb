@@ -60,5 +60,12 @@ class Message extends Model
             return optional($user)->head_image;
         }
     }
+
+       public function getrealiseUserInfoAttribute(){
+        $user=User::where('name',$this->name)->first();
+        if(!empty($user)){
+            return '/usercenter/'.optional($user)->id;
+        }
+    }
     
 }

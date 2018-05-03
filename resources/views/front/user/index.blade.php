@@ -105,6 +105,15 @@
     input[type=file] {
     display: none;
     }
+    .usercenter-guanzhu{
+        position: absolute;
+        bottom: 40px;
+        margin-left: 168px;
+        border: 1px solid red;
+        color: white;
+        padding: 0px 5px;
+        border-radius: 25px;
+    }
     .usercenter-content-box > a{
         display: inline-block;
         /*border: 1px solid black;*/
@@ -140,6 +149,7 @@
 
                 <div class="usercenter-qianming">暂时没有留下什么签名...</div>
             </div>
+            @if($user->id != Auth::user()->id)<a class="usercenter-guanzhu">关注他</a>@endif
             <span class="usercenter-touxiang-change-text" id="user_image">更换头像</span>
 
         </div>

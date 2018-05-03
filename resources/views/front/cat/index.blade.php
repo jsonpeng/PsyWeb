@@ -100,9 +100,9 @@ ul.activity-list .activity-desk h5 a {
 
                                               @foreach($message as $item)
                                                 <li>
-                                                  <div class="avatar"> <a href="javascript:;"><img src="{!! empty($item->realiseUserImg)?'/uploads/touuxiang.jpg':$item->realiseUserImg !!}"></a> </div>
-                                                  <div class="activity-desk">
-                                                    <h5><a href="javascript:;">{!! $item->name !!}:</a> <span>{!! $item->info !!}</span></h5>
+                                                  <div class="avatar"> <a href="{!! $item->realiseUserInfo !!}"  target="_blank"><img src="{!! empty($item->realiseUserImg)?'/uploads/touuxiang.jpg':$item->realiseUserImg !!}"></a> </div>
+                                                  <div class="activity-desk"> 
+                                                    <h5><a href="{!! $item->realiseUserInfo !!}" target="_blank">{!! $item->name !!}:</a> <span>{!! $item->info !!}</span></h5>
                                                     <p class="text-muted">发布时间:{!! $item->created_at !!}</p>
                                                   </div>
                                                 </li>
