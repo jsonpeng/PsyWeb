@@ -26,6 +26,7 @@ use App\User;
 use Illuminate\Support\Facades\Input;
 use Redirect,Response;
 use Image;
+use Config;
 
 
 //这个包同样可以控制用户角色信息获取登录
@@ -390,21 +391,29 @@ class FrontController extends Controller
         return app('user')->collectAction(Auth::user(),$post_id,$status);
     }
 
+    //更新用户信息
+    public function updateUserInfo(Request $request,$id){
+        $input = $request->all();
+        app('user')->update($input,$id);
+        return ['code'=>0,'message'=>'更新成功'];
+    }
+
     //用户个人中心
     public function usercenter(Request $request,$id){
         $user=User::find($id);
         if(empty($user)){
             return redirect('/');
         }
-        // if($user->id != Auth::user()->id){
-        //     return view('front.user.redirect');
-        // }
+        $config_user = Config::get('userconfig');
+        if($user->id != Auth::user()->id){
+            return view('front.user.redirect');
+        }
         #收藏列表
         $collections_list=$user->posts()->get();
         //dd($collections_list);
         #我的评论
         $my_pinglun=$this->messageRepository->getMessageListByUserObj($user);
-        return view('front.user.index',compact('user','collections_list','my_pinglun'));
+        return view('front.user.index',compact('user','config_user','collections_list','my_pinglun'));
     }
 
 }

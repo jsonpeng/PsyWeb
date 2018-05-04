@@ -55,6 +55,8 @@ Route::group(['prefix' => 'auth'], function () {
 	Route::post('/reg','FrontController@regApi');
 	//用户上传图像接口
 	Route::post('/uploads','FrontController@uploads');
+	//用户更新信息
+	Route::post('/update/{id}','FrontController@updateUserInfo');
 	
 });
 

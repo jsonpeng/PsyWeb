@@ -97,6 +97,7 @@
         @include('front.partial.footer')
 
         <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+        <script type="text/javascript" src="{{ asset('layer/layer.js') }}"></script>
         <script>window.jQuery || document.write('<script src="{{ asset('vendor/jquery-1.12.4.min.js') }}"><\/script>')</script>
         <script src="http://static2.fh21.com.cn/chl/js/jquery.SuperSlide.2.1.1.js" type="text/javascript" charset="utf-8"></script>
         <script type="text/javascript">

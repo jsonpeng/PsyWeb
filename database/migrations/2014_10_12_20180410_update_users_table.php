@@ -17,6 +17,19 @@ class UpdateUsersTable extends Migration
             //用户头像
             // $table->string('head_image')->nullable()->comment('用户头像');
             // $table->string('bg_image')->nullable()->comment('个人中心背景图片');
+            //性别
+            $table->enum('sex',['男','女'])->default('男')->comment('性别');
+            //生日,选择年月日后自动匹配星座
+            $table->date('birthday')->nullable()->comment('生日');
+            $table->string('xingzuo')->nullable()->comment('星座');
+            //兴趣爱好
+            $table->string('like')->nullable()->comment('兴趣爱好');
+            //座右铭
+            $table->string('motto')->nullable()->comment('座右铭');
+            //所在地 
+            $table->string('addresss')->nullable()->comment('所在地');
+            //职业
+            $table->string('job')->nullable()->comment('职业');
         });
     }
 

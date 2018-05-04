@@ -145,7 +145,7 @@
         <div class="usercenter-bg-box" style="background:url('/uploads/head_bg_f5cf0b2f.jpg')">
             <div class="usercenter-head-image-box">
                 <img src="{!! empty($user->head_image)?'/uploads/touuxiang.jpg':$user->head_image !!}">
-                <span>{!! $user->name !!}</span>
+                <span data-id="{!! $user->id !!}" data-name="{!! $user->name !!}" >{!! $user->name !!}</span>
 
                 <div class="usercenter-qianming">暂时没有留下什么签名...</div>
             </div>
@@ -172,8 +172,17 @@
             </ul> 
 
                 <div class="usercenter-content-box" >
-                    首页
-              
+                     <form id="form_user">
+                        <div style='width:350px; padding: 0 15px;'><div style='width:320px;' class='form-group has-feedback'><p>名称</p><input  class='form-control' type='text'  name='name' value='{{ $user->name }}' /></div>
+                        <div style='width:320px;' class='form-group has-feedback'><p>性别</p><select class="form-control" name="sex"><option value="男" @if($user->sex == '男') selected="selected" @endif>男</option><option value="女" @if($user->sex == '女') selected="selected" @endif>女</option></select></div>
+                        <div style='width:320px;' class='form-group has-feedback'><p>生日</p><input  class='form-control' type='text'  name='birthday' value='{{ $user->birthday }}' /></div>
+                        <div style='width:320px;' class='form-group has-feedback'><p>星座</p><select class="form-control" name="xingzuo">@foreach($config_user['星座'] as $v)<option value="{{ $v }}" @if($user->xingzuo == $v) selected="selected" @endif>{{ $v }}</option>@endforeach</select></div>
+                        <div style='width:320px;' class='form-group has-feedback'><p>兴趣爱好</p><select class="form-control" name="like">@foreach($config_user['兴趣爱好'] as $v)<option value="{{ $v }}" @if($user->like == $v) selected="selected" @endif>{{ $v }}</option>@endforeach</select></div>
+                        <div style='width:320px;' class='form-group has-feedback'><p>座右铭</p><textarea  class='form-control' type='text'  name='motto' />{{ $user->motto }}</textarea></div>
+                        <div style='width:320px;' class='form-group has-feedback'><p>地址</p><input  class='form-control' type='text'  name='addresss' value='{{ $user->addresss }}' /></div>
+                        <div style='width:320px;' class='form-group has-feedback'><p>职业</p><select class="form-control" name="job">@foreach($config_user['职业'] as $v)<option value="{{ $v }}" @if($user->job == $v) selected="selected" @endif>{{ $v }}</option>@endforeach</select></div>
+                        <button style='margin-top:5%;margin-bottom:5%;' type='button' class='btn  btn-primary btn-lg' onclick="updateUserInfo('{{ $user->id }}')">保存</button>
+                    </form>
                </div>
 
                <div class="usercenter-content-box" style="display: none;">
@@ -193,12 +202,39 @@
     </div>
 
 </div>
+
+<div id="userinfo" style="display: none;">
+
+    </div>
+</div>
 @endsection
 
 
 @section('js')
 <script type="text/javascript" src="{!! asset('vendor/layui/layui.js') !!}"></script>
 <script type="text/javascript">
+       //更新用户信息
+function updateUserInfo(id){
+       console.log($('#form_user').serialize());
+       $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+            });
+        $.ajax({
+            url: '/auth/update/'+id,
+            type: 'POST',
+            data:$('#form_user').serialize(),
+            success: function(data) {
+                if(data.code == 0){
+                    alert('更新成功');
+                }else{
+                    alert('更新失败');
+                }
+            }
+        });
+}
+
 $(function(){
     //tab切换
     $('.li-tab').click(function(){
@@ -206,6 +242,21 @@ $(function(){
             $(this).addClass('active');
             $('.usercenter-content-box').hide();
             $('.usercenter-content-box').eq($(this).index()).show(500);
+    });
+
+
+    $('.usercenter-head-image-box > span').click(function(){
+        var user_id= $(this).data('id');
+        var name =$(this).data('name');
+       layer.open({
+        type: 1,
+        closeBtn: false,
+        shift: 7,
+        shadeClose: true,
+        title:name+'的个人信息',
+        content:$('#userinfo').html()
+         });
+     
     });
     //头像上传
     layui.use('upload', function(){
