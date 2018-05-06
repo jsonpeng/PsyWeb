@@ -150,7 +150,7 @@ class FrontController extends Controller
         if($category->slug=='PsychologyGuide' || $category->slug=='PsychologyTest'){
             #把当前的请求地址 存取到session中去
             session()->put('now_url_cat',$request->fullUrl()); 
-            $message=Message::orderBy('created_at')->get();
+            $message=Message::orderBy('created_at')->paginate(10);
             #如果没有验证登录的话就登录
             if(!Auth::check()){
                return redirect(route('login'));
@@ -308,12 +308,13 @@ class FrontController extends Controller
      *吐槽内容 content
      */
      public function messageBoard(Request $request){
+        $user = Auth::user();
         #先获取用户名
-        $username=Auth::user()->name; //session['user']
+        $username=$user->name; //session['user']
         #然后获取他的留言内容
         $content=$request->get('content'); //=>$_POST['content']
         #用户邮箱
-        $user_email=Auth::user()->email;
+        $user_email=$user->email;
         #向数据库发送存储数据的命令
         $message=Message::create([
             'name'=>$username,
@@ -321,7 +322,7 @@ class FrontController extends Controller
             'email'=>$user_email
         ]);
         #返回前端对应的数据 用户名 头像
-        return ['code'=>0,'message'=>$message];
+        return ['code'=>0,'message'=>$message,'info'=>$user];
      }
 
     /*
@@ -405,15 +406,18 @@ class FrontController extends Controller
             return redirect('/');
         }
         $config_user = Config::get('userconfig');
+        #访问权限
+        $access = true;
         if($user->id != Auth::user()->id){
-            return view('front.user.redirect');
+              $access = false;
         }
         #收藏列表
         $collections_list=$user->posts()->get();
-        //dd($collections_list);
+      
         #我的评论
         $my_pinglun=$this->messageRepository->getMessageListByUserObj($user);
-        return view('front.user.index',compact('user','config_user','collections_list','my_pinglun'));
+          //dd($my_pinglun);
+        return view('front.user.index',compact('user','access','config_user','collections_list','my_pinglun'));
     }
 
 }

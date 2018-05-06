@@ -2,6 +2,20 @@
 
 @section('css')
 <style>
+textarea.form-control,*:focus{  
+  border-color: red;
+  outline: none;
+}  
+.pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover, .pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover{
+  background-color: #ff5f5f;
+  border-color: #ff5f5f;
+}
+.pagination>li>a:focus, .pagination>li>a:hover, .pagination>li>span:focus, .pagination>li>span:hover{
+  color: #ff5f5f;
+}
+.pagination>li>a, .pagination>li>span{
+  color: black;
+}
 ul.activity-list {
     list-style-type: none;
     padding: 0;
@@ -112,6 +126,7 @@ ul.activity-list .activity-desk h5 a {
                                             
                                               
                                             </ul>
+                                            <div class="text-center">{{ $message->appends("")->links() }}</div>
                                             <form class="form-horizontal" id="knowledge-comment-form" action="" novalidate="novalidate">
                                               <a name="commenta"></a>
                                               <div class="form-group">
@@ -119,7 +134,7 @@ ul.activity-list .activity-desk h5 a {
                                                   <textarea name="comment" id="content" rows="6" class="form-control" placeholder="我要吐槽……"></textarea>
                                                   <br>
                                               
-                                                  <button type="button" id="comment_add"  class="btn btn-primary pull-right">我要吐槽</button>
+                                                  <button type="button" id="comment_add"  class="btn btn-primary pull-right" style="background-color: #ff5f5f;border-color: #ff5f5f;">我要吐槽</button>
                                                 </div>
                                               </div>
                                             </form>
@@ -188,7 +203,7 @@ ul.activity-list .activity-desk h5 a {
 
                 //alert('评论成功');
                 //无刷新插入数据
-                $('.activity-list').append('<li><div class="avatar"><a href="javascript:;"><img src="/uploads/touuxiang.jpg"></a></div><div class="activity-desk"><h5><a href="javascript:;">'+data.message.name+':</a><span>'+data.message.info+'</span></h5><p class="text-muted">发布时间:'+data.message.created_at+'</p></div></li>');
+                $('.activity-list').append('<li><div class="avatar"><a href="javascript:;"><img src="'+data.info.head_image+'"></a></div><div class="activity-desk"><h5><a href="javascript:;">'+data.info.name+':</a><span>'+data.message.info+'</span></h5><p class="text-muted">发布时间:'+data.message.created_at+'</p></div></li>');
                 //清空输入框
                 $('#content').val('');
 
