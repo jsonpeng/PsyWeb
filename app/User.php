@@ -15,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password','head_image','bg_image','sex','birthday','xingzuo','motto','like','addresss','job'
+    'name', 'email', 'password','head_image','bg_image','sex','birthday','xingzuo','motto','like','addresss','job'
     ];
 
     /**
@@ -30,5 +30,9 @@ class User extends Authenticatable
     //收藏的文章
     public function posts(){
         return $this->belongsToMany('App\Models\Post','posts_users','user_id','post_id');
+    }
+
+    public function friends(){
+        return $this->belongsToMany('App\User','friends_users','user_id','friend_id');
     }
 }

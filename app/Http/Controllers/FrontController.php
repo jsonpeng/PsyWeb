@@ -80,8 +80,8 @@ class FrontController extends Controller
         #每日心理学
         $Psychology=$this->categoryRepository->getCachePostFirstOfCatIncludeChildren('Psychology');
 
-        #心灵鸡汤
-        $ChickenSoup=$this->categoryRepository->getCachePostFirstOfCatIncludeChildren('ChickenSoup');
+        #职业与发展
+        $CareerDevelop=$this->categoryRepository->getCachePostFirstOfCatIncludeChildren('CareerDevelop');
 
         #罪恶情报局--2018.4.9新增
         $Criminalnformation=$this->categoryRepository->getCachePostFirstOfCatIncludeChildren('Criminalnformation');
@@ -116,10 +116,6 @@ class FrontController extends Controller
             }
         }
 
-        // if(!empty(Auth::user())){
-        //     $user=Auth::logout();
-        //     $request->session()->invalidate();
-        // }
     	return view('front.index',compact('input','serach_word','UniversityGrowth','CampusAssocia','Psychology','ChickenSoup','RootCat','NewsestPosts'));
        
     }
@@ -399,6 +395,11 @@ class FrontController extends Controller
         return ['code'=>0,'message'=>'更新成功'];
     }
 
+    //加好友
+    public function makeFriends(Request $request,$friend_id){
+        return app('user')->makeFriends(Auth::user(),$friend_id);
+    }
+
     //用户个人中心
     public function usercenter(Request $request,$id){
         $user=User::find($id);
@@ -411,13 +412,19 @@ class FrontController extends Controller
         if($user->id != Auth::user()->id){
               $access = false;
         }
+        if(app('user')->checkFriendsRel(Auth::user(),$user->id)){
+            $access = true;
+        }
         #收藏列表
         $collections_list=$user->posts()->get();
       
         #我的评论
         $my_pinglun=$this->messageRepository->getMessageListByUserObj($user);
-          //dd($my_pinglun);
-        return view('front.user.index',compact('user','access','config_user','collections_list','my_pinglun'));
+
+        #好友列表
+        $friends_list=$user->friends()->get();
+
+        return view('front.user.index',compact('user','access','config_user','collections_list','my_pinglun','friends_list'));
     }
 
 }

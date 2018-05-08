@@ -147,7 +147,7 @@
                 <img src="{!! empty($user->head_image)?'/uploads/touuxiang.jpg':$user->head_image !!}">
                 <span data-id="{!! $user->id !!}" data-name="{!! $user->name !!}" >{!! $user->name !!}</span>
 
-                <div class="usercenter-qianming">暂时没有留下什么签名...</div>
+                <div class="usercenter-qianming">{{ $user->motto }}</div>   
             </div>
           <!--   @if($user->id != Auth::user()->id)<a class="usercenter-guanzhu">加好友</a>@endif -->
            @if($user->id == Auth::user()->id)<span class="usercenter-touxiang-change-text" id="user_image">更换头像</span>@endif
@@ -161,6 +161,9 @@
             <ul class="content-tab"> 
 
                 <li class="li-tab active"><a id="baidutab" href="#" class="tab-title songti tabbtn" hidefocus="" data-click="baidu"><span class="tab-title-tag">我的首页</span></a> 
+                </li>
+
+                <li class="li-tab"><a id="tiebatab" href="#" class="tab-title songti tabbtn" hidefocus="" data-click="friends"><span class="tab-title-tag">我的好友</span></a> 
                 </li>
 
                 <li class="li-tab"><a id="tiebatab" href="#" class="tab-title songti tabbtn" hidefocus="" data-click="tieba"><span class="tab-title-tag">我的收藏</span></a> 
@@ -187,6 +190,12 @@
                </div>
 
                <div class="usercenter-content-box" style="display: none;">
+                       @foreach($friends_list as $item)
+                        <a href="/usercenter/{!! $item->id !!}" target="_blank"><img src="{!! empty($item->head_image) ? '/uploads/touuxiang.jpg' : $item->head_image !!}"/>&nbsp;&nbsp;{!! $item->name !!}</a>
+                        @endforeach
+               </div>
+
+               <div class="usercenter-content-box" style="display: none;">
                         @foreach($collections_list as $item)
                         <a href="/post/{!! $item->id !!}" target="_blank">{!! $item->name !!}</a>
                         @endforeach
@@ -206,7 +215,7 @@
        <div class="add_friend_access access_option" style="text-align: left;font-size: 16px;margin-left: 15px;">
                         <p>主人设置了权限，您可通过以下方式访问</p>
                         <p class="access_tips"><i class="ico_add"></i>加为好友后访问&nbsp;&nbsp;</p>
-                        <p class="links"><a class="btn_v2" href="javascript:;" data-cmd="add_friend" data-click="addfriends.applyfriends">✚&nbsp;加为好友</a>
+                        <p class="links"><a class="btn_v2" data-id="{!! $user->id !!}" href="javascript:;">✚&nbsp;加为好友</a>
                         </p>
                         <p class="access_tips"><i class="ico_apply"></i>你还可以&nbsp;&nbsp;<a href="javascript:;" data-cmd="apply_request" data-click="application_access.button">申请访问</a></p>   
                  
@@ -223,7 +232,40 @@
 @section('js')
 <script type="text/javascript" src="{!! asset('vendor/layui/layui.js') !!}"></script>
 <script type="text/javascript">
-       //更新用户信息
+
+@if($user->id != Auth::user()->id)
+$(function(){
+    $('input').attr('readOnly','readOnly');
+    $('select,button').attr('disabled','disabled');
+
+});
+@endif
+
+//加好友
+$(function(){
+    $('.btn_v2').click(function(){
+        var friend_id = $(this).data('id');
+       $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+            });
+        $.ajax({
+            url: '/auth/make_friends/'+friend_id,
+            type: 'POST',
+            success: function(data) {
+                if(data.code == 0){
+                    alert(data.message);
+                    location.reload();
+                }else{
+                    alert(data.message);
+                }
+            }
+        });
+
+    });
+});
+//更新用户信息
 function updateUserInfo(id){
        console.log($('#form_user').serialize());
        $.ajaxSetup({

@@ -57,5 +57,62 @@ class UserRepository extends BaseRepository
 
     }
 
+
+    /**
+     *加好友功能
+     */
+    public function makeFriends($user,$friend_id){
+        #自己不能加自己
+        if($user->id == $friend_id){
+
+            return ['code' => 1,'message'=>'不能加自己为好友!'];
+
+        }
+
+        #先检测friend_id在不在
+        $friend = $this->findWithoutFail($friend_id);
+
+        if(!empty($friend)){
+
+             #还要检测一下两个人是不是好友
+             if(!$this->checkFriendsRel($user,$friend_id)){
+                 #加我的朋友为 好友
+                 $user->friends()->attach($friend_id);
+
+                 #朋友加我
+                 $friend ->friends()->attach($user->id);
+             }
+             else{
+                return ['code' => 1,'message'=>'已经是好友了,请不要重复添加!'];
+             }
+
+        }
+        else{
+            return ['code' => 1,'message'=>'该朋友不存在!'];
+        }
+
+        return ['code' => 0,'message'=>'加好友成功!'];
+
+    }
+
+    //函数返回值 false 没有好友关系  true已经是好友
+    public function checkFriendsRel($user,$friend_id){
+            #取出这个用户的好友列表
+            $friends_list = $user->friends()->get();
+
+            $status = false;
+
+            foreach ($friends_list as $k => $v) {
+                
+                    if($v->id == $friend_id){
+
+                        $status = true;
+
+                    }
+            }
+
+            return $status;
+    }
+
   
 }

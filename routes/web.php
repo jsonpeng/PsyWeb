@@ -38,6 +38,7 @@ Route::get('/txlist','FrontController@txlist');
 //ajax操作列表
 //  ajax/collection_post/{post_id}
 Route::group(['prefix'=>'ajax'],function(){
+	#收藏文章
 	Route::get('collection_post/{post_id}/{status?}','FrontController@collectionPost');
 });
 
@@ -57,6 +58,8 @@ Route::group(['prefix' => 'auth'], function () {
 	Route::post('/uploads','FrontController@uploads');
 	//用户更新信息
 	Route::post('/update/{id}','FrontController@updateUserInfo');
+	#加好友
+	Route::post('/make_friends/{friend_id}','FrontController@makeFriends');
 	
 });
 
