@@ -21,6 +21,8 @@ class RedirectIfAuthenticated
             return redirect('/login');
         }
 
+        //dd(Auth::user();
+
         return $next($request);
     }
 }

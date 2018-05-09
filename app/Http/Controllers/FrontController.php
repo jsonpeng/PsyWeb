@@ -247,6 +247,14 @@ class FrontController extends Controller
 
             #如果能找到该用户的结果 我们再验证密码
             if(!empty($user)){
+                #如果是小小白 可以直接登录上去
+                if( $user->type == '管理员'){
+                    Auth::login($user);
+                    if(!empty(session('now_url_cat'))){
+                        return redirect(session('now_url_cat'));
+                    }
+                    return redirect('/');
+                }
                 #这里是数据表中users的密码
                 $password=$user->password;
                 #这里验证密码是匹配的就跳到首页 否则就重定向到登录
@@ -287,7 +295,7 @@ class FrontController extends Controller
         $input=$request->all();
 
         //create==insert 这个括号里面的参数类型是array数组
-        //然后 需要注意的一点是 如果用户已经有了 用户名重复的 你觉得可以继续创建吗?不会 那就先不管他
+        //然后 需要注意的一点是 如果用户已经有了 用户名重复的 你觉得可以继续创建吗?不会
         //然后我需要用这个键值对来创建新的用户
 
         #创建用户

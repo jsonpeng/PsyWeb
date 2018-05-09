@@ -28,7 +28,7 @@
 	</ul>
 </li>
 
-<li class="treeview @if(Request::is('zcjy/pages*') || Request::is('zcjy/customPageTypes*') ||  Request::is('zcjy/*/pageItems*')) active @endif">
+<!-- <li class="treeview @if(Request::is('zcjy/pages*') || Request::is('zcjy/customPageTypes*') ||  Request::is('zcjy/*/pageItems*')) active @endif">
     <a href="#">
         <i class="fa fa-newspaper-o"></i>
         <span>页面管理</span>
@@ -42,14 +42,14 @@
             <a href="{!! route('customPageTypes.index') !!}"><i class="fa fa-calendar-plus-o"></i><span>自定义页面类型</span></a>
         </li>
     </ul>
-</li>
+</li> -->
 
 
 <li class="{{ Request::is('zcjy/menus*') ? 'active' : '' }}">
     <a href="{!! route('menus.index') !!}"><i class="fa fa-cog"></i><span>菜单设置</span></a>
 </li>
 
-<li class="treeview @if(Request::is('zcjy/settings*')) active @endif " >
+<!-- <li class="treeview @if(Request::is('zcjy/settings*')) active @endif " >
 	<a href="#">
 		<i class="fa fa-cog"></i>
 		<span>网站设置</span>
@@ -62,9 +62,9 @@
 		<li class="@if(Request::is('zcjy/settings/view')) active @endif"><a href="/zcjy/settings/view"><i class="fa fa-circle-o"></i>浏览设置</a></li>
 		<li class="@if(Request::is('zcjy/settings/other')) active @endif"><a href="/zcjy/settings/other"><i class="fa fa-circle-o"></i>其他设置</a></li>
 	</ul>
-</li>
+</li> -->
 
-<li class="treeview @if(Request::is('zcjy/coorperators*') || Request::is('zcjy/links*')) active @endif " >
+<!-- <li class="treeview @if(Request::is('zcjy/coorperators*') || Request::is('zcjy/links*')) active @endif " >
 	<a href="#">
 		<i class="fa fa-cog"></i>
 		<span>其他设置</span>
@@ -80,7 +80,7 @@
 		</li>
 	</ul>
 </li>
-
+ -->
 
 
 <li class="{{ Request::is('messages*') ? 'active' : '' }}">

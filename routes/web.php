@@ -31,9 +31,6 @@ Route::get('/psychology/login', 'FrontController@login')->name('login');
 Route::get('psychology/reg', 'FrontController@reg')->name('reg');
 //个人中心
 Route::get('/usercenter/{id?}','FrontController@usercenter');
-//头像替换列表
-Route::get('/txlist','FrontController@txlist');
-
 
 //ajax操作列表
 //  ajax/collection_post/{post_id}
@@ -65,10 +62,18 @@ Route::group(['prefix' => 'auth'], function () {
 
 
 
+
 //后台管理系统
 Route::group(['middleware' => ['auth'], 'prefix' => 'zcjy'], function () {
+		Route::get('/',function(){
+		if(optional(Auth::user())->type != '管理员'){
+			return redirect('/');
+		}else{
+			return redirect('/zcjy/posts');
+		}
+		});
 	//后台首页
-	Route::get('/', 'PostController@index');
+	//Route::get('/', 'PostController@index');
 	//网站设置
 	Route::patch('settings/{id}', 'SettingController@update')->name('settings.update');
 	Route::get('setting/edit_pwd','SettingController@edit_pwd')->name('settings.edit_pwd');
