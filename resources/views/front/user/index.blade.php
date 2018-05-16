@@ -176,7 +176,7 @@
 
                 <div class="usercenter-content-box" >
                      <form id="form_user" >
-                        <div style='width:350px; padding: 0 15px;'><div style='width:320px;' class='form-group has-feedback'><p>名称</p><input  class='form-control' type='text'  name='name' value='{{ $user->name }}' /></div>
+                        <div style='width:350px; padding: 0 15px;'><div style='width:320px;' class='form-group has-feedback'><p>昵称</p><input  class='form-control' type='text'  name='name' value='{{ $user->name }}' /></div>
                         <div style='width:320px;' class='form-group has-feedback'><p>性别</p><select class="form-control" name="sex" ><option style="font-size:16px;font-family:'微软雅黑';font-style:italic ;" value="男" @if($user->sex == '男') selected="selected" @endif>男</option><option style="font-size:16px;font-family:'微软雅黑';font-style:italic ;" value="女" @if($user->sex == '女') selected="selected" @endif>女</option></select></div>
                         <div style='width:320px;' class='form-group has-feedback'><p>生日</p><input  class='form-control' type='text'  name='birthday' value='{{ $user->birthday }}' /></div>
                         <div style='width:320px;' class='form-group has-feedback'><p>星座</p><select class="form-control" name="xingzuo">@foreach($config_user['星座'] as $v)<option style="font-size:16px;font-family:'微软雅黑';font-style:italic ;"           value="{{ $v }}" @if($user->xingzuo == $v) selected="selected" @endif>{{ $v }}</option>@endforeach</select></div>
@@ -280,7 +280,9 @@ function updateUserInfo(id){
             success: function(data) {
                 if(data.code == 0){
                     alert('更新成功');
-                }else{
+                    location.reload();
+                }
+                else{
                     alert('更新失败');
                 }
             }

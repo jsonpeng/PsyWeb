@@ -32,7 +32,7 @@ class MessageController extends AppBaseController
     public function index(Request $request)
     {
         //$this->messageRepository->pushCriteria(new RequestCriteria($request));
-        $messages = Message::orderBy('created_at', 'desc')->paginate(15);
+        $messages = Message::orderBy('created_at', 'DESC')->paginate(15);//desc
 
         return view('messages.index')
             ->with('messages', $messages);

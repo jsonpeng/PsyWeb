@@ -201,11 +201,12 @@ ul.activity-list .activity-desk h5 a {
               //data 服务器传过来的数据
               if(data.code==0){
 
-                //alert('评论成功');
+                alert('评论成功');
+                location.reload();
                 //无刷新插入数据
-                $('.activity-list').append('<li><div class="avatar"><a href="javascript:;"><img src="'+data.info.head_image+'"></a></div><div class="activity-desk"><h5><a href="javascript:;">'+data.info.name+':</a><span>'+data.message.info+'</span></h5><p class="text-muted">发布时间:'+data.message.created_at+'</p></div></li>');
+                //$('.activity-list').append('<li><div class="avatar"><a href="javascript:;"><img src="'+data.info.head_image+'"></a></div><div class="activity-desk"><h5><a href="javascript:;">'+data.info.name+':</a><span>'+data.message.info+'</span></h5><p class="text-muted">发布时间:'+data.message.created_at+'</p></div></li>');
                 //清空输入框
-                $('#content').val('');
+               // $('#content').val('');
 
               }
             }

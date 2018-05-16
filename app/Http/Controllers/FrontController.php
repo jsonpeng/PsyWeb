@@ -146,11 +146,11 @@ class FrontController extends Controller
         if($category->slug=='PsychologyGuide' || $category->slug=='PsychologyTest'){
             #把当前的请求地址 存取到session中去
             session()->put('now_url_cat',$request->fullUrl()); 
-            $message=Message::orderBy('created_at')->paginate(10);
+            $message=Message::orderBy('created_at','desc')->paginate(10);
             #如果没有验证登录的话就登录
             if(!Auth::check()){
                return redirect(route('login'));
-            }
+              }
         }
 
         #如果我进入的是每日心理学
@@ -274,7 +274,7 @@ class FrontController extends Controller
                        return redirect(session('now_url'));
                     }
 
-                    return redirect(route('login'));
+                    return redirect(route('login'));                    
 
                 }
 
@@ -327,8 +327,8 @@ class FrontController extends Controller
         ]);
         #返回前端对应的数据 用户名 头像
         return ['code'=>0,'message'=>$message,'info'=>$user];
+        
      }
-
     /*
     *退出接口
     */
@@ -357,9 +357,7 @@ class FrontController extends Controller
         $extension = $file->getClientOriginalExtension();
         $fileName = str_random(10).'.'.$extension;
         $file->move($destinationPath, $fileName);
-
-        $image_path=public_path().'/'.$destinationPath.$fileName;
-        
+        $image_path=public_path().'/'.$destinationPath.$fileName;      
   
         $host='http://'.$_SERVER["HTTP_HOST"];
 
@@ -399,7 +397,11 @@ class FrontController extends Controller
     //更新用户信息
     public function updateUserInfo(Request $request,$id){
         $input = $request->all();
+        Message::where('name',app('user')->findWithoutFail($id)->name)->update([
+            'name'=>$input['name']
+        ]);
         app('user')->update($input,$id);
+
         return ['code'=>0,'message'=>'更新成功'];
     }
 
