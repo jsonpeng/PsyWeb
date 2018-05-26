@@ -39,6 +39,39 @@ Route::group(['prefix'=>'ajax'],function(){
 	Route::get('collection_post/{post_id}/{status?}','FrontController@collectionPost');
 });
 
+Route::group(['prefix' => 'api','namespace'=>'API'],function(){
+	//顶部菜单
+	Route::get('menus','FrontController@menus');
+	//所有分类
+	Route::get('all_cats','FrontController@all_cats');
+	//最新资讯
+	Route::get('newest_post','FrontController@newest_post');
+	//大学成长
+	Route::get('cat_posts/{slug}','FrontController@cat_posts');
+	//搜索文章
+	Route::get('search_posts','FrontController@search_posts');
+	//登录
+	Route::get('user_login','FrontController@user_login');
+	//注册
+	Route::get('user_register','FrontController@user_register');
+	//个人中心
+	Route::get('user_center/{id}','FrontController@user_center');
+	//个人信息修改
+	Route::get('');
+	//我的收藏
+
+	//我的吐槽
+	Route::get('user_tucao','FrontController@user_tucao');
+	//收藏/取消收藏 文章操作
+
+	//心事吐槽列表
+	Route::get('tucaolist','FrontController@tucaolist');
+	//发布吐槽
+
+	//更换头像
+
+});
+
 //接口请求
 //这里的prefix是参数的前缀 登录和注册就用post方法吧
 Route::group(['prefix' => 'auth'], function () {

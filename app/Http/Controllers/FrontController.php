@@ -328,6 +328,8 @@ class FrontController extends Controller
         #返回前端对应的数据 用户名 头像
         return ['code'=>0,'message'=>$message,'info'=>$user];
         
+
+        
      }
     /*
     *退出接口
@@ -382,7 +384,6 @@ class FrontController extends Controller
     public function login(Request $request){
         return view('front.user.login');
     }
-
 
     //注册
     public function reg(Request $request){

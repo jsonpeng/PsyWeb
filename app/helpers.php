@@ -48,3 +48,9 @@ function get_collect_status($user,$post_id){
         //return $user->posts()->whereRaw('post.id = '.$post_id)->count()
 }
 
+
+function api_tem($data,$status_code=0){
+
+    return ['status_code'=>$status_code,'data'=>$data];
+    
+}

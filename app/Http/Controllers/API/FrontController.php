@@ -22,19 +22,75 @@ class FrontController extends Controller
         $this->messageRepository = $messageRepo;
     }
 
-    //提交留言信息
-    public function submitInfo(Request $request)
-    {
+    //菜单的数据
+    public function menus(){
+        $menus = app('menu')->getCacheMenu('main');
+        return api_tem($menus);
+    }
+
+    //所有的分类
+    public function all_cats(){
+        return api_tem(app('cat')->getRootCat());
+    }
+
+    //最新资讯
+    public function newest_post(){
+        return api_tem(app('post')->NewsestPosts());
+    }
+
+    //大学成长
+    public function cat_posts($slug){
+        return api_tem(app('cat')->getCachePostFirstOfCatIncludeChildren($slug));
+    }
+
+    //搜索文章
+    public function search_posts(Request $request){
+        return (api_tem(app('post')->SerachPostList($request->input('query'))));
+    }
+    
+    //登录
+    public function user_login(Request $request){
         $input = $request->all();
+        $email = $input['email'];
+        $password==$input['password'];
+        $user=app('user')->model()::where('email',$email)->where('password',$password);
+        return api_tem(app('user')->);
+    }
+   
+    //注册
+    public function user_register(Request $request){
+        $input=$request->all();
+        return api_tem(app('user')->create($input));
 
-        $message = $this->messageRepository->create($input);   
+    }
 
-        $flag = Mail::send('front.mail',['name'=>$message->name, 'email'=>$message->email, 'tel'=>$message->tel, 'info'=>$message->info], function($message){
-            $to = 'yyjz@foxmail.com';
-            $message ->to($to)->subject('您有新的客户留言');
-        });
+    //个人中心
+    public function user_center(Request $request,$id){        
+        //return api_tem(app('user')->);
 
+    }
+    //个人信息修改
 
-        return '信息提交成功';
+    //我的收藏
+    public function user_collect(Request $request){
+
+    }
+    //我的吐槽
+    public function user_tucao(Request $request){
+        return api_tem(app('message')->getmessageBoard($request->input('id')));
+    }
+
+    //收藏/取消收藏 文章操作
+
+    //心事吐槽列表
+    public function tucaolist(Request $request){
+        return api_tem(app('message')->getMessageListByUserObj($request->input('id')));
+    }
+
+    //发布吐槽
+
+    //更换头像
+    public function head_img(){
+        return api_tem();
     }
 }
