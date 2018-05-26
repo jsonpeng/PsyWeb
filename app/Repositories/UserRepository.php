@@ -26,12 +26,13 @@ class UserRepository extends BaseRepository
     }
 
     //收藏一篇文章
-    public function collectAction($user,$post_id,$action=true){
+    public function collectAction($user,$post_id,$action=true,$use_web=true){
         #先检查用户登录状态
         if(empty($user)){
-           return ['code'=>1,'message'=>'请先登录'];
+           return $use_web 
+           ? web_tem('请先登录',1) 
+           : api_tem('请先登录',1);
         }
-
         #先查一下文章是否存在
         $post=Post::find($post_id);
         if(!empty($post)){
@@ -42,19 +43,23 @@ class UserRepository extends BaseRepository
                 $user->posts()->attach($post_id);
                 #需要知道当前的数量  然后+1
                 $post->update(['collect'=>$now_collections+1]);
-                return ['code'=>0,'message'=>'收藏成功'];
+                return $use_web 
+                   ? web_tem('收藏成功') 
+                   : api_tem('收藏成功');
             }#取消收藏
             else{
                 $user->posts()->detach($post_id);
                 $post->update(['collect'=> ($now_collections-1) < 0 ? 0 : $now_collections-1]);
-                return ['code'=>0,'message'=>'取消收藏成功'];
+                return $use_web 
+                   ? web_tem('取消收藏成功') 
+                   : api_tem('取消收藏成功');
             }
 
         }else{
-            return ['code'=>1,'message'=>'该文章不存在'];
+            return $use_web 
+               ? web_tem('该文章不存在',1) 
+               : api_tem('该文章不存在',1);
         }
-    	
-
     }
 
 

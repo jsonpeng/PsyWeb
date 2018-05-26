@@ -54,3 +54,9 @@ function api_tem($data,$status_code=0){
     return ['status_code'=>$status_code,'data'=>$data];
     
 }
+
+function web_tem($data,$code=0){
+
+    return ['code'=>$code,'message'=>$data];
+    
+}

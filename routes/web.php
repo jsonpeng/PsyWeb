@@ -39,6 +39,7 @@ Route::group(['prefix'=>'ajax'],function(){
 	Route::get('collection_post/{post_id}/{status?}','FrontController@collectionPost');
 });
 
+//小程序请求api地址
 Route::group(['prefix' => 'api','namespace'=>'API'],function(){
 	//顶部菜单
 	Route::get('menus','FrontController@menus');
@@ -46,7 +47,7 @@ Route::group(['prefix' => 'api','namespace'=>'API'],function(){
 	Route::get('all_cats','FrontController@all_cats');
 	//最新资讯
 	Route::get('newest_post','FrontController@newest_post');
-	//大学成长
+	//对应分类下的文章
 	Route::get('cat_posts/{slug}','FrontController@cat_posts');
 	//搜索文章
 	Route::get('search_posts','FrontController@search_posts');
@@ -54,22 +55,23 @@ Route::group(['prefix' => 'api','namespace'=>'API'],function(){
 	Route::get('user_login','FrontController@user_login');
 	//注册
 	Route::get('user_register','FrontController@user_register');
-	//个人中心
-	Route::get('user_center/{id}','FrontController@user_center');
-	//个人信息修改
-	Route::get('');
-	//我的收藏
-
-	//我的吐槽
-	Route::get('user_tucao','FrontController@user_tucao');
-	//收藏/取消收藏 文章操作
-
-	//心事吐槽列表
+    //心事吐槽列表
 	Route::get('tucaolist','FrontController@tucaolist');
-	//发布吐槽
-
-	//更换头像
-
+	//用户认证后可以请求的路由
+	Route::group(['prefix' => 'auth'],function(){
+		//个人中心
+		Route::get('user_center/{id}','FrontController@user_center');
+		//个人信息修改
+		Route::get('user_update/{id}','FrontController@user_update');
+		//我的收藏
+		Route::get('user_collect/{id}','FrontController@user_collect');
+		//我的吐槽
+		Route::get('user_tucao/{id}','FrontController@user_tucao');
+		//收藏/取消收藏 文章操作
+		Route::get('user_collect_action/{id}/{post_id}/{status}','FrontController@user_collect_action');
+		//发布吐槽
+		Route::get('user_publish_tucao/{id}','FrontController@publish_tucao');
+	});
 });
 
 //接口请求
