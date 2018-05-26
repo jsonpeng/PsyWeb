@@ -51,14 +51,14 @@ Route::group(['prefix' => 'api','namespace'=>'API'],function(){
 	Route::get('cat_posts/{slug}','FrontController@cat_posts');
 	//搜索文章
 	Route::get('search_posts','FrontController@search_posts');
-	//登录
-	Route::get('user_login','FrontController@user_login');
-	//注册
-	Route::get('user_register','FrontController@user_register');
     //心事吐槽列表
 	Route::get('tucaolist','FrontController@tucaolist');
 	//用户认证后可以请求的路由
 	Route::group(['prefix' => 'auth'],function(){
+		//登录
+		Route::get('user_login','FrontController@user_login');
+		//注册
+		Route::get('user_register','FrontController@user_register');
 		//个人中心
 		Route::get('user_center/{id}','FrontController@user_center');
 		//个人信息修改
