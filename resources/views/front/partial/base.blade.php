@@ -133,8 +133,8 @@
             });
             //绑定input监听事件（登录时出入密码，不足6位就无法点击登录）
             $('#email,#password').keyup(function(){
-                //长度大于6就移除下面的disabled
-                if($(this).val().length>6){
+                //长度大于等于6就移除下面的disabled
+                if($(this).val().length>=6){
                     $('#btn-login').removeAttr('style');
                     $('#btn-login').removeAttr('disabled');
                 }else{
