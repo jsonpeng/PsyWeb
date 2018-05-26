@@ -28,6 +28,11 @@ class FrontController extends Controller
         return api_tem($menus);
     }
 
+    //对应别名的横幅
+    public function banners(Request $request,$slug = 'main'){
+        return api_tem(app('banner')->getCacheBanner($slug));
+    }
+
     //所有的分类
     public function all_cats(){
         return api_tem(app('cat')->getRootCat());

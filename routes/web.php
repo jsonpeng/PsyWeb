@@ -43,6 +43,8 @@ Route::group(['prefix'=>'ajax'],function(){
 Route::group(['prefix' => 'api','namespace'=>'API'],function(){
 	//顶部菜单
 	Route::get('menus','FrontController@menus');
+	//横幅
+	Route::get('banners/{slug?}','FrontController@banners');
 	//所有分类
 	Route::get('all_cats','FrontController@all_cats');
 	//最新资讯
