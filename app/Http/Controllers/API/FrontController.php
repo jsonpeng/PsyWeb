@@ -53,8 +53,11 @@ class FrontController extends Controller
         $input = $request->all();
         $email = $input['email'];
         $password==$input['password'];
-        $user=app('user')->model()::where('email',$email)->where('password',$password);
-        return api_tem(app('user')->);
+        
+        #返回的用户对象
+        $user=app('user')->model()::where('email',$email)->first();
+
+        return api_tem($user->id);
     }
    
     //注册
