@@ -8,42 +8,42 @@
 <link rel="stylesheet" type="text/css" href="http://ping.gcs100.cc/index1_files/style.css" media="screen">
 <style>
 body{
-	background: #ff5f5f;
+    background: #ff5f5f;
 }
 main{
-	width: 100%;
-	height: 30rem;
+    width: 100%;
+    height: 30rem;
 }
 .contents{
-	padding: 15rem 0;
+    padding: 15rem 0;
 }
 #content-desc{
-	width: 85%;
-	margin: -102px auto;
-	font-family: KaiTi;
-	//font-size: 19px;
+    width: 85%;
+    margin: -102px auto;
+    font-family: KaiTi;
+    //font-size: 19px;
 }
 footer{
-	width: 100%;
+    width: 100%;
 }
 ul{
-	width: 70%;
-	margin: -80px 5%;
+    width: 70%;
+    margin: -80px 5%;
 }
 li{
-	list-style: none;
-	width: 90%;
-	height: 2rem;
-	text-align: center;
-	margin-top: 10px;
-	border: 1.9px solid white;
-	border-radius:8px;
-	margin: 10px auto;
-	line-height: 2rem;
-	font-size: 1rem;
-	font-family: KaiTi;
-	cursor: pointer;
-	font-weight: bold;
+    list-style: none;
+    width: 90%;
+    height: 2rem;
+    text-align: center;
+    margin-top: 10px;
+    border: 1.9px solid white;
+    border-radius:8px;
+    margin: 10px auto;
+    line-height: 2rem;
+    font-size: 1rem;
+    font-family: KaiTi;
+    cursor: pointer;
+    font-weight: bold;
 
 }
 
@@ -177,8 +177,8 @@ li{
     #content-desc span:nth-child(33){  
         -webkit-animation:jump 1s linear 0.4s infinite alternate;  
     }
-	
-	 #content-desc span:nth-child(34){  
+    
+     #content-desc span:nth-child(34){  
         -webkit-animation:jump 1s linear 0.4s infinite alternate;  
     }
     #content-desc span:nth-child(35){  
@@ -215,52 +215,42 @@ li{
         }  
     }  
 
-	</style>
+    </style>
 
 <meta name="GENERATOR" content="MSHTML 9.00.8112.16723"></head>
 <body youdao="bind">
 <main>
-	<article class="contents">
-		<div id="content-desc"><span class="span1">如</span><span class="span2">何</span><span class="span3">证</span><span class="span4">明</span><span class="span5">你</span><span class="span6">的</span><span class="span7">实</span><span class="span8">力</span><span class="span9">？</span><br><span class="span10">住</span><span class="span11">酒</span><span class="span12">店</span><span class="span13">一</span><span class="span14">定</span><span class="span15">要</span><span class="span16">选</span><span class="span17">隔</span><span class="span18">音</span><span class="span19">最</span><span class="span20">好</span><span class="span21">的</span><span class="span22">。</span></div>
-	</article>
+    <article class="contents">
+        <div id="content-desc"><span class="span1">如</span><span class="span2">何</span><span class="span3">证</span><span class="span4">明</span><span class="span5">你</span><span class="span6">的</span><span class="span7">实</span><span class="span8">力</span><span class="span9">？</span><br><span class="span10">住</span><span class="span11">酒</span><span class="span12">店</span><span class="span13">一</span><span class="span14">定</span><span class="span15">要</span><span class="span16">选</span><span class="span17">隔</span><span class="span18">音</span><span class="span19">最</span><span class="span20">好</span><span class="span21">的</span><span class="span22">。</span></div>
+    </article>
 </main>
 <footer>
 <nav>
 <ul>
-  <li class="btn">				点击复制这句话			</li>
-  <li class="jump">							换一个						</li>
+  <li class="btn">              点击复制这句话         </li>
+  <li class="jump">                         换一个                     </li>
 </ul>
 </nav>
 <input class="weburl" value="https://mp.weixin.qq.com/s/h7SGqC8yJ2d0iq1yq4mEgw" type="hidden">
 </footer>
 <script type="text/javascript">
 function formatText(text){
-	text = text.split('_');
-	var attr = '';
-	if(text.length){
-		for(var i = 1 ;i <=text.length;i++){
-			attr += '<span class="span'+i+'">'+text[i-1]+'</span>';
-		}
-	}
-	return attr;
+    text = text.split('');
+    var attr = '';
+    if(text.length){
+        for(var i = 1 ;i <=text.length;i++){
+            attr += '<span class="span'+i+'">'+text[i-1]+'</span>';
+        }
+    }
+    return attr;
 }
-
 function switchText(){
-    var rand1 = parseInt(Math.random()*6);
-    quotes = new Array;
-    quotes[0] = formatText('凤_凤_很_笨');
-    quotes[1] = formatText('彭_云_要_加_油');
-    quotes[2] = formatText('凤_凤_要_加_油');
-    quotes[3] = formatText('凤_凤_天_下_第_一');
-    quotes[4] = formatText('凤_凤_最_美');
-    quotes[5] = formatText('凤_凤_专_属');
+    var quotes = ['凤凤很笨','彭云要加油','凤凤要加油','凤凤天下第一','凤凤最美','凤凤专属'];
+    var rand1 = parseInt(Math.random()*quotes.length);
     var quote = quotes[rand1];
     $("#content-desc").html(quote);
 }
-
 switchText();
-
-
 </script>
 <script>
     var clipboard = new Clipboard('.btn', {
@@ -278,7 +268,7 @@ switchText();
     });
     $(".jump").click(function(){
         switchText();
-    	//window.location.href='http://fengfeng.book.kaimusoft.xyz';
+        //window.location.href='http://fengfeng.book.kaimusoft.xyz';
     })
     </script>
 
