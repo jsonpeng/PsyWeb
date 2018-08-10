@@ -18,31 +18,99 @@ Route::get('/', function () {
 
 Auth::routes();
 
-//前端路由
+//前端路由 视图
+//网站首页
 Route::get('/', 'FrontController@index')->name('index');
+//网站分类页面 包含子分类
 Route::get('cat/{id}', 'FrontController@cat')->name('category');
+//网站的文章详情
 Route::get('post/{id}', 'FrontController@post')->name('post');
-Route::get('page/{id}', 'FrontController@page')->name('page');
-
 //用户登录
 Route::get('/psychology/login', 'FrontController@login')->name('login'); 
-//route('login')
 //用户注册
 Route::get('psychology/reg', 'FrontController@reg')->name('reg');
-//api接口
-Route::post('/submit_data', 'FrontController@submitInfo');
+//个人中心
+Route::get('/usercenter/{id?}','FrontController@usercenter');
+
+//ajax操作列表
+//  ajax/collection_post/{post_id}
+Route::group(['prefix'=>'ajax'],function(){
+	#收藏文章
+	Route::get('collection_post/{post_id}/{status?}','FrontController@collectionPost');
+});
+
+//小程序请求api地址
+Route::group(['prefix' => 'api','namespace'=>'API'],function(){
+	//顶部菜单
+	Route::get('menus','FrontController@menus');
+	//横幅
+	Route::get('banners/{slug?}','FrontController@banners');
+	//所有分类
+	Route::get('all_cats','FrontController@all_cats');
+	//最新资讯
+	Route::get('newest_post','FrontController@newest_post');
+	//对应分类下的文章
+	Route::get('cat_posts/{slug}','FrontController@cat_posts');
+	//搜索文章
+	Route::get('search_posts','FrontController@search_posts');
+    //心事吐槽列表
+	Route::get('tucaolist','FrontController@tucaolist');
+	//用户认证后可以请求的路由
+	Route::group(['prefix' => 'auth'],function(){
+		//登录
+		Route::get('user_login','FrontController@user_login');
+		//注册
+		Route::get('user_register','FrontController@user_register');
+		//个人中心
+		Route::get('user_center/{id}','FrontController@user_center');
+		//个人信息修改
+		Route::get('user_update/{id}','FrontController@user_update');
+		//我的收藏
+		Route::get('user_collect/{id}','FrontController@user_collect');
+		//我的吐槽
+		Route::get('user_tucao/{id}','FrontController@user_tucao');
+		//收藏/取消收藏 文章操作
+		Route::get('user_collect_action/{id}/{post_id}/{status}','FrontController@user_collect_action');
+		//发布吐槽
+		Route::get('user_publish_tucao/{id}','FrontController@publish_tucao');
+	});
+});
+
+//接口请求
 //这里的prefix是参数的前缀 登录和注册就用post方法吧
 Route::group(['prefix' => 'auth'], function () {
+
+	Route::get('/logout','FrontController@logout')->name('logout');
+
+	//留言接口 
+	Route::post('/messageBoard','FrontController@messageBoard');
 	//登录接口
 	Route::post('/login','FrontController@loginApi');
 	//注册接口
 	Route::post('/reg','FrontController@regApi');
+	//用户上传图像接口
+	Route::post('/uploads','FrontController@uploads');
+	//用户更新信息
+	Route::post('/update/{id}','FrontController@updateUserInfo');
+	#加好友
+	Route::post('/make_friends/{friend_id}','FrontController@makeFriends');
+	
 });
+
+
+
 
 //后台管理系统
 Route::group(['middleware' => ['auth'], 'prefix' => 'zcjy'], function () {
+		Route::get('/',function(){
+		if(optional(Auth::user())->type != '管理员'){
+			return redirect('/');
+		}else{
+			return redirect('/zcjy/posts');
+		}
+		});
 	//后台首页
-	Route::get('/', 'PostController@index');
+	//Route::get('/', 'PostController@index');
 	//网站设置
 	Route::patch('settings/{id}', 'SettingController@update')->name('settings.update');
 	Route::get('setting/edit_pwd','SettingController@edit_pwd')->name('settings.edit_pwd');
@@ -77,12 +145,6 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'zcjy'], function () {
 	Route::resource('banners', 'BannerController');
 
 	Route::resource('{banner_id}/bannerItems', 'BannerItemController');
-	/*
-	Route::get('/banner_item/{banner_id}', 'BannerItemController@BannerItem')->name('banner_items.index');
-	Route::get('/banner_item/{banner_id}/edit/{item_id}', 'BannerItemController@EditBannerItem')->name('banner_items.edit');
-	Route::get('/banner_item/{banner_id}/add', 'BannerItemController@AddBannerItem')->name('banner_items.add');
-	Route::get('/banner_item/{banner_id}/delete/{item_id}', 'BannerItemController@DeleteBannerItem')->name('banner_items.delete');
-	*/
 
 	//菜单
 	Route::resource('menus', 'MenuController');

@@ -71,5 +71,9 @@ class BaseComposer
 
         //用户信息
         $view->with('userInfo',empty(Auth::user()?null:Auth::user()));
+        //dd(Auth::user());
+        //登录状态
+        $view->with('loginStatus',Auth::check());
+
     }
 }

@@ -13,11 +13,12 @@
             <meta name="keywords" content="">
             <meta name="description" content="">
         -->
+        <title>{{$setting->site_name}}  @if($loginStatus)({!! Auth::user()->name !!}已登录)@endif</title>
         @yield('seo')
 
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-        <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+        <link rel="icon" href=" @if($loginStatus){!! empty(Auth::user())?'':Auth::user()->head_image !!}@endif" type="image/x-icon" />
         <link rel="stylesheet" href="{{ asset('css/front.css') }}">
         <link rel="stylesheet" href="{{ asset('css/main.css') }}">
         <link href="https://cdn.bootcss.com/animate.css/3.5.2/animate.min.css" rel="stylesheet">
@@ -30,6 +31,10 @@
              margin-top: 0px; 
              margin-bottom: 0px;
         }
+         button[disabled]{
+            background:#ddd;
+        }
+        .rea .rea-first-bottom{width:300px;}
         </style>
         <script src="{{ asset('js/modernizr-2.6.2.min.js') }}"></script>
             
@@ -92,6 +97,7 @@
         @include('front.partial.footer')
 
         <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+        <script type="text/javascript" src="{{ asset('layer/layer.js') }}"></script>
         <script>window.jQuery || document.write('<script src="{{ asset('vendor/jquery-1.12.4.min.js') }}"><\/script>')</script>
         <script src="http://static2.fh21.com.cn/chl/js/jquery.SuperSlide.2.1.1.js" type="text/javascript" charset="utf-8"></script>
         <script type="text/javascript">
@@ -121,6 +127,22 @@
                     $('.eyf-main > .eyfs-list').eq($(this).index()).addClass('eyfs-list-show').siblings().removeClass('eyfs-list-show');
                 });
             });
+
+            $(function(){
+                $('#email,#password').val('');
+            });
+            //绑定input监听事件（登录时出入密码，不足6位就无法点击登录）
+            $('#email,#password').keyup(function(){
+                //长度大于等于6就移除下面的disabled
+                if($(this).val().length>=6){
+                    $('#btn-login').removeAttr('style');
+                    $('#btn-login').removeAttr('disabled');
+                }else{
+                    $('#btn-login').attr('style','background:#ddd;');
+                    $('#btn-login').attr('disabled','disabled');
+                }
+            });
+
         </script>
 
     

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+
 use App\Repositories\SettingRepository;
 use App\Repositories\CategoryRepository;
 use App\Repositories\PostRepository;
@@ -12,12 +13,22 @@ use App\Repositories\MessageRepository;
 use App\Repositories\LinkRepository;
 use App\Repositories\BannerRepository;
 use App\Repositories\CoorperatorRepository;
+
 use Illuminate\Support\Facades\Log;
+
 use App\Models\Banner;
+use App\Models\Message;
 use Mail;
 use App\Models\Post;
 //这里要使用User类 这个类会映射你本地数据库的users表
 use App\User;
+
+use Illuminate\Support\Facades\Input;
+use Redirect,Response;
+use Image;
+use Config;
+
+
 //这个包同样可以控制用户角色信息获取登录
 use Illuminate\Support\Facades\Auth;
 
@@ -56,7 +67,8 @@ class FrontController extends Controller
     // 首页
     public function index(Request $request)
     {
-
+        #用session存当前的地址
+        $now_url=session()->put('now_url',$request->fullUrl()); //==>session['now_url']=$request->fullUrl();
         //右侧文章列表 取每个分类的最新上传的第一篇文章
         
         #大学成长
@@ -68,8 +80,11 @@ class FrontController extends Controller
         #每日心理学
         $Psychology=$this->categoryRepository->getCachePostFirstOfCatIncludeChildren('Psychology');
 
-        #心灵鸡汤
-        $ChickenSoup=$this->categoryRepository->getCachePostFirstOfCatIncludeChildren('ChickenSoup');
+        #职业与发展
+        $CareerDevelop=$this->categoryRepository->getCachePostFirstOfCatIncludeChildren('CareerDevelop');
+
+        #罪恶情报局--2018.4.9新增
+        $Criminalnformation=$this->categoryRepository->getCachePostFirstOfCatIncludeChildren('Criminalnformation');
 
         #所有分类列表
         $RootCat=$this->categoryRepository->getRootCat();
@@ -89,7 +104,7 @@ class FrontController extends Controller
                 //dd($input['word']);
             }
         }
-        #ZHEGEHAODUOL好多了
+        #
         #如果有uinfo我们 就取对应的用户信息
          if(array_key_exists('uinfo',$input)){
             if(!empty($input['uinfo'])){
@@ -101,10 +116,6 @@ class FrontController extends Controller
             }
         }
 
-        // if(!empty(Auth::user())){
-        //     $user=Auth::logout();
-        //     $request->session()->invalidate();
-        // }
     	return view('front.index',compact('input','serach_word','UniversityGrowth','CampusAssocia','Psychology','ChickenSoup','RootCat','NewsestPosts'));
        
     }
@@ -123,20 +134,39 @@ class FrontController extends Controller
         if (empty($category)) {
             return redirect('/');
         }
+       
+     
+
     	$setting = $this->settingRepository->getCachedSetting();
         //$posts = $category->posts()->where('status', 1)->paginate($setting->post_page);
         $posts=$this->categoryRepository->getCachePostOfCatIncludeChildren($category);
         
+        $message=null;
+
         if($category->slug=='PsychologyGuide' || $category->slug=='PsychologyTest'){
-           return redirect(route('login'));
+            #把当前的请求地址 存取到session中去
+            session()->put('now_url_cat',$request->fullUrl()); 
+            $message=Message::orderBy('created_at','desc')->paginate(10);
+            #如果没有验证登录的话就登录
+            if(!Auth::check()){
+               return redirect(route('login'));
+              }
         }
 
-
+        #如果我进入的是每日心理学
+        if($category->slug=='Psychology'){
+            #而且我还没登录的话就不显示文章列表
+            if(!Auth::check()){
+                #那就只显示当前分类的文章
+                $posts=$category->posts()->where('status',1)->orderBy('created_at','desc')->get();
+            }
+        }
+        //dd($posts);
     	//是否为该分类自定义了模板
     	if (view()->exists('front.cat.'.$category->slug)) {
-    		return view('front.cat.'.$category->slug)->with('category', $category)->with('posts', $posts);
+    		return view('front.cat.'.$category->slug)->with('message', $message)->with('category', $category)->with('posts', $posts);
     	} else {
-    		return view('front.cat.index')->with('category', $category)->with('posts', $posts);
+    		return view('front.cat.index')->with('message', $message)->with('category', $category)->with('posts', $posts);
     	}
     }
 
@@ -148,6 +178,9 @@ class FrontController extends Controller
         if (empty($post)) {
             return redirect('/');
         }
+        #用session存当前的地址
+        session()->forget('now_url_cat');
+        session()->put('now_url_cat',$request->fullUrl());
         $post->update(['view' => $post->view + 1]);
 
         $prePost = $this->postRepository->PrevPost($id);
@@ -214,15 +247,35 @@ class FrontController extends Controller
 
             #如果能找到该用户的结果 我们再验证密码
             if(!empty($user)){
+                #如果是小小白 可以直接登录上去
+                if( $user->type == '管理员'){
+                    Auth::login($user);
+                    if(!empty(session('now_url_cat'))){
+                        return redirect(session('now_url_cat'));
+                    }
+                    return redirect('/');
+                }
                 #这里是数据表中users的密码
                 $password=$user->password;
                 #这里验证密码是匹配的就跳到首页 否则就重定向到登录
                 if($password==$input['password']){
                     #php用.拼接字符串
                     Auth::login($user);
+                    #把之前拦截的地址 直接跳转过去
+                    if(!empty(session('now_url_cat'))){
+                        return redirect(session('now_url_cat'));
+                    }
+
                     return redirect('/');
                 }else{
-                    return redirect(route('login'));
+                    //empty =>if(str=='' || str==null){ return true;}else{return false;}
+                   
+                    if(!empty(session('now_url'))){
+                       return redirect(session('now_url'));
+                    }
+
+                    return redirect(route('login'));                    
+
                 }
 
             }
@@ -242,7 +295,7 @@ class FrontController extends Controller
         $input=$request->all();
 
         //create==insert 这个括号里面的参数类型是array数组
-        //然后 需要注意的一点是 如果用户已经有了 用户名重复的 你觉得可以继续创建吗?不会 那就先不管他
+        //然后 需要注意的一点是 如果用户已经有了 用户名重复的 你觉得可以继续创建吗?不会
         //然后我需要用这个键值对来创建新的用户
 
         #创建用户
@@ -253,32 +306,136 @@ class FrontController extends Controller
 
      }
 
+     /*
+     *留言吐槽接口
+     *用户名称 username
+     *吐槽内容 content
+     */
+     public function messageBoard(Request $request){
+        $user = Auth::user();
+        #先获取用户名
+        $username=$user->name; //session['user']
+        #然后获取他的留言内容
+        $content=$request->get('content'); //=>$_POST['content']
+        #用户邮箱
+        $user_email=$user->email;
+        #向数据库发送存储数据的命令
+        $message=Message::create([
+            'name'=>$username,
+            'info'=>$content,
+            'email'=>$user_email
+        ]);
+        #返回前端对应的数据 用户名 头像
+        return ['code'=>0,'message'=>$message,'info'=>$user];
+        
+
+        
+     }
+    /*
+    *退出接口
+    */
+    public function logout(Request $request){
+        Auth::logout();
+        $request->session()->invalidate();
+        return redirect('/');
+    }
+
+    /*
+    *上传图片接口
+    */
+    public function uploads(Request $request){
+        $file =  Input::file('file');
+
+        #用户信息
+        $user=Auth::user();
+
+        #图片文件夹
+        $destinationPath = "uploads/user/".$user->id."/";
+
+        if (!file_exists($destinationPath)){
+            mkdir ($destinationPath,0777,true);
+        }
+       
+        $extension = $file->getClientOriginalExtension();
+        $fileName = str_random(10).'.'.$extension;
+        $file->move($destinationPath, $fileName);
+        $image_path=public_path().'/'.$destinationPath.$fileName;      
+  
+        $host='http://'.$_SERVER["HTTP_HOST"];
+
+        #图片路径
+        $img_src=$host.'/'.$destinationPath.$fileName;
+
+        #更新用户头像
+        $user->update([
+            'head_image'=>$img_src
+        ]);
+
+        return [
+            'code' => '0',
+            'message' => [
+                'src'=>$img_src,
+                'current_time' => date('Y-m-d H:i:s')
+            ]
+        ];
+    }
+
+    //登录前端
     public function login(Request $request){
         return view('front.user.login');
     }
 
+    //注册
     public function reg(Request $request){
         return view('front.user.reg');
     }
 
+    //用户收藏操作
+    public function collectionPost(Request $request,$post_id,$status=true){
+        return app('user')->collectAction(Auth::user(),$post_id,$status);
+    }
 
-    public function submitInfo(Request $request){
-        $name=$request->get('name');
-        $tel=$request->get('tel');
-        $info=$request->get('info');
-        $this->messageRepository->create([
-            'name'=>$name,
-            'tel'=>$tel,
-            'info'=>$info
+    //更新用户信息
+    public function updateUserInfo(Request $request,$id){
+        $input = $request->all();
+        Message::where('name',app('user')->findWithoutFail($id)->name)->update([
+            'name'=>$input['name']
         ]);
+        app('user')->update($input,$id);
 
+        return ['code'=>0,'message'=>'更新成功'];
+    }
 
-        Mail::send('emails.index',['tel'=>$tel,'info'=>$info],function($message){
-            $to =$this->settingRepository->findWithoutFail(1)->email;
-            $message ->to($to)->subject('预约试听体验课成功');
-        });
+    //加好友
+    public function makeFriends(Request $request,$friend_id){
+        return app('user')->makeFriends(Auth::user(),$friend_id);
+    }
 
-        return ['status'=>true,'msg'=>'提交成功'];
+    //用户个人中心
+    public function usercenter(Request $request,$id){
+        $user=User::find($id);
+        if(empty($user)){
+            return redirect('/');
+        }
+        $config_user = Config::get('userconfig');
+        #访问权限
+        $access = true;
+        if($user->id != Auth::user()->id){
+              $access = false;
+        }
+        if(app('user')->checkFriendsRel(Auth::user(),$user->id)){
+            $access = true;
+        }
+        #收藏列表
+        $collections_list=$user->posts()->get();
+      
+        #我的评论
+        $my_pinglun=$this->messageRepository->getMessageListByUserObj($user);
+
+        #好友列表
+        $friends_list=$user->friends()->get();
+
+        return view('front.user.index',compact('user','access','config_user','collections_list','my_pinglun','friends_list'));
     }
 
 }

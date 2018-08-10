@@ -138,6 +138,7 @@ class PostRepository extends BaseRepository
      *
      */
     public function SerachPostList($post_name){
+
         return Post::orderBy('created_at','desc')->where(function ($query) use ($post_name){
 
                 $query->where('name','like','%'.$post_name.'%')

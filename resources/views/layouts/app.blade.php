@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>心理健康网站后台管理系统</title>
+    <title>小小白的后台管理系统</title>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css">
@@ -11,14 +11,39 @@
     <link rel="stylesheet" href="https://cdn.bootcss.com/iCheck/1.0.2/skins/all.css">
     <link rel="stylesheet" href="{{ asset('vendor/adminLTE/css/AdminLTE.min.css') }}">
     <link rel="stylesheet" href="{{ asset('vendor/adminLTE/css/skins/skin-blue.min.css') }}">
-
-    
     <link rel="stylesheet" href="https://cdn.bootcss.com/ionicons/2.0.1/css/ionicons.min.css">
     <link href="https://cdn.bootcss.com/element-ui/1.4.3/theme-default/index.css" rel="stylesheet">
     
 
     <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
+    <style type="text/css">
+    .skin-blue .main-header .logo,.skin-blue .main-header .navbar , .btn-primary , .pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover, .pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover , .skin-blue .main-header .logo , .skin-blue .main-header .navbar .sidebar-toggle:hover{
+        background-color: #bf2727 !important;
+        border-color: white;
+    }
 
+    .box.box-primary , .box.box-info , .nav-tabs-custom>.nav-tabs>li.active{
+        border-top-color: #ff5f5f;
+    }
+    .btn-primary:hover, .btn-primary:active, .btn-primary.hover {
+        background-color: black;
+    }
+    .skin-blue .sidebar-menu>li:hover>a, .skin-blue .sidebar-menu>li.active>a {
+        border-left-color: white !important;
+        background: white;
+        color: black;
+    }
+    .skin-blue .wrapper, .skin-blue .main-sidebar, .skin-blue .left-side {
+            background-color: #961818;
+    }
+    .skin-blue .sidebar a,.skin-blue .treeview-menu>li>a{
+        color: white;
+    }
+    .skin-blue .sidebar-menu>li>.treeview-menu{
+        background: #c53030;
+        
+    }
+    </style>
     @yield('css')
 </head>
 
@@ -41,7 +66,7 @@
 
             <!-- Logo -->
             <a href="#" class="logo">
-                <b>小小白的网站管理系统</b>
+                <b>大学生心理健康网站管理系统</b>
             </a>
 
             <!-- Header Navbar -->
@@ -58,7 +83,7 @@
                             <!-- Menu Toggle Button -->
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <!-- The user image in the navbar-->
-                                <img src="http://7xkyc6.com1.z0.glb.clouddn.com/logowithouttext200x200.jpg"
+                                <img src="/uploads/touuxiang.jpg"
                                      class="user-image" alt="User Image"/>
                                 <!-- hidden-xs hides the username on small devices so only the image appears. -->
                                 <span class="hidden-xs">{!! Auth::user()->name !!}</span>
@@ -98,7 +123,7 @@
 
         <!-- Main Footer -->
         <footer class="main-footer" style="max-height: 100px;text-align: center">
-            <strong>Copyright 2018 <a href="javascript:;" target="_blank">小小白的心理健康网站</a>.</strong> All rights reserved.
+            <strong>Copyright 2018 <a href="javascript:;" target="_blank">大学生心理健康网站</a>.</strong> All rights reserved.
         </footer>
 
     </div>

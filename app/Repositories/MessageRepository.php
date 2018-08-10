@@ -33,4 +33,13 @@ class MessageRepository extends BaseRepository
     {
         return Message::class;
     }
+
+    //通过用户对象找到对应的评论列表
+    public function getMessageListByUserObj($user){
+        $message=Message::where('name',$user->name)->orderBy('created_at','desc')->get();
+        foreach ($message as $key => $value) {
+           $value['time']=$value->created_at->diffForHumans();
+        }
+        return $message;
+    }
 }

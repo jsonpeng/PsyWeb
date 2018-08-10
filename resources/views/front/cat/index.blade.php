@@ -2,6 +2,20 @@
 
 @section('css')
 <style>
+textarea.form-control,*:focus{  
+  border-color: red;
+  outline: none;
+}  
+.pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover, .pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover{
+  background-color: #ff5f5f;
+  border-color: #ff5f5f;
+}
+.pagination>li>a:focus, .pagination>li>a:hover, .pagination>li>span:focus, .pagination>li>span:hover{
+  color: #ff5f5f;
+}
+.pagination>li>a, .pagination>li>span{
+  color: black;
+}
 ul.activity-list {
     list-style-type: none;
     padding: 0;
@@ -77,6 +91,8 @@ ul.activity-list .activity-desk h5 a {
                                                 @foreach ($posts as $post)
                                                         <div class="ma-modone clearfix nbt pt-0"><a href="/post/{!! $post->id !!}" target="_blank" class="fl ma-modone-left"><img src="{!! $post->image !!}" class="all-img"></a><div class="ma-modone-right fl"><a href="/post/{!! $post->id !!}" target="_blank" class="ma-modone-right-title">{!! $post->name !!}</a><div class="ma-modone-right-content">{!! $post->brief !!}<a href="/post/{!! $post->id !!}" target="_blank" class="a-hover">[详细]</a></div><div class="ma-modone-right-time">{!! $post->created_at !!}</div></div></div>
                                                 @endforeach
+     
+
                                             </div>
                                         </div>
                                     </div>
@@ -96,33 +112,21 @@ ul.activity-list .activity-desk h5 a {
                                           <div class="panel-body" style="display: block;" id="team-table" data-status="show">
                                             <ul class="activity-list">
 
-                                              
-                                              <li>
-                                                <div class="avatar"> <a href="javascript:;"><img src="/uploads/touuxiang.jpg"></a> </div>
-                                                <div class="activity-desk">
-                                                  <h5><a href="javascript:;">用户昵称:</a> <span>评论内容</span></h5>
-                                                  <p class="text-muted">发布时间</p>
-                                                </div>
-                                              </li>
+                                              @foreach($message as $item)
+                                                <li>
+                                                  <div class="avatar"> <a href="{!! $item->realiseUserInfo !!}"  target="_blank"><img src="{!! empty($item->realiseUserImg)?'/uploads/touuxiang.jpg':$item->realiseUserImg !!}"></a> </div>
+                                                  <div class="activity-desk"> 
+                                                    <h5><a href="{!! $item->realiseUserInfo !!}" target="_blank">{!! $item->name !!}:</a> <span>{!! $item->info !!}</span></h5>
+                                                    <p class="text-muted">发布时间:{!! $item->created_at !!}</p>
+                                                  </div>
+                                                </li>
+                                              @endforeach
                                                 
-                                             <li>
-                                                <div class="avatar"> <a href="javascript:;"><img src="/uploads/touuxiang.jpg"></a> </div>
-                                                <div class="activity-desk">
-                                                  <h5><a href="javascript:;">用户昵称:</a> <span>评论内容</span></h5>
-                                                  <p class="text-muted">发布时间</p>
-                                                </div>
-                                              </li>
-
-                                              <li>
-                                                <div class="avatar"> <a href="javascript:;"><img src="/uploads/touuxiang.jpg"></a> </div>
-                                                <div class="activity-desk">
-                                                  <h5><a href="javascript:;">用户昵称:</a> <span>评论内容</span></h5>
-                                                  <p class="text-muted">发布时间</p>
-                                                </div>
-                                              </li>
+                                     
                                             
                                               
                                             </ul>
+                                            <div class="text-center">{{ $message->appends("")->links() }}</div>
                                             <form class="form-horizontal" id="knowledge-comment-form" action="" novalidate="novalidate">
                                               <a name="commenta"></a>
                                               <div class="form-group">
@@ -130,7 +134,7 @@ ul.activity-list .activity-desk h5 a {
                                                   <textarea name="comment" id="content" rows="6" class="form-control" placeholder="我要吐槽……"></textarea>
                                                   <br>
                                               
-                                                  <button type="button" id="gonggao_comment_add" data-id="" class="btn btn-primary pull-right">我要吐槽</button>
+                                                  <button type="button" id="comment_add"  class="btn btn-primary pull-right" style="background-color: #ff5f5f;border-color: #ff5f5f;">我要吐槽</button>
                                                 </div>
                                               </div>
                                             </form>
@@ -148,12 +152,11 @@ ul.activity-list .activity-desk h5 a {
                 <div class="right fr">
                     
                     <!--.搜索-->
-                        <form class="search clearfix" target="_blank" action="http://zhannei.fh21.com.cn/cse/search">
-                            <input type="text" name="q" class="fl search-inp" placeholder="请输入关键字">
-                            <input type="hidden" name="s" value="6719305306906253443">          
-                            <input type="hidden" name="nsid" value="0"> 
+                       <form class="search clearfix"  action="/">
+                            <input type="text" name="word" class="fl search-inp" placeholder="请输入关键字">
+                  
                             <button class="fl search-btn" type="submit">
-                              搜索
+                                搜索
                             </button>
                         </form>
                     <!--/.搜索-->
@@ -172,4 +175,43 @@ ul.activity-list .activity-desk h5 a {
                 </div>
             </div>
 </div>
+@endsection
+
+@section('js')
+<script src="{{ asset('layer_mobile/layer.js') }}"></script>
+<script type="text/javascript">
+  //吐槽评论点击接口
+  $('#comment_add').click(function(){
+    //获取评论内容
+    var contents=$('#content').val();
+        if(contents==''){
+          alert('请输入评论内容!');
+          return false;
+        }
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+            });
+        $.ajax({
+            url: '/auth/messageBoard',
+            type: 'POST',
+            data:{content:contents},
+            success: function(data) {
+              //data 服务器传过来的数据
+              if(data.code==0){
+
+                alert('评论成功');
+                location.reload();
+                //无刷新插入数据
+                //$('.activity-list').append('<li><div class="avatar"><a href="javascript:;"><img src="'+data.info.head_image+'"></a></div><div class="activity-desk"><h5><a href="javascript:;">'+data.info.name+':</a><span>'+data.message.info+'</span></h5><p class="text-muted">发布时间:'+data.message.created_at+'</p></div></li>');
+                //清空输入框
+               // $('#content').val('');
+
+              }
+            }
+          });
+  });
+
+</script>
 @endsection

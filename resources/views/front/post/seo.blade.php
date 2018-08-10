@@ -1,9 +1,5 @@
 @section('seo')
-	@if($post->seo_title == '')
-		<title>{{$setting->site_name}}</title>
-	@else
-		<title>{{$post->seo_title}}</title>
-	@endif
+
 
 	@if($post->seo_keyword == '')
 		<meta name="keywords" content="{{$setting->key_words}}">

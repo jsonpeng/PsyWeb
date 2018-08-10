@@ -1,7 +1,7 @@
 <table class="table table-responsive" id="messages-table">
     <thead>
         <tr>
-            <th>姓名</th>
+            <th style=" width: 116px;">姓名</th>
             <th>邮箱</th>
         {{--     <th>电话</th> --}}
             <th>吐槽内容</th>

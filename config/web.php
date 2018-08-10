@@ -4,6 +4,6 @@ return [
 
     'longtimecache' => 10,
 
-    'shrottimecache' => 2,
+    'shrottimecache' => 5,
 
 ];
