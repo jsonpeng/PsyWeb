@@ -134,10 +134,17 @@ class PostRepository extends BaseRepository
     }
 
     /*
-    通过名称搜索文章列表
+     *通过名称及文章内容搜索文章列表
+     *
      */
     public function SerachPostList($post_name){
-            return Post::where('name','like','%'.$post_name.'%')->get();
+        return Post::orderBy('created_at','desc')->where(function ($query) use ($post_name){
+
+                $query->where('name','like','%'.$post_name.'%')
+                      ->orWhere('content','like','%'.$post_name.'%');
+                      
+            })->get(); 
+                  
     }
     
 }

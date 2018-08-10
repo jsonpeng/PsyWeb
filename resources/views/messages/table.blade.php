@@ -3,9 +3,9 @@
         <tr>
             <th>姓名</th>
             <th>邮箱</th>
-            <th>电话</th>
-            <th>留言</th>
-            <th>日期</th>
+        {{--     <th>电话</th> --}}
+            <th>吐槽内容</th>
+            <th>吐槽日期</th>
             <th>操作</th>
         </tr>
     </thead>
